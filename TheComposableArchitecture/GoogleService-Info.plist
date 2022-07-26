@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>466105527205-caof0atu8bk8f1o1v4qiuelh7uc8flgb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.466105527205-caof0atu8bk8f1o1v4qiuelh7uc8flgb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB7MliA5Xc_uqaHxi00wVyuuL2zNmxPImE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>466105527205</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>hideto1198.TheComposableArchitecture</string>
+	<key>PROJECT_ID</key>
+	<string>the-composable-architecture</string>
+	<key>STORAGE_BUCKET</key>
+	<string>the-composable-architecture.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:466105527205:ios:f5fa6174bc9f2cc91fd64c</string>
+</dict>
+</plist>
