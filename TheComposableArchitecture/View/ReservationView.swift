@@ -16,6 +16,26 @@ struct ReservationView: View {
             ZStack {
                 VStack {
                     ReservationListView(viewStore: viewStore)
+                    HStack {
+                        Spacer()
+                        Button(
+                            action: {
+                                viewStore.send(.getReservation, animation: .easeIn)
+                            }
+                        ){
+                            Text("取得")
+                        }
+                        Spacer()
+                        Button(
+                            action: {
+                                viewStore.send(.reset, animation: .easeIn)
+                            }
+                        ){
+                            Text("リセット")
+                        }
+                        Spacer()
+                    }
+                    .padding(.bottom)
                 }
                 if viewStore.isLoading {
                     ActivityIndicator()

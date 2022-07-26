@@ -27,6 +27,7 @@ enum ReservationAction {
     case getReservation
     case reservationResponse(Result<[ReservationEntity], FirebaseClient.Failure>)
     case onTapGesture(String)
+    case reset
 }
 
 struct ReservationEnvironment {
@@ -59,6 +60,9 @@ let reservationReducer: Reducer = Reducer<ReservationState, ReservationAction, R
                 state.reservations[i].isTap = false
             }
         }
+        return .none
+    case .reset:
+        state.reservations.removeAll()
         return .none
     }
 }
