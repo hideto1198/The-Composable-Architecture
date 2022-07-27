@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86290FA028913F4300D1B16B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290F9F28913F4300D1B16B /* HomeView.swift */; };
+		86290FA228913F6200D1B16B /* TicketStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290FA128913F6200D1B16B /* TicketStore.swift */; };
+		86290FA42891415700D1B16B /* TicketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290FA32891415700D1B16B /* TicketClient.swift */; };
+		86290FA62891486B00D1B16B /* TicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290FA52891486B00D1B16B /* TicketView.swift */; };
 		863F79F7288FD5710065B8E8 /* TheComposableArchitectureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F79F6288FD5710065B8E8 /* TheComposableArchitectureApp.swift */; };
 		863F79F9288FD5710065B8E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F79F8288FD5710065B8E8 /* ContentView.swift */; };
 		863F79FB288FD5710065B8E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 863F79FA288FD5710065B8E8 /* Assets.xcassets */; };
@@ -24,7 +28,7 @@
 		863F7A30288FD6470065B8E8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A2F288FD6470065B8E8 /* FirebaseAuth */; };
 		863F7A32288FD6470065B8E8 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A31288FD6470065B8E8 /* FirebaseAuthCombine-Community */; };
 		863F7A34288FD6470065B8E8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A33288FD6470065B8E8 /* FirebaseCrashlytics */; };
-		863F7A36288FD6470065B8E8 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A35288FD6470065B8E8 /* FirebaseDatabase */; };
+		863F7A36288FD6470065B8E8 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A35288FD6470065B8E8 /* FirebaseDatabase */; settings = {ATTRIBUTES = (Required, ); }; };
 		863F7A38288FD6470065B8E8 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A37288FD6470065B8E8 /* FirebaseDatabaseSwift */; };
 		863F7A3A288FD6470065B8E8 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A39288FD6470065B8E8 /* FirebaseDynamicLinks */; };
 		863F7A3C288FD6470065B8E8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A3B288FD6470065B8E8 /* FirebaseFirestore */; };
@@ -34,7 +38,7 @@
 		863F7A44288FD6470065B8E8 /* FirebaseFunctionsCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A43288FD6470065B8E8 /* FirebaseFunctionsCombine-Community */; };
 		863F7A46288FD6470065B8E8 /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A45288FD6470065B8E8 /* FirebaseInAppMessaging-Beta */; };
 		863F7A48288FD6470065B8E8 /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A47288FD6470065B8E8 /* FirebaseInAppMessagingSwift-Beta */; };
-		863F7A4A288FD6470065B8E8 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A49288FD6470065B8E8 /* FirebaseInstallations */; };
+		863F7A4A288FD6470065B8E8 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A49288FD6470065B8E8 /* FirebaseInstallations */; settings = {ATTRIBUTES = (Required, ); }; };
 		863F7A4C288FD6470065B8E8 /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A4B288FD6470065B8E8 /* FirebaseMLModelDownloader */; };
 		863F7A4E288FD6470065B8E8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A4D288FD6470065B8E8 /* FirebaseMessaging */; };
 		863F7A50288FD6470065B8E8 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A4F288FD6470065B8E8 /* FirebasePerformance */; };
@@ -43,7 +47,7 @@
 		863F7A56288FD6470065B8E8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A55288FD6470065B8E8 /* FirebaseStorage */; };
 		863F7A58288FD6470065B8E8 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A57288FD6470065B8E8 /* FirebaseStorageCombine-Community */; };
 		863F7A5F288FD8390065B8E8 /* ReservationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F7A5E288FD8390065B8E8 /* ReservationStore.swift */; };
-		863F7A62288FD9000065B8E8 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F7A61288FD9000065B8E8 /* FirebaseClient.swift */; };
+		863F7A62288FD9000065B8E8 /* ReservationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F7A61288FD9000065B8E8 /* ReservationClient.swift */; };
 		863F7A65288FE5110065B8E8 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 863F7A64288FE5110065B8E8 /* ComposableArchitecture */; };
 		863F7A67288FECF30065B8E8 /* ReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F7A66288FECF30065B8E8 /* ReservationView.swift */; };
 		863F7A69288FEE690065B8E8 /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F7A68288FEE690065B8E8 /* RootStore.swift */; };
@@ -71,6 +75,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86290F9F28913F4300D1B16B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		86290FA128913F6200D1B16B /* TicketStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStore.swift; sourceTree = "<group>"; };
+		86290FA32891415700D1B16B /* TicketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketClient.swift; sourceTree = "<group>"; };
+		86290FA52891486B00D1B16B /* TicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketView.swift; sourceTree = "<group>"; };
 		863F79F3288FD5710065B8E8 /* TheComposableArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheComposableArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		863F79F6288FD5710065B8E8 /* TheComposableArchitectureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheComposableArchitectureApp.swift; sourceTree = "<group>"; };
 		863F79F8288FD5710065B8E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,7 +91,7 @@
 		863F7A13288FD5710065B8E8 /* TheComposableArchitectureUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheComposableArchitectureUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		863F7A20288FD5AE0065B8E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		863F7A5E288FD8390065B8E8 /* ReservationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationStore.swift; sourceTree = "<group>"; };
-		863F7A61288FD9000065B8E8 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
+		863F7A61288FD9000065B8E8 /* ReservationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationClient.swift; sourceTree = "<group>"; };
 		863F7A66288FECF30065B8E8 /* ReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationView.swift; sourceTree = "<group>"; };
 		863F7A68288FEE690065B8E8 /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
 		863F7A6A288FFEA20065B8E8 /* ReservationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationRowView.swift; sourceTree = "<group>"; };
@@ -152,6 +160,7 @@
 				863F7A06288FD5710065B8E8 /* TheComposableArchitectureTests */,
 				863F7A10288FD5710065B8E8 /* TheComposableArchitectureUITests */,
 				863F79F4288FD5710065B8E8 /* Products */,
+				863F7A7228912B9E0065B8E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,6 +219,7 @@
 			children = (
 				863F7A5E288FD8390065B8E8 /* ReservationStore.swift */,
 				863F7A68288FEE690065B8E8 /* RootStore.swift */,
+				86290FA128913F6200D1B16B /* TicketStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -222,6 +232,8 @@
 				863F7A6C288FFFAF0065B8E8 /* ReservationListView.swift */,
 				863F7A6E289000EB0065B8E8 /* ActivityIndicator.swift */,
 				863F7A7028900F700065B8E8 /* CancelButtonView.swift */,
+				86290F9F28913F4300D1B16B /* HomeView.swift */,
+				86290FA52891486B00D1B16B /* TicketView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -229,9 +241,17 @@
 		863F7A60288FD8E90065B8E8 /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				863F7A61288FD9000065B8E8 /* FirebaseClient.swift */,
+				863F7A61288FD9000065B8E8 /* ReservationClient.swift */,
+				86290FA32891415700D1B16B /* TicketClient.swift */,
 			);
 			path = Client;
+			sourceTree = "<group>";
+		};
+		863F7A7228912B9E0065B8E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,14 +421,18 @@
 			files = (
 				863F7A7128900F700065B8E8 /* CancelButtonView.swift in Sources */,
 				863F79F9288FD5710065B8E8 /* ContentView.swift in Sources */,
+				86290FA42891415700D1B16B /* TicketClient.swift in Sources */,
 				863F7A69288FEE690065B8E8 /* RootStore.swift in Sources */,
 				863F7A67288FECF30065B8E8 /* ReservationView.swift in Sources */,
+				86290FA228913F6200D1B16B /* TicketStore.swift in Sources */,
 				863F7A6B288FFEA20065B8E8 /* ReservationRowView.swift in Sources */,
+				86290FA028913F4300D1B16B /* HomeView.swift in Sources */,
 				863F7A5F288FD8390065B8E8 /* ReservationStore.swift in Sources */,
 				863F7A6D288FFFAF0065B8E8 /* ReservationListView.swift in Sources */,
+				86290FA62891486B00D1B16B /* TicketView.swift in Sources */,
 				863F79F7288FD5710065B8E8 /* TheComposableArchitectureApp.swift in Sources */,
 				863F7A6F289000EB0065B8E8 /* ActivityIndicator.swift in Sources */,
-				863F7A62288FD9000065B8E8 /* FirebaseClient.swift in Sources */,
+				863F7A62288FD9000065B8E8 /* ReservationClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,10 +519,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CODE_SIGN_FLAGS = "–-generate-entitlement-der";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -549,9 +574,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_CODE_SIGN_FLAGS = "–-generate-entitlement-der";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -564,6 +590,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TheComposableArchitecture/Preview Content\"";
@@ -575,13 +602,16 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = hideto1198.TheComposableArchitecture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -593,6 +623,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TheComposableArchitecture/Preview Content\"";
@@ -604,13 +635,16 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_CODE_SIGN_FLAGS = "--generate-entitlement-der";
 				PRODUCT_BUNDLE_IDENTIFIER = hideto1198.TheComposableArchitecture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
