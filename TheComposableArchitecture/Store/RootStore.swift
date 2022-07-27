@@ -10,18 +10,22 @@ import ComposableArchitecture
 
 struct RootState {
     var reservation = ReservationState()
+    var ticket = TicketState()
 }
 
 enum RootAction {
     case reservation(ReservationAction)
+    case ticket(TicketAction)
     case onAppear
 }
 
 struct RootEnvironment {
-    var fact: FirebaseClient
+    var reservationClient: ReservationClient
+    var ticketClient: TicketClient
     var mainQueue: AnySchedulerOf<DispatchQueue>
     static let live = Self(
-        fact: .live,
+        reservationClient: ReservationClient.live,
+        ticketClient: TicketClient.live,
         mainQueue: .main
     )
 }
@@ -39,5 +43,9 @@ let rootReducer: Reducer = Reducer<RootState, RootAction, RootEnvironment>.combi
     reservationReducer
         .pullback(state: \.reservation,
                   action: /RootAction.reservation,
-                  environment: { .init(fact: $0.fact, mainQueue: $0.mainQueue)})
+                  environment: { .init(reservationClient: $0.reservationClient, mainQueue: $0.mainQueue)}),
+    ticketReducer
+        .pullback(state: \.ticket,
+                  action: /RootAction.ticket,
+                  environment: { .init(ticketClient: $0.ticketClient, mainQueue: $0.mainQueue)})
 )
