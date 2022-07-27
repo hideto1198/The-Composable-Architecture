@@ -11,19 +11,17 @@ import FirebaseFunctions
 import Combine
 import Foundation
 
-let functions = Functions.functions()
 
-struct FirebaseClient {
+struct ReservationClient {
     var fetch: () -> Effect<[ReservationEntity], Failure>
     struct Failure: Error, Equatable {}
 }
 
 
-extension FirebaseClient {
-    
-    static let live = Self(
-        fetch: {
+extension ReservationClient {
+    static let live = ReservationClient(fetch: {
             Effect.task {
+                let functions = Functions.functions()
                 let data = try await functions.httpsCallable("test").call()
                 var result: [ReservationEntity] = []
                 if let data = data.data {
