@@ -13,12 +13,18 @@ struct ContentView: View {
     
     var body: some View {
         WithViewStore(self.store.stateless) { viewStore in
-            ReservationView(
-                store: self.store.scope(
-                    state: \.reservation,
-                    action: RootAction.reservation
+            VStack {
+                ReservationView(store: self.store.scope(
+                        state: \.reservation,
+                        action: RootAction.reservation
+                    )
                 )
-            )
+                TicketView(store: self.store.scope(
+                    state: \.ticket,
+                    action: RootAction.ticket
+                    )
+                )
+            }
         }
     }
 }
