@@ -20,7 +20,9 @@ struct ReservationListView: View {
                     }
                 if reservation.isTap {
                     Button(
-                        action: {}
+                        action: {
+                            
+                        }
                     ){
                         CancelButtonView()
                     }
@@ -45,7 +47,7 @@ struct ReservationListView_Previews: PreviewProvider {
                 ]),
                 reducer: reservationReducer,
                 environment: ReservationEnvironment(
-                    fact: .live,
+                    reservationClient: .live,
                     mainQueue: .main)
             ))
         )
