@@ -25,13 +25,13 @@ struct ReservationState: Equatable {
 
 enum ReservationAction {
     case getReservation
-    case reservationResponse(Result<[ReservationEntity], FirebaseClient.Failure>)
+    case reservationResponse(Result<[ReservationEntity], ReservationClient.Failure>)
     case onTapGesture(String)
     case reset
 }
 
 struct ReservationEnvironment {
-    var fact: FirebaseClient
+    var reservationClient: ReservationClient
     var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
@@ -39,7 +39,7 @@ let reservationReducer: Reducer = Reducer<ReservationState, ReservationAction, R
     switch action {
     case .getReservation:
         state.isLoading = true
-        return environment.fact.fetch()
+        return environment.reservationClient.fetch()
             .receive(on: environment.mainQueue)
             .catchToEffect(ReservationAction.reservationResponse)
         
