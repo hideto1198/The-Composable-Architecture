@@ -1,0 +1,162 @@
+@startuml
+package "View" {
+    class "LaunchScreenView" as LaunchScreenView <<(S, lightblue)>> {}
+    class "LoginView" as LoginView <<(S, lightblue)>> {}
+    class "SignupView" as SignupView <<(S, lightblue)>> {}
+    class "RegistrationView" as RegistrationView <<(S, lightblue)>> {}
+    class "HomeView" as HomeView <<(S, lightblue)>> {}
+    class "HomeHeaderView" as HomeHeaderView <<(S, lightblue)>> {
+
+    }
+    class "ReservationView" as ReservationView <<(S, lightblue)>> {
+        let store: Store<ReservationStore, ReservationAction>
+    }
+    class "ReservationListView" as ReservationListView <<(S, lightblue)>> {
+        var viewStore: ViewStore<ReservationStore, ReservationAction>
+    }
+    class "ReservationRowView" as ReservationRowView <<(S, lightblue)>> {
+        var reservation: ReservationEntity
+    }
+    class "TicketView" as TicketView <<(S, lightblue)>> {}
+    class "AppMenuView" as AppMenuView <<(S, lightblue)>> {}
+    class "MakeReservationView" as MakeReservationView <<(S, lightblue)>> {}
+    class "TrainingMenuView" as TrainingMenuView <<(S, lightblue)>> {}
+    class "TrainingPlaceView" as TrainingPlaceView <<(S, lightblue)>> {}
+    class "TrainerView" as TrainerView <<(S, lightblue)>> {}
+    class "TrainerSelectorView" as TrainerSelectorView <<(S, lightblue)>> {}
+    class "CalendarView" as CalendarView <<(S, lightblue)>> {}
+    class "TimescheduleView" as TimescheduleView  <<(S, lightblue)>> {}
+    class "ButtoView" as  ButtonView  <<(S, lightblue)>> {}
+    class "UserinfoView" as UserinfoView <<(S, lightblue)>> {}
+    class "ContactView" as ContactView <<(S, lightblue)>> {}
+    class "TicketReaderView" as TicketReaderView <<(S, lightblue)>> {}
+
+}
+
+package "Store" {
+    package "ReservationStore" {
+        class "ReservationEntity: Equatable, Identifialble" as ReservationEntity <<(S, lightgreen)>> {
+            var id: String = UUID().uuidString
+            var date: String = ""
+            var place: String = ""
+            var menu: String = ""
+            var trainer_menu: String = ""
+            var isTap: Bool = false
+        }
+
+        class "ReservationState: Equatable" as ReservationState <<(S, lightgreen)>> {
+            var reservations: [ReservationEntity] = []
+            var isLoading: Bool = false
+        }
+
+        enum "ReservationAction" as ReservationAction {
+            getReservation
+            reservationResponse(Result<[ReservationEntity], FirebaseClient.Failure>)
+            onTapGesture(String)
+        }
+
+        class "ReservationEnvironment" as ReservationEnvironment <<(S, lightgreen)>> {
+            var fact: FirebaseClient
+            var mainQueue: AnySchedulerOf<DispachQueue>
+        }
+
+        class "reservationReducer" as reservationReducer <<(l, LightPink)>> {
+
+        }
+    }
+
+    package "HomeStore" {
+
+    }
+
+    package "MakeReservationStore" {
+
+    }
+
+    package "LoginStore" {
+
+        class "LoginState" as LoginState <<(S, lightgreen)>>{
+            @BindableState var email: String = ""
+            @BindableState var password: String = ""
+        }
+
+        enum "LoginAction" as LoginAction {
+            loginButtonTapped
+            registrationButtonTapped
+        }
+
+        class "LoginEnvironment" as LoginEnvironment <<(S, lightgreen)>> {}
+
+        class "loginReducer" as loginReducer <<(l, LightPink)>>{}
+    }
+
+    package "RegistrationStore" {
+        class "RegistrationState" as RegistrationState <<(S, lightgreen)>> {
+            @BindableState var email: String = ""
+            @BindableState var password: String = ""
+            @BindableState var confirm_password: String = ""
+            @BindableState var FIRSTNAME_1: String = ""
+            @BindableState var FIRSTNAME_2: String = ""
+            @BindableState var LASTNAME_1: String = ""
+            @BindableState var LASTNAME_2: String = ""
+            var sex_selector: Bool = false
+            var birthday_selector: Date = Date()
+        }
+
+        enum "RegistrationAction" as RegistrationAction {
+            sendMailButtonTapped
+            resendMailButtonTapped
+            nextButtonTapped
+        }
+
+        class "RegistrationEnvironment" as RegistrationEnvironment {}
+
+        class "registrationReducer" as registrationReducer <<(l, LightPink)>> {}
+
+
+    }
+}
+'store ReservationStore
+reservationReducer ..> ReservationView
+ReservationState ..> reservationReducer
+ReservationEnvironment ..> reservationReducer
+ReservationAction ..> reservationReducer
+ReservationEntity ..> ReservationState
+
+'store LoginStore
+loginReducer ..> LoginView
+LoginState ..> loginReducer
+LoginEnvironment ..> loginReducer
+LoginAction ..> loginReducer
+
+'store RegistrationStore
+registrationReducer ..> RegistrationView
+RegistrationState ..> registrationReducer
+RegistrationAction ..> registrationReducer
+RegistrationEnvironment ..> registrationReducer
+
+'view
+LoginView ..> LaunchScreenView
+HomeView ..> LaunchScreenView
+SignupView ..> LoginView
+RegistrationView ..> SignupView
+HomeHeaderView ..> HomeView
+ReservationView ..> HomeView
+TicketView ..> HomeView
+AppMenuView ..> HomeView
+MakeReservationView ..> AppMenuView
+UserinfoView ..> AppMenuView
+ContactView ..> AppMenuView
+TicketReaderView ..> AppMenuView
+ReservationListView ..> ReservationView
+ReservationRowView ..> ReservationListView
+TrainingMenuView ..> MakeReservationView
+TrainingPlaceView ..> MakeReservationView
+TrainerSelectorView ..> MakeReservationView
+TrainerView ..> MakeReservationView
+CalendarView ..> MakeReservationView
+TimescheduleView ..> MakeReservationView
+ButtonView ..> MakeReservationView
+
+
+@enduml
