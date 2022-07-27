@@ -64,7 +64,7 @@ struct ReservationView_Previews: PreviewProvider {
             ),
             reducer: reservationReducer,
             environment: ReservationEnvironment(
-                fact: .live,
+                reservationClient: .live,
                 mainQueue: .main)
         )
         )
