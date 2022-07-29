@@ -26,8 +26,8 @@ struct TheComposableArchitectureApp: App {
         WindowGroup {
             ContentView(store:
                             Store(
-                                initialState: RootState(),
-                                reducer: rootReducer,
+                                initialState: HomeState(),
+                                reducer: homeReducer,
                                 environment: .live
                             )
             )
