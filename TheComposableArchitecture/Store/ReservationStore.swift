@@ -23,7 +23,7 @@ struct ReservationState: Equatable {
     var isLoading: Bool = false
 }
 
-enum ReservationAction {
+enum ReservationAction: Equatable {
     case getReservation
     case reservationResponse(Result<[ReservationEntity], ReservationClient.Failure>)
     case onTapGesture(String)

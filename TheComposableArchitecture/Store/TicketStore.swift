@@ -24,7 +24,7 @@ struct TicketState: Equatable {
     var isMenu: Bool = false
 }
 
-enum TicketAction {
+enum TicketAction: Equatable {
     case getTicket
     case ticketResponse(Result<TicketEntity, TicketClient.Failure>)
     case onMenuTap
@@ -38,7 +38,6 @@ struct TicketEnvironment {
 let ticketReducer: Reducer = Reducer<TicketState, TicketAction, TicketEnvironment> { state, action, environment in
     switch action {
     case .getTicket:
-        debugPrint("こここ")
         return environment.ticketClient.fetch()
             .receive(on: environment.mainQueue)
             .catchToEffect(TicketAction.ticketResponse)
