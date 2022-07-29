@@ -55,6 +55,7 @@
 		863F7A6D288FFFAF0065B8E8 /* ReservationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F7A6C288FFFAF0065B8E8 /* ReservationListView.swift */; };
 		863F7A6F289000EB0065B8E8 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F7A6E289000EB0065B8E8 /* ActivityIndicator.swift */; };
 		863F7A7128900F700065B8E8 /* CancelButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F7A7028900F700065B8E8 /* CancelButtonView.swift */; };
+		86EA523B2893D0A800939659 /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523A2893D0A800939659 /* HomeStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		863F7A6C288FFFAF0065B8E8 /* ReservationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationListView.swift; sourceTree = "<group>"; };
 		863F7A6E289000EB0065B8E8 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		863F7A7028900F700065B8E8 /* CancelButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButtonView.swift; sourceTree = "<group>"; };
+		86EA523A2893D0A800939659 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 				863F7A5E288FD8390065B8E8 /* ReservationStore.swift */,
 				863F7A68288FEE690065B8E8 /* RootStore.swift */,
 				86290FA128913F6200D1B16B /* TicketStore.swift */,
+				86EA523A2893D0A800939659 /* HomeStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				863F7A7128900F700065B8E8 /* CancelButtonView.swift in Sources */,
+				86EA523B2893D0A800939659 /* HomeStore.swift in Sources */,
 				863F79F9288FD5710065B8E8 /* ContentView.swift in Sources */,
 				86290FA42891415700D1B16B /* TicketClient.swift in Sources */,
 				863F7A69288FEE690065B8E8 /* RootStore.swift in Sources */,
