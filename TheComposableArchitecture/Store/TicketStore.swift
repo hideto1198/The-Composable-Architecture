@@ -21,13 +21,11 @@ struct TicketEntity: Equatable {
 struct TicketState: Equatable {
     var ticket: TicketEntity = TicketEntity()
     var isLoading: Bool = false
-    var isMenu: Bool = false
 }
 
 enum TicketAction: Equatable {
     case getTicket
     case ticketResponse(Result<TicketEntity, TicketClient.Failure>)
-    case onMenuTap
 }
 
 struct TicketEnvironment {
@@ -49,11 +47,8 @@ let ticketReducer: Reducer = Reducer<TicketState, TicketAction, TicketEnvironmen
     case .ticketResponse(.failure):
         
         return .none
-        
-    case .onMenuTap:
-        state.isMenu = true
-        return .none
     }
+        
 }
 
 
