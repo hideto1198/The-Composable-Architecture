@@ -25,6 +25,7 @@ struct ReservationListView: View {
                     ){
                         CancelButtonView()
                     }
+                    .padding(.top)
                 }
             }
         }
