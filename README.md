@@ -8,6 +8,10 @@ iOS Application Created By The Composable Architecture
 # View
 - HomeView
 > ReservationView、TicketViewを取りまとめたView
+- HomeMenuView
+> メニューを表示するView
+- HomeHeaderView
+> HomeView専用のHeaderView
 > アプリ起動時最初に表示されるView
 - ReservationView
 > ReservationViewとReservationRowViewを取りまとめたView
