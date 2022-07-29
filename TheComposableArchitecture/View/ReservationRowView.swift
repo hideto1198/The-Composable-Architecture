@@ -38,7 +38,7 @@ struct ReservationRowView: View {
             .padding(.vertical,9)
         }
         .frame(height: bounds.height * 0.1)
-        .padding(.horizontal)
+        .padding([.horizontal, .top])
     }
 }
 
