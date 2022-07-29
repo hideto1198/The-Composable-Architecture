@@ -11,11 +11,14 @@ import ComposableArchitecture
 struct HomeState: Equatable {
     var reservationState: ReservationState = ReservationState()
     var ticketState: TicketState = TicketState()
+    var isMenu: Bool = false
 }
 
 enum HomeAction: Equatable {
     case reservationAction(ReservationAction)
     case ticketAction(TicketAction)
+    case onMenuTap
+    
 }
 
 struct HomeEnvironment {
@@ -38,7 +41,10 @@ let homeReducer: Reducer = Reducer<HomeState, HomeAction, HomeEnvironment>.combi
                            environment: { .init(ticketClient: $0.ticketClient, mainQueue: $0.mainQueue)}),
     Reducer { state, action, environment in
         switch action {
-            case .reservationAction, .ticketAction:
+        case .reservationAction, .ticketAction:
+            return .none
+        case .onMenuTap:
+            state.isMenu = state.isMenu ? false : true
             return .none
         }
     }
