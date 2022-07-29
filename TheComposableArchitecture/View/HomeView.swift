@@ -6,15 +6,25 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct HomeView: View {
+    let store: Store<HomeState, HomeAction>
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WithViewStore(self.store.self){ viewStore in
+            VStack {
+                ReservationView(viewStore: viewStore)
+                TicketView(store: self.store.scope(state: \.ticketState, action: HomeAction.ticketAction))
+            }
+        }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        HomeView()
+        HomeView(store: Store(initialState: HomeState(),
+                              reducer: homeReducer,
+                              environment: .live))
     }
 }
