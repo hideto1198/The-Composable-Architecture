@@ -9,19 +9,18 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ReservationListView: View {
-    var viewStore: ViewStore<ReservationState, ReservationAction>
-    
+    var viewStore: ViewStore<HomeState, HomeAction>
     var body: some View {
         ScrollView(.vertical) {
-            ForEach(self.viewStore.state.reservations) { reservation in
+            ForEach(self.viewStore.reservationState.reservations) { reservation in
                 ReservationRowView(reservation: reservation)
                     .onTapGesture {
-                        self.viewStore.send(.onTapGesture(reservation.id), animation: .easeIn)
+                        self.viewStore.send(.reservationAction(.onTapGesture(reservation.id)), animation: .easeIn)
                     }
                 if reservation.isTap {
                     Button(
                         action: {
-                            
+                            self.viewStore.send(.ticketAction(.getTicket), animation: .easeIn)
                         }
                     ){
                         CancelButtonView()
@@ -35,19 +34,12 @@ struct ReservationListView: View {
 struct ReservationListView_Previews: PreviewProvider {
     static var previews: some View {
         ReservationListView(
-            viewStore: ViewStore<ReservationState, ReservationAction>.init(Store(
-                initialState: ReservationState(reservations: [
-                    ReservationEntity(
-                        date: "2022年7月7日",
-                        place: "二の宮店",
-                        menu: "パーソナルトレーニング",
-                        trainer_name: "テスト　トレーナー",
-                        isTap: false
-                    )
-                ]),
-                reducer: reservationReducer,
-                environment: ReservationEnvironment(
+            viewStore: ViewStore<HomeState, HomeAction>.init(Store(
+                initialState: HomeState(),
+                reducer: homeReducer,
+                environment: HomeEnvironment(
                     reservationClient: .live,
+                    ticketClient: .live,
                     mainQueue: .main)
             ))
         )

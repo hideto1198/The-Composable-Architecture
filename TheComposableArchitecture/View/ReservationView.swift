@@ -9,63 +9,48 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ReservationView: View {
-    let store: Store<ReservationState, ReservationAction>
-    
+    let viewStore: ViewStore<HomeState, HomeAction>
     var body: some View {
-        WithViewStore(self.store) { viewStore in
-            ZStack {
-                VStack {
-                    ReservationListView(viewStore: viewStore)
-                    HStack {
-                        Spacer()
-                        Button(
-                            action: {
-                                viewStore.send(.getReservation, animation: .easeIn)
-                            }
-                        ){
-                            Text("取得")
+        ZStack {
+            VStack {
+                ReservationListView(viewStore: self.viewStore)
+                HStack {
+                    Spacer()
+                    Button(
+                        action: {
+                            self.viewStore.send(.reservationAction(.getReservation), animation: .easeIn)
                         }
-                        Spacer()
-                        Button(
-                            action: {
-                                viewStore.send(.reset, animation: .easeIn)
-                            }
-                        ){
-                            Text("リセット")
-                        }
-                        Spacer()
+                    ){
+                        Text("取得")
                     }
-                    .padding(.bottom)
+                    Spacer()
+                    Button(
+                        action: {
+                            self.viewStore.send(.reservationAction(.reset), animation: .easeIn)
+                        }
+                    ){
+                        Text("リセット")
+                    }
+                    Spacer()
                 }
-                if viewStore.isLoading {
-                    ActivityIndicator()
-                }
+                .padding(.bottom)
             }
-            .onAppear{
-                viewStore.send(.getReservation, animation: .easeIn)
+            if self.viewStore.reservationState.isLoading {
+                ActivityIndicator()
             }
+        }
+        .onAppear{
+            self.viewStore.send(.reservationAction(.getReservation), animation: .easeIn)
         }
     }
 }
 
 struct ReservationView_Previews: PreviewProvider {
     static var previews: some View {
-        ReservationView(store: Store(
-            initialState: ReservationState(
-                reservations: [
-                    ReservationEntity(
-                        date: "2022年7月7日",
-                        place: "二の宮店",
-                        menu: "パーソナルトレーニング",
-                        trainer_name: "テスト　トレーナー",
-                        isTap: false
-                    )
-                ]
-            ),
-            reducer: reservationReducer,
-            environment: ReservationEnvironment(
-                reservationClient: .live,
-                mainQueue: .main)
+        ReservationView(viewStore: ViewStore(
+            Store(initialState: HomeState(),
+                  reducer: homeReducer,
+                  environment: .live)
         )
         )
     }
