@@ -9,22 +9,26 @@ import SwiftUI
 
 struct HomeMenuView: View {
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text("予約")
-                    .offset(x: bounds.width * 0.3)
-                Divider()
-                Text("お問合せ")
-                    .offset(x: bounds.width * 0.3)
+        NavigationView {
+            HStack {
+                VStack(alignment: .leading) {
+                    NavigationLink(destination: EmptyView(), label: {
+                        MenuView(title: "予約")
+                    })
+                    Divider()
+                    NavigationLink(destination: EmptyView(), label: {
+                        MenuView(title: "お問い合わせ")
+                    })
+                    Spacer()
+                }
+                .padding(.leading)
+                .padding(.top, 50)
                 Spacer()
             }
-            .padding(.leading)
-            .padding(.top, 50)
-            Spacer()
+            .background(Color.white)
+            .offset(x: bounds.width * -0.3)
+            .edgesIgnoringSafeArea(.vertical)
         }
-        .background(Color.white)
-        .offset(x: bounds.width * -0.3)
-        .edgesIgnoringSafeArea(.vertical)
     }
 }
 
