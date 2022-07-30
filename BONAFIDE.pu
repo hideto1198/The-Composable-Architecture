@@ -1,4 +1,7 @@
 @startuml
+' has-a 白抜きひし形 o--
+' part-of 黒塗りひし形 *--
+
 package "View" {
     class "LaunchScreenView" as LaunchScreenView <<(S, lightblue)>> {}
     class "LoginView" as LoginView <<(S, lightblue)>> {}
@@ -51,12 +54,12 @@ package "Store" {
 
         enum "ReservationAction" as ReservationAction {
             getReservation
-            reservationResponse(Result<[ReservationEntity], FirebaseClient.Failure>)
+            reservationResponse(Result<[ReservationEntity], ReservationClient.Failure>)
             onTapGesture(String)
         }
 
         class "ReservationEnvironment" as ReservationEnvironment <<(S, lightgreen)>> {
-            var fact: FirebaseClient
+            var fact: ReservationClient
             var mainQueue: AnySchedulerOf<DispachQueue>
         }
 
@@ -65,8 +68,63 @@ package "Store" {
         }
     }
 
-    package "HomeStore" {
+    package "TicketStore" {
+        class "TicketEntity: Equatable" as TicketEntity <<(S, lightgreen)>> {
+            var name: String = ""
+            var counts: Int = 0
+            var max_counts: Int = 0
+            var sub_name: String = ""
+            var sub_counts: Int = 0
+            var sub_max_counts: Int = 0
+        }
 
+        class "TicketState: Equatable" as TicketState <<(S, lightgreen)>> {
+            var ticket: TicketEntity = TicketEntity()
+            var isLoading: Bool = false
+        }
+
+        enum "TicketAction: Equtable" as TicketAction {
+            case getTicket
+            case ticketResponse(Result<TicketEntity, TicketClient.Failure>)
+        }
+
+        class "TicketEnvironment" as TicketEnvironment <<S, lightgreen>> {
+            var ticketClient: TicketClient
+            var mainQueue: AnySchedulerOf<DispatchQueue>
+        }
+
+        class "ticketReducer" as ticketReducer <<(S, lightgreen)>> {
+
+        }
+    }
+
+    package "HomeStore" {
+        class "HomeState: Equatable" as HomeState <<(S, lightgreen)>> {
+            var reservationState: ReservationState = ReservationState()
+            var ticketState: TicketState = TicketState()
+            var isMenu: Bool = false
+        }
+
+        enum "HomeAction: Equatable" as HomeAction {
+            case reservationAction(ReservationAction)
+            case ticketAction(TicketAction)
+            case onMenuTap
+        }
+
+        class "HomeEnvironment" as HomeEnvironment <<(S, lightgreen)>> {
+            var reservationClient: ReservationClient
+            var ticketClient: TicketClient
+            var mainQueue: AnySchedulerOf<DispachQueue>
+            static let live = Self(
+                reservationClient: ReservationClient.live,
+                ticketClient: TicketClient.live,
+                mainQueue: .main
+            )
+        }
+
+        class "homeReducer" as homeReducer <<(S, lightgreen)>> {
+
+        }
     }
 
     package "MakeReservationStore" {
@@ -112,51 +170,62 @@ package "Store" {
         class "RegistrationEnvironment" as RegistrationEnvironment {}
 
         class "registrationReducer" as registrationReducer <<(l, LightPink)>> {}
-
-
     }
 }
+'store HomeStore
+homeReducer ..o HomeView
+reservationReducer ..* homeReducer
+ticketReducer ..* homeReducer
+HomeState --* homeReducer
+HomeAction --* homeReducer
+HomeEnvironment --* homeReducer
+
 'store ReservationStore
-reservationReducer ..> ReservationView
-ReservationState ..> reservationReducer
-ReservationEnvironment ..> reservationReducer
-ReservationAction ..> reservationReducer
-ReservationEntity ..> ReservationState
+ReservationState --* reservationReducer
+ReservationEnvironment --* reservationReducer
+ReservationAction --* reservationReducer
+ReservationEntity --* ReservationState
 
 'store LoginStore
-loginReducer ..> LoginView
-LoginState ..> loginReducer
-LoginEnvironment ..> loginReducer
-LoginAction ..> loginReducer
+loginReducer ..o LoginView
+LoginState --* loginReducer
+LoginEnvironment --* loginReducer
+LoginAction --* loginReducer
 
 'store RegistrationStore
-registrationReducer ..> RegistrationView
-RegistrationState ..> registrationReducer
-RegistrationAction ..> registrationReducer
-RegistrationEnvironment ..> registrationReducer
+registrationReducer ..o RegistrationView
+RegistrationState --* registrationReducer
+RegistrationAction --* registrationReducer
+RegistrationEnvironment --* registrationReducer
+
+'store TicketStore
+TicketState --* ticketReducer
+TicketAction --* ticketReducer
+TicketEnvironment --* ticketReducer
+TicketEntity --* TicketState
 
 'view
-LoginView ..> LaunchScreenView
-HomeView ..> LaunchScreenView
-SignupView ..> LoginView
-RegistrationView ..> SignupView
-HomeHeaderView ..> HomeView
-ReservationView ..> HomeView
-TicketView ..> HomeView
-AppMenuView ..> HomeView
-MakeReservationView ..> AppMenuView
-UserinfoView ..> AppMenuView
-ContactView ..> AppMenuView
-TicketReaderView ..> AppMenuView
-ReservationListView ..> ReservationView
-ReservationRowView ..> ReservationListView
-TrainingMenuView ..> MakeReservationView
-TrainingPlaceView ..> MakeReservationView
-TrainerSelectorView ..> MakeReservationView
-TrainerView ..> MakeReservationView
-CalendarView ..> MakeReservationView
-TimescheduleView ..> MakeReservationView
-ButtonView ..> MakeReservationView
+LoginView --* LaunchScreenView
+HomeView --* LaunchScreenView
+SignupView --* LoginView
+RegistrationView --* SignupView
+HomeHeaderView --* HomeView
+ReservationView --* HomeView
+TicketView --* HomeView
+AppMenuView --* HomeView
+MakeReservationView --* AppMenuView
+UserinfoView --* AppMenuView
+ContactView --* AppMenuView
+TicketReaderView --* AppMenuView
+ReservationListView --* ReservationView
+ReservationRowView --* ReservationListView
+TrainingMenuView --* MakeReservationView
+TrainingPlaceView --* MakeReservationView
+TrainerSelectorView --* MakeReservationView
+TrainerView --* MakeReservationView
+CalendarView --* MakeReservationView
+TimescheduleView --* MakeReservationView
+ButtonView --* MakeReservationView
 
 
 @enduml
