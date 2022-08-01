@@ -8,20 +8,21 @@ package "View" {
     class "SignupView" as SignupView <<(S, lightblue)>> {}
     class "RegistrationView" as RegistrationView <<(S, lightblue)>> {}
     class "HomeView" as HomeView <<(S, lightblue)>> {}
-    class "HomeHeaderView" as HomeHeaderView <<(S, lightblue)>> {
-
-    }
+    class "HomeHeaderView" as HomeHeaderView <<(S, lightblue)>> {}
     class "ReservationView" as ReservationView <<(S, lightblue)>> {
         let store: Store<ReservationStore, ReservationAction>
     }
     class "ReservationListView" as ReservationListView <<(S, lightblue)>> {
         var viewStore: ViewStore<ReservationStore, ReservationAction>
-    }
+        }
     class "ReservationRowView" as ReservationRowView <<(S, lightblue)>> {
         var reservation: ReservationEntity
     }
     class "TicketView" as TicketView <<(S, lightblue)>> {}
-    class "AppMenuView" as AppMenuView <<(S, lightblue)>> {}
+    class "HomeMenuView" as HomeMenuView <<(S, lightblue)>> {}
+    class "MenuView" as MenuView <<(S, lightblue)>> {
+        var text: String
+    }
     class "MakeReservationView" as MakeReservationView <<(S, lightblue)>> {}
     class "TrainingMenuView" as TrainingMenuView <<(S, lightblue)>> {}
     class "TrainingPlaceView" as TrainingPlaceView <<(S, lightblue)>> {}
@@ -212,11 +213,12 @@ RegistrationView --* SignupView
 HomeHeaderView --* HomeView
 ReservationView --* HomeView
 TicketView --* HomeView
-AppMenuView --* HomeView
-MakeReservationView --* AppMenuView
-UserinfoView --* AppMenuView
-ContactView --* AppMenuView
-TicketReaderView --* AppMenuView
+HomeMenuView --* HomeView
+MenuView --* HomeMenuView
+MakeReservationView --* HomeMenuView
+UserinfoView --* HomeMenuView
+ContactView --* HomeMenuView
+TicketReaderView --* HomeMenuView
 ReservationListView --* ReservationView
 ReservationRowView --* ReservationListView
 TrainingMenuView --* MakeReservationView
