@@ -15,10 +15,12 @@ struct HomeMenuView: View {
                     NavigationLink(destination: EmptyView(), label: {
                         MenuView(title: "予約")
                     })
+                    .offset(x: bounds.width * 0.3)
                     Divider()
                     NavigationLink(destination: EmptyView(), label: {
                         MenuView(title: "お問い合わせ")
                     })
+                    .offset(x: bounds.width * 0.3)
                     Spacer()
                 }
                 .padding(.leading)
@@ -26,7 +28,6 @@ struct HomeMenuView: View {
                 Spacer()
             }
             .background(Color.white)
-            .offset(x: bounds.width * -0.3)
             .edgesIgnoringSafeArea(.vertical)
         }
     }
