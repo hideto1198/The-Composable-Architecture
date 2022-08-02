@@ -9,21 +9,19 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ContentView: View {
-    let store: Store<HomeState, HomeAction>
+    let store: Store<LaunchState, LaunchAction>
     
     var body: some View {
-        HomeView(store: store)
+        LaunchScreenView(store: store)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(
-            store: Store(
-                initialState: HomeState(),
-                reducer: homeReducer,
-                environment: .live
-            )
-        )
+            store: Store(initialState: LaunchState(),
+                         reducer: launchReducer,
+                         environment: .init(mainQueue: .main)
+        ))
     }
 }
