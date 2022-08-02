@@ -6,15 +6,32 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct LaunchScreenView: View {
+    let store: Store<LaunchState, LaunchAction>
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WithViewStore(self.store) { viewStore in
+            NavigationView {
+                LaunchDesignView(store: self.store.scope(state: { _ in LaunchState() }, action: LaunchAction.timer))
+                NavigationLink(destination: HomeView(store: Store(
+                    initialState: HomeState(),
+                    reducer: homeReducer,
+                    environment: .live
+                )), isActive: viewStore.binding(get: \.isLaunch, send: LaunchAction.onNavigate)){
+                    EmptyView()
+                }
+            }
+        }
     }
 }
 
 struct LaunchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchScreenView()
+        LaunchScreenView(
+            store: Store(initialState: LaunchState(),
+                         reducer: launchReducer,
+                         environment: .init(mainQueue: .main)
+        ))
     }
 }
