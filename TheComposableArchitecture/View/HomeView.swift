@@ -26,6 +26,7 @@ struct HomeView: View {
                             viewStore.send(.onMenuTap, animation: .easeOut)
                         }
                     HomeMenuView()
+                        .offset(x: bounds.width * -0.3)
                 }
             }
         }
