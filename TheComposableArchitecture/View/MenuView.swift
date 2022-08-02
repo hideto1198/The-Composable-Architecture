@@ -17,7 +17,6 @@ struct MenuView: View {
                 .padding(.leading)
         }
         .frame(width: bounds.width * 0.6, height: bounds.height * 0.05)
-        .offset(x: bounds.width * 0.3)
     }
 }
 
