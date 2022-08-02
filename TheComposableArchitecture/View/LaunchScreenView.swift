@@ -13,7 +13,7 @@ struct LaunchScreenView: View {
     var body: some View {
         WithViewStore(self.store) { viewStore in
             NavigationView {
-                LaunchDesignView(store: self.store.scope(state: { _ in LaunchState() }, action: LaunchAction.timer))
+                LaunchDesignView(viewStore: viewStore)
                 NavigationLink(destination: HomeView(store: Store(
                     initialState: HomeState(),
                     reducer: homeReducer,
