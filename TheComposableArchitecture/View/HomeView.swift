@@ -23,10 +23,9 @@ struct HomeView: View {
                         .opacity(0.7)
                         .edgesIgnoringSafeArea(.vertical)
                         .onTapGesture {
-                            viewStore.send(.onMenuTap, animation: .easeOut)
+                            viewStore.send(.onMenuTap, animation: .easeOut(duration: 0.5))
                         }
-                    HomeMenuView()
-                        .offset(x: bounds.width * -0.3)
+                    HomeMenuView(viewStore: viewStore)
                 }
             }
         }
