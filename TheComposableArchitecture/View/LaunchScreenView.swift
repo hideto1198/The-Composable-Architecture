@@ -13,13 +13,14 @@ struct LaunchScreenView: View {
     var body: some View {
         WithViewStore(self.store) { viewStore in
             NavigationView {
-                LaunchDesignView(viewStore: viewStore)
                 NavigationLink(destination: HomeView(store: Store(
-                    initialState: HomeState(),
-                    reducer: homeReducer,
-                    environment: .live
-                )), isActive: viewStore.binding(get: \.isLaunch, send: LaunchAction.onNavigate)){
-                    EmptyView()
+                                                    initialState: HomeState(),
+                                                    reducer: homeReducer,
+                                                    environment: .live)
+                                            )
+                    .navigationBarHidden(true),
+                               isActive: viewStore.binding(get: \.isLaunch, send: LaunchAction.onNavigate(isActive: false))){
+                    LaunchDesignView(viewStore: viewStore)
                 }
             }
         }
