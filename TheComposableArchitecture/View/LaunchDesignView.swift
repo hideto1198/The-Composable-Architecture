@@ -49,6 +49,9 @@ struct LaunchDesignView: View {
         .onAppear{
             viewStore.send(.timer(.onAppear))
         }
+        .onDisappear{
+            viewStore.send(.timer(.onDisappear))
+        }
     }
 }
 
