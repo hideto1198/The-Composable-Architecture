@@ -24,7 +24,15 @@ struct HomeMenuView: View {
                         .foregroundColor(.primary)
                 }
                 .offset(x: bounds.width * 0.3)
-                NavigationLink(destination: EmptyView(), label: {
+                NavigationLink(
+                    destination: MakeReservationView(viewStore:
+                                                        ViewStore(Store(initialState: MakeReservationState(),
+                                                                          reducer: makeReservationReducer,
+                                                                          environment: MakeReservationEnvironment())
+                                                                 )
+                                                    )
+                                    .navigationBarHidden(true),
+                    label: {
                     MenuView(title: "予約")
                 })
                 .offset(x: bounds.width * 0.3)
