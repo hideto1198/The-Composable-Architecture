@@ -25,12 +25,13 @@ struct LaunchState: Equatable {
 
 enum LaunchAction: Equatable {
     case timer(LifecycleAction<TimerAction>)
-    case onNavigate
+    case onNavigate(isActive: Bool)
     case doAnimation
 }
 
 struct LaunchEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
+    var next = Effect<LaunchState, Never>(value: LaunchState())
 }
 
 let launchReducer: Reducer<LaunchState, LaunchAction, LaunchEnvironment> = .combine(
@@ -39,12 +40,18 @@ let launchReducer: Reducer<LaunchState, LaunchAction, LaunchEnvironment> = .comb
         action: /LaunchAction.timer,
         environment: { TimerEnvironment(mainQueue: $0.mainQueue) }
     ),
-    Reducer { state, action, environemnt in
+    Reducer { state, action, environment in
         switch action {
         case .timer:
-            return .none
-        case .onNavigate:
+            if state.opacity > 0 {
+                return .none
+            } else {
+                return Effect(value: .onNavigate(isActive: true))
+            }
+        case .onNavigate(isActive: true):
             state.isLaunch = true
+            return .none
+        case .onNavigate(isActive: false):
             return .none
         case .doAnimation:
             return .none
