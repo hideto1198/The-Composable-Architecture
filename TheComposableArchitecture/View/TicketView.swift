@@ -41,7 +41,6 @@ struct TicketView: View {
             .padding(.horizontal)
             .onAppear{
                 viewStore.send(.getTicket, animation: .easeIn)
-                debugPrint("aaa")
             }
         }
     }
