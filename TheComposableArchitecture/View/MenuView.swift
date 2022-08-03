@@ -10,11 +10,9 @@ import SwiftUI
 struct MenuView: View {
     var title: String
     var body: some View {
-        ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 5)
-                .stroke()
+        HStack {
             Text("\(title)")
-                .padding(.leading)
+            Spacer()
         }
         .frame(width: bounds.width * 0.6, height: bounds.height * 0.05)
     }
