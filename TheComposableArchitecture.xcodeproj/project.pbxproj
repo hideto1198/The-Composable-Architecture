@@ -10,6 +10,9 @@
 		8609BAF228992D4A0055130A /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609BAF128992D4A0055130A /* LaunchScreenView.swift */; };
 		8609BAF428992DB50055130A /* LaunchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609BAF328992DB50055130A /* LaunchStore.swift */; };
 		8609BAF628992EB80055130A /* LaunchDesignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609BAF528992EB80055130A /* LaunchDesignView.swift */; };
+		8609BAFA289A93F30055130A /* AppHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609BAF9289A93F30055130A /* AppHeaderView.swift */; };
+		8609BAFC289A95CF0055130A /* MakeReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609BAFB289A95CF0055130A /* MakeReservationView.swift */; };
+		8609BB02289A984C0055130A /* MakeReservationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609BB01289A984C0055130A /* MakeReservationStore.swift */; };
 		86290FA028913F4300D1B16B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290F9F28913F4300D1B16B /* HomeView.swift */; };
 		86290FA228913F6200D1B16B /* TicketStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290FA128913F6200D1B16B /* TicketStore.swift */; };
 		86290FA42891415700D1B16B /* TicketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290FA32891415700D1B16B /* TicketClient.swift */; };
@@ -85,6 +88,9 @@
 		8609BAF128992D4A0055130A /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		8609BAF328992DB50055130A /* LaunchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchStore.swift; sourceTree = "<group>"; };
 		8609BAF528992EB80055130A /* LaunchDesignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDesignView.swift; sourceTree = "<group>"; };
+		8609BAF9289A93F30055130A /* AppHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHeaderView.swift; sourceTree = "<group>"; };
+		8609BAFB289A95CF0055130A /* MakeReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReservationView.swift; sourceTree = "<group>"; };
+		8609BB01289A984C0055130A /* MakeReservationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReservationStore.swift; sourceTree = "<group>"; };
 		86290F9F28913F4300D1B16B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86290FA128913F6200D1B16B /* TicketStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStore.swift; sourceTree = "<group>"; };
 		86290FA32891415700D1B16B /* TicketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketClient.swift; sourceTree = "<group>"; };
@@ -167,6 +173,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8609BAFD289A97450055130A /* MakeReservation */ = {
+			isa = PBXGroup;
+			children = (
+				8609BAFB289A95CF0055130A /* MakeReservationView.swift */,
+			);
+			path = MakeReservation;
+			sourceTree = "<group>";
+		};
+		8609BAFE289A97550055130A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8609BAFF289A97C20055130A /* Reservation */,
+				86290F9F28913F4300D1B16B /* HomeView.swift */,
+				86290FA52891486B00D1B16B /* TicketView.swift */,
+				86EA523C2893FAFA00939659 /* HomeHeaderView.swift */,
+				86EA523E2894013900939659 /* HomeMenuView.swift */,
+				868E8C6B28959A9B0071A920 /* MenuView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8609BAFF289A97C20055130A /* Reservation */ = {
+			isa = PBXGroup;
+			children = (
+				863F7A66288FECF30065B8E8 /* ReservationView.swift */,
+				863F7A6A288FFEA20065B8E8 /* ReservationRowView.swift */,
+				863F7A6C288FFFAF0065B8E8 /* ReservationListView.swift */,
+				863F7A7028900F700065B8E8 /* CancelButtonView.swift */,
+			);
+			path = Reservation;
+			sourceTree = "<group>";
+		};
+		8609BB00289A97ED0055130A /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8609BAF128992D4A0055130A /* LaunchScreenView.swift */,
+				8609BAF528992EB80055130A /* LaunchDesignView.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 		863F79EA288FD5700065B8E8 = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +283,7 @@
 				86290FA128913F6200D1B16B /* TicketStore.swift */,
 				86EA523A2893D0A800939659 /* HomeStore.swift */,
 				8609BAF328992DB50055130A /* LaunchStore.swift */,
+				8609BB01289A984C0055130A /* MakeReservationStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -243,18 +291,11 @@
 		863F7A5D288FD80E0065B8E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8609BB00289A97ED0055130A /* LaunchScreen */,
+				8609BAFE289A97550055130A /* Home */,
+				8609BAFD289A97450055130A /* MakeReservation */,
 				863F7A6E289000EB0065B8E8 /* ActivityIndicator.swift */,
-				863F7A66288FECF30065B8E8 /* ReservationView.swift */,
-				863F7A6A288FFEA20065B8E8 /* ReservationRowView.swift */,
-				863F7A6C288FFFAF0065B8E8 /* ReservationListView.swift */,
-				863F7A7028900F700065B8E8 /* CancelButtonView.swift */,
-				86290F9F28913F4300D1B16B /* HomeView.swift */,
-				86290FA52891486B00D1B16B /* TicketView.swift */,
-				86EA523C2893FAFA00939659 /* HomeHeaderView.swift */,
-				86EA523E2894013900939659 /* HomeMenuView.swift */,
-				868E8C6B28959A9B0071A920 /* MenuView.swift */,
-				8609BAF128992D4A0055130A /* LaunchScreenView.swift */,
-				8609BAF528992EB80055130A /* LaunchDesignView.swift */,
+				8609BAF9289A93F30055130A /* AppHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -450,9 +491,11 @@
 				863F7A67288FECF30065B8E8 /* ReservationView.swift in Sources */,
 				86290FA228913F6200D1B16B /* TicketStore.swift in Sources */,
 				863F7A6B288FFEA20065B8E8 /* ReservationRowView.swift in Sources */,
+				8609BB02289A984C0055130A /* MakeReservationStore.swift in Sources */,
 				86290FA028913F4300D1B16B /* HomeView.swift in Sources */,
 				8609BAF228992D4A0055130A /* LaunchScreenView.swift in Sources */,
 				863F7A5F288FD8390065B8E8 /* ReservationStore.swift in Sources */,
+				8609BAFA289A93F30055130A /* AppHeaderView.swift in Sources */,
 				863F7A6D288FFFAF0065B8E8 /* ReservationListView.swift in Sources */,
 				86290FA62891486B00D1B16B /* TicketView.swift in Sources */,
 				868E8C6C28959A9B0071A920 /* MenuView.swift in Sources */,
@@ -461,6 +504,7 @@
 				863F79F7288FD5710065B8E8 /* TheComposableArchitectureApp.swift in Sources */,
 				863F7A6F289000EB0065B8E8 /* ActivityIndicator.swift in Sources */,
 				863F7A62288FD9000065B8E8 /* ReservationClient.swift in Sources */,
+				8609BAFC289A95CF0055130A /* MakeReservationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
