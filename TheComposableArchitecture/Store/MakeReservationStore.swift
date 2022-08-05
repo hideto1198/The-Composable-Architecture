@@ -22,24 +22,18 @@ struct MakeReservationEntity: Equatable {
 
 struct MakeReservationState: Equatable {
     var reservatopns: [MakeReservationEntity] = []
-    var menuSelector = Tab.personal
-    var placeSelector = Tab.itagaki
+    var menuSelector: Int = 0
+    var placeSelector: Int = 0
     var showTrainer: Bool = false
     var showCalendar: Bool = false
     var showTimeSchedule: Bool = false
-    
-    enum Tab {
-        case none
-        case personal
-        case itagaki
-        case ninomiya
-    }
-
+    var calendarState: CalendarState = CalendarState()
 }
 
 enum MakeReservationAction: Equatable {
-    case onTapMenu(MakeReservationState.Tab)
-    case onTapPlace(MakeReservationState.Tab)
+    case calendarAction(CalendarAction)
+    case onSelectMenu(Int)
+    case onSelectPlace(Int)
     case onTapTrainer
     case onTapDate
     case onTapTime
@@ -49,20 +43,31 @@ struct MakeReservationEnvironment {
     
 }
 
-let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservationAction, MakeReservationEnvironment> { state, action, environemnt in
-    switch action {
-    case let .onTapMenu(tab):
-        state.menuSelector = tab
-        return .none
-    case let .onTapPlace(tab):
-        debugPrint("her: \(tab)")
-        state.placeSelector = tab
-        return .none
-    case .onTapTrainer:
-        return .none
-    case .onTapDate:
-        return .none
-    case .onTapTime:
-        return .none
+let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservationAction, MakeReservationEnvironment>.combine(
+    calendarReducer.pullback(state: \MakeReservationState.calendarState,
+                             action: /MakeReservationAction.calendarAction,
+                             environment: { _ in CalendarEnvironment() }),
+    Reducer { state, action, _ in
+        switch action {
+        case .calendarAction:
+            return .none
+        case let .onSelectMenu(index):
+            state.menuSelector = index
+            return .none
+        case let .onSelectPlace(index):
+            if index == 0 {
+                state.showCalendar = false
+            } else {
+                state.showCalendar = true
+            }
+                state.placeSelector = index
+            return .none
+        case .onTapTrainer:
+            return .none
+        case .onTapDate:
+            return .none
+        case .onTapTime:
+            return .none
+        }
     }
-}
+)
