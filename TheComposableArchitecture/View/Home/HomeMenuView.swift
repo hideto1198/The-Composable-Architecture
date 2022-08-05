@@ -25,11 +25,11 @@ struct HomeMenuView: View {
                 }
                 .offset(x: bounds.width * 0.3)
                 NavigationLink(
-                    destination: MakeReservationView(viewStore:
-                                                        ViewStore(Store(initialState: MakeReservationState(),
+                    destination: MakeReservationView(store:
+                                                        Store(initialState: MakeReservationState(),
                                                                           reducer: makeReservationReducer,
                                                                           environment: MakeReservationEnvironment())
-                                                                 )
+                                                                 
                                                     )
                                     .navigationBarHidden(true),
                     label: {
@@ -47,7 +47,7 @@ struct HomeMenuView: View {
             .padding(.top, 50)
             Spacer()
         }
-        .background(Color.white)
+        .background(Color("background"))
         .edgesIgnoringSafeArea(.vertical)
         .offset(x: bounds.width * -0.3)
     }
