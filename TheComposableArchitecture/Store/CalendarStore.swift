@@ -140,6 +140,7 @@ enum CalendarAction: Equatable {
     case onAppear
     case onTapNext
     case onTapPrevious
+    case onTapTile(CalendarState.DateEntity)
 }
 
 struct CalendarEnvironment {
@@ -148,6 +149,8 @@ struct CalendarEnvironment {
 
 let calendarReducer:Reducer = Reducer<CalendarState, CalendarAction, CalendarEnvironment> { state, action, _ in
     switch action {
+    case .onTapTile:
+        return .none
     case .onAppear:
         state.MakeCalendar()
         return .none
