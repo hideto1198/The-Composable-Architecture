@@ -29,6 +29,6 @@ struct PlaceSelectView: View {
 
 struct PlaceSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceSelectView(viewStore: ViewStore(Store(initialState: MakeReservationState(), reducer: makeReservationReducer, environment: MakeReservationEnvironment())))
+        PlaceSelectView(viewStore: ViewStore(Store(initialState: MakeReservationState(), reducer: makeReservationReducer, environment: .live)))
     }
 }

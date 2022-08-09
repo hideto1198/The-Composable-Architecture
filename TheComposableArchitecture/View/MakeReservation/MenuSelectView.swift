@@ -26,7 +26,9 @@ struct MenuSelectView: View {
 struct MenuSelectView_Previews: PreviewProvider {
     static var previews: some View {
         MenuSelectView(
-            viewStore: ViewStore(Store(initialState: MakeReservationState(), reducer: makeReservationReducer, environment: MakeReservationEnvironment()))
+            viewStore: ViewStore(Store(initialState: MakeReservationState(),
+                                       reducer: makeReservationReducer,
+                                       environment: .live))
         )
     }
 }
