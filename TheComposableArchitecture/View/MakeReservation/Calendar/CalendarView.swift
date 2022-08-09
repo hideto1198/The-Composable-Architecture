@@ -54,7 +54,9 @@ struct CalendarView: View {
                             HStack(spacing: 3) {
                                 ForEach(viewStore.calendarState.dates[i], id: \.self) { date in
                                     Button(
-                                        action: {}
+                                        action: {
+                                            viewStore.send(.calendarAction(.onTapTile(date)), animation: .easeInOut)
+                                        }
                                     ){
                                         CalendarTileView(date: date.date,
                                                          state: date.state)
@@ -77,6 +79,6 @@ struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarView(viewStore: ViewStore(Store(initialState: MakeReservationState(),
                                                 reducer: makeReservationReducer,
-                                                environment: MakeReservationEnvironment())))
+                                                environment: .live)))
         }
 }
