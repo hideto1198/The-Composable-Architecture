@@ -18,12 +18,13 @@ struct TrainerEntity: Equatable, Identifiable {
 
 struct TrainerState: Equatable {
     var trainers: [TrainerEntity] = []
+    var isLoading: Bool = false
 }
 
 enum TrainerAction: Equatable {
     case getTrainer
     case trainerResponse(Result<[TrainerEntity], TrainerClient.Failure>)
-    case onTapTrainer
+    case onTapTrainer(TrainerEntity)
 }
 
 struct TrainerEnvironment {
@@ -33,16 +34,19 @@ struct TrainerEnvironment {
 
 let trainerReducer: Reducer = Reducer<TrainerState, TrainerAction, TrainerEnvironment> { state, action, environment in
     switch action {
-    case .onTapTrainer:
+    case let .onTapTrainer(trainer):
         return .none
     case .getTrainer:
+        state.isLoading = true
         return environment.trainerClient.fetch()
             .receive(on: environment.mainQueue)
             .catchToEffect(TrainerAction.trainerResponse)
     case let .trainerResponse(.success(response)):
         state.trainers = response
+        state.isLoading = false
         return .none
     case .trainerResponse(.failure):
+        state.isLoading = false
         return .none
     }
 }
