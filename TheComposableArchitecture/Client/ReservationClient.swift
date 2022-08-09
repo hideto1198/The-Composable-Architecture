@@ -10,12 +10,10 @@ import FirebaseFunctions
 import Combine
 import Foundation
 
-
 struct ReservationClient {
     var fetch: () -> Effect<[ReservationEntity], Failure>
     struct Failure: Error, Equatable {}
 }
-
 
 extension ReservationClient {
     static let live = ReservationClient(fetch: {
