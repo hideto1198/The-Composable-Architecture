@@ -14,8 +14,6 @@ struct CalendarView: View {
     
     var body: some View {
         VStack(alignment: .leading){
-            Text("日付を選択してください")
-                .padding(.leading)
             HStack{
                 Spacer()
                 VStack {
