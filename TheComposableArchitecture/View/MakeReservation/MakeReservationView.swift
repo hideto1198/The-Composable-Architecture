@@ -24,9 +24,16 @@ struct MakeReservationView: View {
                         if viewStore.showCalendar {
                             CalendarView(viewStore: viewStore)
                         }
+                        if viewStore.showTrainer {
+                            TrainerSelectView(viewStore: viewStore)
+                                .padding([.horizontal, .top])
+                        }
                     }
                     Spacer()
                 }
+            }
+            .onAppear {
+                viewStore.send(.trainerAction(.getTrainer))
             }
         }
     }
@@ -36,6 +43,6 @@ struct MakeReservationView_Previews: PreviewProvider {
     static var previews: some View {
         MakeReservationView(store: Store(initialState: MakeReservationState(),
                                              reducer: makeReservationReducer,
-                                                       environment: MakeReservationEnvironment()))
+                                         environment: .live))
     }
 }
