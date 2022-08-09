@@ -20,20 +20,39 @@ struct MakeReservationView: View {
                             MenuSelectView(viewStore: viewStore)
                             PlaceSelectView(viewStore: viewStore)
                         }
-                        .padding(.horizontal)
+                        .padding(.leading)
+                        if viewStore.showReservationDate {
+                            HStack {
+                                Text("日付")
+                                Spacer()
+                                Button(
+                                    action: {
+                                        viewStore.send(.onTapDate, animation: .easeInOut)
+                                    }
+                                ){
+                                    Text("\(viewStore.reservation_date)")
+                                }
+                            }
+                            .padding([.horizontal, .top])
+                        }
                         if viewStore.showCalendar {
                             CalendarView(viewStore: viewStore)
                         }
-                        if viewStore.showTrainer {
+                        if viewStore.showTrainerSelector {
                             TrainerSelectView(viewStore: viewStore)
                                 .padding([.horizontal, .top])
+                            if viewStore.showTrainer {
+                                if !viewStore.trainerState.isLoading {
+                                    TrainersView(viewStore: viewStore)
+                                        .padding(.horizontal)
+                                } else {
+                                    ActivityIndicator()
+                                }
+                            }
                         }
                     }
                     Spacer()
                 }
-            }
-            .onAppear {
-                viewStore.send(.trainerAction(.getTrainer))
             }
         }
     }
