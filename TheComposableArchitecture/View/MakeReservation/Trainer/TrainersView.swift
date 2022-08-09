@@ -6,15 +6,26 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct TrainersView: View {
+    let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.horizontal){
+            HStack {
+                ForEach(viewStore.trainerState.trainers) { trainer in
+                    TrainerView(viewStore:viewStore, trainer: trainer)
+                        .padding([.bottom, .trailing])
+                }
+            }
+        }
     }
 }
 
 struct TrainersView_Previews: PreviewProvider {
     static var previews: some View {
-        TrainersView()
+        TrainersView(viewStore: ViewStore(Store(initialState: MakeReservationState(),
+                                                reducer: makeReservationReducer,
+                                                environment: .live)))
     }
 }
