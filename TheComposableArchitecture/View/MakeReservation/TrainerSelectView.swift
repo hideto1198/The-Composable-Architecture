@@ -16,8 +16,7 @@ struct TrainerSelectView: View {
             Spacer()
             Button(
                 action: {
-                    viewStore.send(.onTapTrainer)
-                    debugPrint(viewStore.trainerState.trainers)
+                    viewStore.send(.onTapTrainer, animation: .easeInOut)
                 }
             ){
                 Text("\(viewStore.trainer)")
