@@ -13,6 +13,11 @@
 		8609BAFA289A93F30055130A /* AppHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609BAF9289A93F30055130A /* AppHeaderView.swift */; };
 		8609BAFC289A95CF0055130A /* MakeReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609BAFB289A95CF0055130A /* MakeReservationView.swift */; };
 		8609BB02289A984C0055130A /* MakeReservationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8609BB01289A984C0055130A /* MakeReservationStore.swift */; };
+		8614204728A2471B0041F6B3 /* TrainerSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614204628A2471B0041F6B3 /* TrainerSelectView.swift */; };
+		8614204928A24FCA0041F6B3 /* TrainerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614204828A24FCA0041F6B3 /* TrainerStore.swift */; };
+		8614204B28A251740041F6B3 /* TrainerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614204A28A251740041F6B3 /* TrainerClient.swift */; };
+		8614204E28A267280041F6B3 /* TrainersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614204D28A267280041F6B3 /* TrainersView.swift */; };
+		8614205028A267310041F6B3 /* TrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614204F28A267310041F6B3 /* TrainerView.swift */; };
 		86290FA028913F4300D1B16B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290F9F28913F4300D1B16B /* HomeView.swift */; };
 		86290FA228913F6200D1B16B /* TicketStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290FA128913F6200D1B16B /* TicketStore.swift */; };
 		86290FA42891415700D1B16B /* TicketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290FA32891415700D1B16B /* TicketClient.swift */; };
@@ -78,6 +83,11 @@
 		8609BAF9289A93F30055130A /* AppHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHeaderView.swift; sourceTree = "<group>"; };
 		8609BAFB289A95CF0055130A /* MakeReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReservationView.swift; sourceTree = "<group>"; };
 		8609BB01289A984C0055130A /* MakeReservationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReservationStore.swift; sourceTree = "<group>"; };
+		8614204628A2471B0041F6B3 /* TrainerSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerSelectView.swift; sourceTree = "<group>"; };
+		8614204828A24FCA0041F6B3 /* TrainerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerStore.swift; sourceTree = "<group>"; };
+		8614204A28A251740041F6B3 /* TrainerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerClient.swift; sourceTree = "<group>"; };
+		8614204D28A267280041F6B3 /* TrainersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainersView.swift; sourceTree = "<group>"; };
+		8614204F28A267310041F6B3 /* TrainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerView.swift; sourceTree = "<group>"; };
 		86290F9F28913F4300D1B16B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86290FA128913F6200D1B16B /* TicketStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStore.swift; sourceTree = "<group>"; };
 		86290FA32891415700D1B16B /* TicketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketClient.swift; sourceTree = "<group>"; };
@@ -150,10 +160,12 @@
 		8609BAFD289A97450055130A /* MakeReservation */ = {
 			isa = PBXGroup;
 			children = (
+				8614204C28A2671A0041F6B3 /* Trainer */,
 				86BA3786289D3A0F00D83C18 /* Calendar */,
 				8609BAFB289A95CF0055130A /* MakeReservationView.swift */,
 				86BA378D289D3B0000D83C18 /* MenuSelectView.swift */,
 				86BA3789289D3A6F00D83C18 /* PlaceSelectView.swift */,
+				8614204628A2471B0041F6B3 /* TrainerSelectView.swift */,
 			);
 			path = MakeReservation;
 			sourceTree = "<group>";
@@ -191,6 +203,15 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
+		8614204C28A2671A0041F6B3 /* Trainer */ = {
+			isa = PBXGroup;
+			children = (
+				8614204D28A267280041F6B3 /* TrainersView.swift */,
+				8614204F28A267310041F6B3 /* TrainerView.swift */,
+			);
+			path = Trainer;
+			sourceTree = "<group>";
+		};
 		863F79EA288FD5700065B8E8 = {
 			isa = PBXGroup;
 			children = (
@@ -215,8 +236,8 @@
 		863F79F5288FD5710065B8E8 /* TheComposableArchitecture */ = {
 			isa = PBXGroup;
 			children = (
-				863F7A60288FD8E90065B8E8 /* Client */,
 				863F7A5D288FD80E0065B8E8 /* View */,
+				863F7A60288FD8E90065B8E8 /* Client */,
 				863F7A5C288FD8030065B8E8 /* Store */,
 				863F79F6288FD5710065B8E8 /* TheComposableArchitectureApp.swift */,
 				863F79F8288FD5710065B8E8 /* ContentView.swift */,
@@ -262,6 +283,7 @@
 				8609BAF328992DB50055130A /* LaunchStore.swift */,
 				8609BB01289A984C0055130A /* MakeReservationStore.swift */,
 				86BA3791289D41C100D83C18 /* CalendarStore.swift */,
+				8614204828A24FCA0041F6B3 /* TrainerStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -283,6 +305,7 @@
 			children = (
 				863F7A61288FD9000065B8E8 /* ReservationClient.swift */,
 				86290FA32891415700D1B16B /* TicketClient.swift */,
+				8614204A28A251740041F6B3 /* TrainerClient.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -452,14 +475,18 @@
 			files = (
 				863F7A7128900F700065B8E8 /* CancelButtonView.swift in Sources */,
 				86EA523B2893D0A800939659 /* HomeStore.swift in Sources */,
+				8614204B28A251740041F6B3 /* TrainerClient.swift in Sources */,
 				86EA523F2894013900939659 /* HomeMenuView.swift in Sources */,
 				8609BAF628992EB80055130A /* LaunchDesignView.swift in Sources */,
 				863F79F9288FD5710065B8E8 /* ContentView.swift in Sources */,
+				8614205028A267310041F6B3 /* TrainerView.swift in Sources */,
 				86BA3788289D3A2000D83C18 /* CalendarView.swift in Sources */,
 				86290FA42891415700D1B16B /* TicketClient.swift in Sources */,
 				863F7A69288FEE690065B8E8 /* RootStore.swift in Sources */,
 				86BA3790289D3E4700D83C18 /* CalendarTileView.swift in Sources */,
 				863F7A67288FECF30065B8E8 /* ReservationView.swift in Sources */,
+				8614204E28A267280041F6B3 /* TrainersView.swift in Sources */,
+				8614204928A24FCA0041F6B3 /* TrainerStore.swift in Sources */,
 				86290FA228913F6200D1B16B /* TicketStore.swift in Sources */,
 				86BA378A289D3A6F00D83C18 /* PlaceSelectView.swift in Sources */,
 				86BA3792289D41C100D83C18 /* CalendarStore.swift in Sources */,
@@ -467,6 +494,7 @@
 				8609BB02289A984C0055130A /* MakeReservationStore.swift in Sources */,
 				86290FA028913F4300D1B16B /* HomeView.swift in Sources */,
 				8609BAF228992D4A0055130A /* LaunchScreenView.swift in Sources */,
+				8614204728A2471B0041F6B3 /* TrainerSelectView.swift in Sources */,
 				863F7A5F288FD8390065B8E8 /* ReservationStore.swift in Sources */,
 				8609BAFA289A93F30055130A /* AppHeaderView.swift in Sources */,
 				86BA378E289D3B0000D83C18 /* MenuSelectView.swift in Sources */,

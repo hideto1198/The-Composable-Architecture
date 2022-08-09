@@ -1,4 +1,4 @@
-@startuml
+@startuml name "BONA "
 ' has-a 白抜きひし形 o--
 ' part-of 黒塗りひし形 *--
 
@@ -130,6 +130,42 @@ package "Store" {
 
     package "MakeReservationStore" {
 
+    }
+
+    package "LaunchStore" {
+        class "line: Equatable" as line <<(S, lightgreen)>> {
+            var x: CGFloat
+            var y: CGFloat
+        }
+
+        class "LaunchState" as LaunchState <<(S, lightgreen)>> {
+            var isLaunch: Bool = false
+            var opacity: Double = 2.0
+            var counter: Double = 0.0
+            var lines: [line] = [
+                line(x: bounds.width * 0.1410, y: 0),
+                line(x: bounds.width * 0.3332, y: bounds.width * 0.2774),
+                line(x: bounds.width * 0.2497, y: bounds.width * 0.1338)
+            ]
+        }
+
+        enum "LaunchAction" as LaunchAction {
+            case timer(LifecycleAction<TimerAction>)
+            case onNavigate(isActive:Bool)
+            case doAnimation
+        }
+
+        calss "LaunchEnvironment" as LaunchEnvironment <<(S, lightgreen)>>{
+            var mainQueue: AnySchedulerOf<DispachQueue>
+        }
+
+        class "launchReducer" as launchReducer <<(S, lightgreen)>>{ 
+
+        }
+    }
+
+    package "LifecycleStore" {
+        class "LifecycleState"
     }
 
     package "LoginStore" {
