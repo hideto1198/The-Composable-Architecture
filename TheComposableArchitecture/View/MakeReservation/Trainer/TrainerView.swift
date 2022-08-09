@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct TrainerView: View {
-    var name: String
+    let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
+    var trainer: TrainerEntity
     var body: some View {
         ZStack {
             Color("background")
+                .cornerRadius(3)
+                .shadow(color: Color.gray, radius: 3, x: 5, y:5)
             RoundedRectangle(cornerRadius: 3)
                 .stroke(Color("app_color"))
             HStack {
@@ -28,13 +32,15 @@ struct TrainerView: View {
                     Text("- profile -")
                         .padding(.top)
                     HStack {
-                        Text("名前：\(name)")
+                        Text("名前：\(trainer.trainer_name)")
                             .font(.custom("", size: 13))
                         Spacer()
                     }
                     Spacer()
                     Button(
-                        action: {}
+                        action: {
+                            viewStore.send(.trainerAction(.onTapTrainer(trainer)), animation: .easeInOut)
+                        }
                     ){
                         ZStack {
                             RoundedRectangle(cornerRadius: 3)
@@ -50,11 +56,17 @@ struct TrainerView: View {
             }
         }
         .frame(width: bounds.width * 0.9, height: bounds.height * 0.23)
+        
     }
 }
 
 struct TrainerView_Previews: PreviewProvider {
     static var previews: some View {
-        TrainerView(name: "テスト　トレーナー")
+        TrainerView(viewStore: ViewStore(Store(initialState: MakeReservationState(),
+                                               reducer: makeReservationReducer,
+                                               environment: .live)),
+                    trainer: TrainerEntity(trainer_id: "",
+                                           trainer_name: "テスト　トレーナー",
+                                           token: ""))
     }
 }
