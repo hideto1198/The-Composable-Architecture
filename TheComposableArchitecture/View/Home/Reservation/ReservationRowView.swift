@@ -11,6 +11,9 @@ struct ReservationRowView: View {
     var reservation: ReservationEntity
     var body: some View{
         ZStack{
+            Color("background")
+                .cornerRadius(3)
+                .shadow(color: Color.gray, radius: 3, x:3, y: 3)
             RoundedRectangle(cornerRadius: 3)
                 .stroke(self.reservation.isTap ? Color("app_color") : Color.gray, lineWidth:  self.reservation.isTap ? 1.5 : 0.5)
             VStack(alignment:.leading){
