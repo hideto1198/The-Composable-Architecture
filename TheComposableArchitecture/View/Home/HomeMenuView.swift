@@ -28,7 +28,7 @@ struct HomeMenuView: View {
                     destination: MakeReservationView(store:
                                                         Store(initialState: MakeReservationState(),
                                                                           reducer: makeReservationReducer,
-                                                                          environment: MakeReservationEnvironment())
+                                                              environment: .live)
                                                                  
                                                     )
                                     .navigationBarHidden(true),
