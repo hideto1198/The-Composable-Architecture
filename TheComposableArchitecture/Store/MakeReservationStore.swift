@@ -27,11 +27,23 @@ struct MakeReservationState: Equatable {
     var placeSelector: Int = 0
     var trainerSelector: Int = 0
     var trainer: String = "選択してください"
+    var showTrainerSelector: Bool = false
     var showTrainer: Bool = false
     var showCalendar: Bool = false
+    var showReservationDate: Bool = false
+    var reservation_date: String = "選択してください"
     var showTimeSchedule: Bool = false
     var calendarState: CalendarState = CalendarState()
     var trainerState: TrainerState = TrainerState()
+    
+    fileprivate mutating func resetState(){
+        self.trainer = "選択してください"
+        self.showTrainerSelector = false
+        self.showTrainer = false
+        self.showCalendar = false
+        self.showReservationDate = false
+        self.reservation_date = "選択してください"
+    }
 }
 
 enum MakeReservationAction: Equatable {
@@ -63,33 +75,56 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
     Reducer { state, action, _ in
         switch action {
         case let .calendarAction(.onTapTile(date)):
+            state.showTrainer = false
             if date.state == "○" {
-                state.showTrainer = true
+                state.showTrainerSelector = true
+                state.showCalendar = false
+                state.showReservationDate = true
+                state.reservation_date = "\(state.calendarState.year)年\(state.calendarState.month)月\(date.date)日"
+                return Effect(value: .trainerAction(.getTrainer))
+            } else {
+                state.showTrainer = false
+                return .none
             }
-            return .none
+            
         case .calendarAction:
             return .none
+            
+        case let .trainerAction(.onTapTrainer(trainer)):
+            state.trainer = trainer.trainer_name
+            state.showTrainer = false
+            return .none
+            
         case .trainerAction:
             return .none
+            
         case let .onSelectMenu(index):
             state.menuSelector = index
             return .none
+            
         case let .onSelectPlace(index):
             if index == 0 {
-                state.showCalendar = false
-                state.showTrainer = false
-                state.trainer = "選択してください"
+                state.resetState()
             } else {
+                state.resetState()
                 state.showCalendar = true
+                state.showReservationDate = true
             }
                 state.placeSelector = index
             return .none
+            
         case .onTapTrainer:
-            state.trainer = "テスト　トレーナー"
+            state.showTrainer = true
             return .none
+            
         case .onTapDate:
+            state.resetState()
+            state.showCalendar = true
+            state.showReservationDate = true
             return .none
+            
         case .onTapTime:
+            
             return .none
         }
     }
