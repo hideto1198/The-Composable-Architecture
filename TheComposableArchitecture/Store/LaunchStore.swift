@@ -21,17 +21,21 @@ struct LaunchState: Equatable {
     ]
     var opacity: Double = 2.0
     var counter: Double = 0.0
+    var isRegist: Bool = false
 }
 
 enum LaunchAction: Equatable {
     case timer(LifecycleAction<TimerAction>)
     case onNavigate(isActive: Bool)
     case doAnimation
+    case getCurrentUser
+    case currentUserResponse(Result<Bool, AuthenticationClient.Failure>)
 }
 
 struct LaunchEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var next = Effect<LaunchState, Never>(value: LaunchState())
+    var authenticationClient: AuthenticationClient
 }
 
 let launchReducer: Reducer<LaunchState, LaunchAction, LaunchEnvironment> = .combine(
@@ -54,6 +58,18 @@ let launchReducer: Reducer<LaunchState, LaunchAction, LaunchEnvironment> = .comb
         case .onNavigate(isActive: false):
             return .none
         case .doAnimation:
+            return .none
+        case .getCurrentUser:
+            return environment.authenticationClient.fetch()
+                .receive(on: environment.mainQueue)
+                .catchToEffect(LaunchAction.currentUserResponse)
+        case let .currentUserResponse(.success(response)):
+            // if !response {
+            if response {
+                state.isRegist = true
+            }
+            return .none
+        case .currentUserResponse(.failure):
             return .none
         }
     }
