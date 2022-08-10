@@ -61,7 +61,7 @@ struct LaunchDesignView: View {
          LaunchDesignView(
              viewStore: ViewStore(Store(initialState: LaunchState(),
                           reducer: launchReducer,
-                          environment: .init(mainQueue: .main)
+                                        environment: .init(mainQueue: .main, authenticationClient: .live)
                          ))
          )
      }

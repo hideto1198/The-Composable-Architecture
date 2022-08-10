@@ -21,7 +21,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(
             store: Store(initialState: LaunchState(),
                          reducer: launchReducer,
-                         environment: .init(mainQueue: .main)
+                         environment: .init(mainQueue: .main, authenticationClient: .live)
         ))
     }
 }
