@@ -1,0 +1,42 @@
+//
+//  TimeshceduleClient.swift
+//  TheComposableArchitecture
+//
+//  Created by 東　秀斗 on 2022/08/10.
+//
+
+import ComposableArchitecture
+import FirebaseFunctions
+import Combine
+import Foundation
+
+struct TimescheduleClient {
+    var fetch: () -> Effect<Dictionary<String, TimescheduleEntity>, Failure>
+    struct Failure: Error, Equatable {}
+}
+
+extension TimescheduleClient {
+    static let live = TimescheduleClient(fetch: {
+        Effect.task {
+            let functions = Functions.functions()
+            let data = try await functions.httpsCallable("get_reservation_data").call()
+            var result: Dictionary<String, TimescheduleEntity> = [:]
+            if let data = data.data {
+                let datas: NSDictionary = (data as! NSDictionary)["data"] as! NSDictionary
+                for time in datas.allKeys {
+                    let details: NSDictionary = datas[time]! as! NSDictionary
+                    let timeschedule: TimescheduleEntity = TimescheduleEntity(
+                        time: time as! String,
+                        state: details["state"] as! Int
+                    )
+                    result[time as! String] = timeschedule
+                }
+                return result
+            } else {
+                return [:]
+            }
+        }
+        .mapError{ _ in Failure() }
+        .eraseToEffect()
+    })
+}
