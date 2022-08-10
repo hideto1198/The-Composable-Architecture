@@ -22,18 +22,8 @@ struct MakeReservationView: View {
                         }
                         .padding(.leading)
                         if viewStore.showReservationDate {
-                            HStack {
-                                Text("日付")
-                                Spacer()
-                                Button(
-                                    action: {
-                                        viewStore.send(.onTapDate, animation: .easeInOut)
-                                    }
-                                ){
-                                    Text("\(viewStore.reservation_date)")
-                                }
-                            }
-                            .padding([.horizontal, .top])
+                            CalendarSelectView(viewStore: viewStore)
+                                .padding([.horizontal, .top])
                         }
                         if viewStore.showCalendar {
                             CalendarView(viewStore: viewStore)
@@ -42,12 +32,26 @@ struct MakeReservationView: View {
                             TrainerSelectView(viewStore: viewStore)
                                 .padding([.horizontal, .top])
                             if viewStore.showTrainer {
-                                if !viewStore.trainerState.isLoading {
-                                    TrainersView(viewStore: viewStore)
-                                        .padding(.horizontal)
-                                } else {
-                                    ActivityIndicator()
+                                TrainersView(viewStore: viewStore)
+                                    .padding(.horizontal)
+                            }
+                        }
+                        if viewStore.showReservationTime {
+                            TimeSelectView(viewStore: viewStore)
+                                .padding([.horizontal, .top])
+
+                        }
+                        if viewStore.showTimeSchedule {
+                            TimescheduleView(viewStore: viewStore)
+                                .padding(.horizontal)
+                        }
+                        if viewStore.showAddButton {
+                            Button(
+                                action: {
+                                    viewStore.send(.onTapAddButton, animation: .easeInOut)
                                 }
+                            ){
+                                ButtonView(text: "追加")
                             }
                         }
                     }
