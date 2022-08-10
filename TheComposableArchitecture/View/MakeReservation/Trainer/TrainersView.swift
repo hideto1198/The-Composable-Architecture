@@ -11,13 +11,26 @@ import ComposableArchitecture
 struct TrainersView: View {
     let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
     var body: some View {
-        ScrollView(.horizontal){
-            HStack {
-                ForEach(viewStore.trainerState.trainers) { trainer in
-                    TrainerView(viewStore:viewStore, trainer: trainer)
-                        .padding([.bottom, .trailing])
+        if !viewStore.trainerState.isLoading {
+            ScrollView(.horizontal){
+                HStack {
+                    ForEach(viewStore.trainerState.trainers) { trainer in
+                        TrainerView(viewStore:viewStore, trainer: trainer)
+                            .padding([.bottom, .trailing])
+                    }
                 }
             }
+        }else{
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    ActivityIndicator()
+                    Spacer()
+                }
+                Spacer()
+            }
+            .frame(width: bounds.width * 0.9, height: bounds.height * 0.23)
         }
     }
 }
