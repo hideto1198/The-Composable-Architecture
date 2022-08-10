@@ -54,6 +54,14 @@
 		86BA378E289D3B0000D83C18 /* MenuSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA378D289D3B0000D83C18 /* MenuSelectView.swift */; };
 		86BA3790289D3E4700D83C18 /* CalendarTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA378F289D3E4700D83C18 /* CalendarTileView.swift */; };
 		86BA3792289D41C100D83C18 /* CalendarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA3791289D41C100D83C18 /* CalendarStore.swift */; };
+		86C23F6228A39F4800303924 /* TimescheduleTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6128A39F4800303924 /* TimescheduleTileView.swift */; };
+		86C23F6428A39FEC00303924 /* TimescheduleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6328A39FEC00303924 /* TimescheduleStore.swift */; };
+		86C23F6628A3A12600303924 /* TimeshceduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6528A3A12600303924 /* TimeshceduleClient.swift */; };
+		86C23F6828A3B55200303924 /* TimescheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6728A3B55200303924 /* TimescheduleView.swift */; };
+		86C23F6A28A3C7DE00303924 /* TimeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6928A3C7DE00303924 /* TimeSelectView.swift */; };
+		86C23F6C28A3C80F00303924 /* CalendarSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6B28A3C80F00303924 /* CalendarSelectView.swift */; };
+		86C23F6E28A3C9F100303924 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6D28A3C9F100303924 /* ButtonView.swift */; };
+		86C23F7028A3F43100303924 /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6F28A3F43100303924 /* AuthenticationClient.swift */; };
 		86EA523B2893D0A800939659 /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523A2893D0A800939659 /* HomeStore.swift */; };
 		86EA523D2893FAFA00939659 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523C2893FAFA00939659 /* HomeHeaderView.swift */; };
 		86EA523F2894013900939659 /* HomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523E2894013900939659 /* HomeMenuView.swift */; };
@@ -117,6 +125,14 @@
 		86BA378D289D3B0000D83C18 /* MenuSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSelectView.swift; sourceTree = "<group>"; };
 		86BA378F289D3E4700D83C18 /* CalendarTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTileView.swift; sourceTree = "<group>"; };
 		86BA3791289D41C100D83C18 /* CalendarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarStore.swift; sourceTree = "<group>"; };
+		86C23F6128A39F4800303924 /* TimescheduleTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleTileView.swift; sourceTree = "<group>"; };
+		86C23F6328A39FEC00303924 /* TimescheduleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleStore.swift; sourceTree = "<group>"; };
+		86C23F6528A3A12600303924 /* TimeshceduleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeshceduleClient.swift; sourceTree = "<group>"; };
+		86C23F6728A3B55200303924 /* TimescheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleView.swift; sourceTree = "<group>"; };
+		86C23F6928A3C7DE00303924 /* TimeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectView.swift; sourceTree = "<group>"; };
+		86C23F6B28A3C80F00303924 /* CalendarSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSelectView.swift; sourceTree = "<group>"; };
+		86C23F6D28A3C9F100303924 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		86C23F6F28A3F43100303924 /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
 		86EA523A2893D0A800939659 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
 		86EA523C2893FAFA00939659 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		86EA523E2894013900939659 /* HomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuView.swift; sourceTree = "<group>"; };
@@ -160,12 +176,15 @@
 		8609BAFD289A97450055130A /* MakeReservation */ = {
 			isa = PBXGroup;
 			children = (
+				86C23F6028A39F2A00303924 /* TimeSchedule */,
 				8614204C28A2671A0041F6B3 /* Trainer */,
 				86BA3786289D3A0F00D83C18 /* Calendar */,
 				8609BAFB289A95CF0055130A /* MakeReservationView.swift */,
 				86BA378D289D3B0000D83C18 /* MenuSelectView.swift */,
 				86BA3789289D3A6F00D83C18 /* PlaceSelectView.swift */,
 				8614204628A2471B0041F6B3 /* TrainerSelectView.swift */,
+				86C23F6B28A3C80F00303924 /* CalendarSelectView.swift */,
+				86C23F6928A3C7DE00303924 /* TimeSelectView.swift */,
 			);
 			path = MakeReservation;
 			sourceTree = "<group>";
@@ -284,6 +303,7 @@
 				8609BB01289A984C0055130A /* MakeReservationStore.swift */,
 				86BA3791289D41C100D83C18 /* CalendarStore.swift */,
 				8614204828A24FCA0041F6B3 /* TrainerStore.swift */,
+				86C23F6328A39FEC00303924 /* TimescheduleStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -296,6 +316,7 @@
 				8609BAFD289A97450055130A /* MakeReservation */,
 				863F7A6E289000EB0065B8E8 /* ActivityIndicator.swift */,
 				8609BAF9289A93F30055130A /* AppHeaderView.swift */,
+				86C23F6D28A3C9F100303924 /* ButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -306,6 +327,8 @@
 				863F7A61288FD9000065B8E8 /* ReservationClient.swift */,
 				86290FA32891415700D1B16B /* TicketClient.swift */,
 				8614204A28A251740041F6B3 /* TrainerClient.swift */,
+				86C23F6528A3A12600303924 /* TimeshceduleClient.swift */,
+				86C23F6F28A3F43100303924 /* AuthenticationClient.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -324,6 +347,15 @@
 				86BA378F289D3E4700D83C18 /* CalendarTileView.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		86C23F6028A39F2A00303924 /* TimeSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				86C23F6128A39F4800303924 /* TimescheduleTileView.swift */,
+				86C23F6728A3B55200303924 /* TimescheduleView.swift */,
+			);
+			path = TimeSchedule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,29 +508,37 @@
 				863F7A7128900F700065B8E8 /* CancelButtonView.swift in Sources */,
 				86EA523B2893D0A800939659 /* HomeStore.swift in Sources */,
 				8614204B28A251740041F6B3 /* TrainerClient.swift in Sources */,
+				86C23F6628A3A12600303924 /* TimeshceduleClient.swift in Sources */,
 				86EA523F2894013900939659 /* HomeMenuView.swift in Sources */,
 				8609BAF628992EB80055130A /* LaunchDesignView.swift in Sources */,
 				863F79F9288FD5710065B8E8 /* ContentView.swift in Sources */,
 				8614205028A267310041F6B3 /* TrainerView.swift in Sources */,
+				86C23F6E28A3C9F100303924 /* ButtonView.swift in Sources */,
 				86BA3788289D3A2000D83C18 /* CalendarView.swift in Sources */,
+				86C23F7028A3F43100303924 /* AuthenticationClient.swift in Sources */,
+				86C23F6A28A3C7DE00303924 /* TimeSelectView.swift in Sources */,
 				86290FA42891415700D1B16B /* TicketClient.swift in Sources */,
 				863F7A69288FEE690065B8E8 /* RootStore.swift in Sources */,
 				86BA3790289D3E4700D83C18 /* CalendarTileView.swift in Sources */,
 				863F7A67288FECF30065B8E8 /* ReservationView.swift in Sources */,
 				8614204E28A267280041F6B3 /* TrainersView.swift in Sources */,
+				86C23F6228A39F4800303924 /* TimescheduleTileView.swift in Sources */,
 				8614204928A24FCA0041F6B3 /* TrainerStore.swift in Sources */,
 				86290FA228913F6200D1B16B /* TicketStore.swift in Sources */,
 				86BA378A289D3A6F00D83C18 /* PlaceSelectView.swift in Sources */,
+				86C23F6828A3B55200303924 /* TimescheduleView.swift in Sources */,
 				86BA3792289D41C100D83C18 /* CalendarStore.swift in Sources */,
 				863F7A6B288FFEA20065B8E8 /* ReservationRowView.swift in Sources */,
 				8609BB02289A984C0055130A /* MakeReservationStore.swift in Sources */,
 				86290FA028913F4300D1B16B /* HomeView.swift in Sources */,
+				86C23F6C28A3C80F00303924 /* CalendarSelectView.swift in Sources */,
 				8609BAF228992D4A0055130A /* LaunchScreenView.swift in Sources */,
 				8614204728A2471B0041F6B3 /* TrainerSelectView.swift in Sources */,
 				863F7A5F288FD8390065B8E8 /* ReservationStore.swift in Sources */,
 				8609BAFA289A93F30055130A /* AppHeaderView.swift in Sources */,
 				86BA378E289D3B0000D83C18 /* MenuSelectView.swift in Sources */,
 				863F7A6D288FFFAF0065B8E8 /* ReservationListView.swift in Sources */,
+				86C23F6428A39FEC00303924 /* TimescheduleStore.swift in Sources */,
 				86290FA62891486B00D1B16B /* TicketView.swift in Sources */,
 				868E8C6C28959A9B0071A920 /* MenuView.swift in Sources */,
 				86EA523D2893FAFA00939659 /* HomeHeaderView.swift in Sources */,
