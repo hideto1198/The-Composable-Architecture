@@ -28,7 +28,7 @@ struct TheComposableArchitectureApp: App {
                             Store(
                                 initialState: LaunchState(),
                                 reducer: launchReducer,
-                                environment: .init(mainQueue: .main)
+                                environment: .init(mainQueue: .main, authenticationClient: .live)
                             )
             )
         }
