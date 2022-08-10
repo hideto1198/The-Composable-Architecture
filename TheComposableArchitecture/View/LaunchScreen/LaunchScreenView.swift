@@ -13,15 +13,26 @@ struct LaunchScreenView: View {
     var body: some View {
         WithViewStore(self.store) { viewStore in
             NavigationView {
-                NavigationLink(destination: HomeView(store: Store(
-                                                    initialState: HomeState(),
-                                                    reducer: homeReducer,
-                                                    environment: .live)
-                                            )
-                    .navigationBarHidden(true),
-                               isActive: viewStore.binding(get: \.isLaunch, send: LaunchAction.onNavigate(isActive: false))){
-                    LaunchDesignView(viewStore: viewStore)
+                if viewStore.isRegist {
+                    NavigationLink(destination: Text("登録画面")
+                        .navigationBarHidden(true),
+                                   isActive: viewStore.binding(get: \.isLaunch, send: LaunchAction.onNavigate(isActive: false))){
+                        LaunchDesignView(viewStore: viewStore)
+                    }
+                } else {
+                    NavigationLink(destination: HomeView(store: Store(
+                        initialState: HomeState(),
+                        reducer: homeReducer,
+                        environment: .live)
+                    )
+                        .navigationBarHidden(true),
+                                   isActive: viewStore.binding(get: \.isLaunch, send: LaunchAction.onNavigate(isActive: false))){
+                        LaunchDesignView(viewStore: viewStore)
+                    }
                 }
+            }
+            .onAppear {
+                viewStore.send(.getCurrentUser)
             }
         }
     }
@@ -32,7 +43,7 @@ struct LaunchScreenView_Previews: PreviewProvider {
         LaunchScreenView(
             store: Store(initialState: LaunchState(),
                          reducer: launchReducer,
-                         environment: .init(mainQueue: .main)
+                         environment: .init(mainQueue: .main, authenticationClient: .live)
         ))
     }
 }
