@@ -62,6 +62,9 @@
 		86C23F6C28A3C80F00303924 /* CalendarSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6B28A3C80F00303924 /* CalendarSelectView.swift */; };
 		86C23F6E28A3C9F100303924 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6D28A3C9F100303924 /* ButtonView.swift */; };
 		86C23F7028A3F43100303924 /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6F28A3F43100303924 /* AuthenticationClient.swift */; };
+		86C23F7228A5C07200303924 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F7128A5C07200303924 /* LoginView.swift */; };
+		86C23F7528A5C1EE00303924 /* MailInputview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F7428A5C1EE00303924 /* MailInputview.swift */; };
+		86C23F7728A5C1FC00303924 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F7628A5C1FC00303924 /* PasswordInputView.swift */; };
 		86EA523B2893D0A800939659 /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523A2893D0A800939659 /* HomeStore.swift */; };
 		86EA523D2893FAFA00939659 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523C2893FAFA00939659 /* HomeHeaderView.swift */; };
 		86EA523F2894013900939659 /* HomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523E2894013900939659 /* HomeMenuView.swift */; };
@@ -133,6 +136,9 @@
 		86C23F6B28A3C80F00303924 /* CalendarSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSelectView.swift; sourceTree = "<group>"; };
 		86C23F6D28A3C9F100303924 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		86C23F6F28A3F43100303924 /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
+		86C23F7128A5C07200303924 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		86C23F7428A5C1EE00303924 /* MailInputview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailInputview.swift; sourceTree = "<group>"; };
+		86C23F7628A5C1FC00303924 /* PasswordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
 		86EA523A2893D0A800939659 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
 		86EA523C2893FAFA00939659 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		86EA523E2894013900939659 /* HomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuView.swift; sourceTree = "<group>"; };
@@ -255,11 +261,10 @@
 		863F79F5288FD5710065B8E8 /* TheComposableArchitecture */ = {
 			isa = PBXGroup;
 			children = (
+				863F79F6288FD5710065B8E8 /* TheComposableArchitectureApp.swift */,
 				863F7A5D288FD80E0065B8E8 /* View */,
 				863F7A60288FD8E90065B8E8 /* Client */,
 				863F7A5C288FD8030065B8E8 /* Store */,
-				863F79F6288FD5710065B8E8 /* TheComposableArchitectureApp.swift */,
-				863F79F8288FD5710065B8E8 /* ContentView.swift */,
 				863F79FA288FD5710065B8E8 /* Assets.xcassets */,
 				863F7A20288FD5AE0065B8E8 /* GoogleService-Info.plist */,
 				863F79FC288FD5710065B8E8 /* Preview Content */,
@@ -311,10 +316,12 @@
 		863F7A5D288FD80E0065B8E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				86C23F7328A5C1AB00303924 /* Login */,
 				8609BB00289A97ED0055130A /* LaunchScreen */,
 				8609BAFE289A97550055130A /* Home */,
 				8609BAFD289A97450055130A /* MakeReservation */,
 				863F7A6E289000EB0065B8E8 /* ActivityIndicator.swift */,
+				863F79F8288FD5710065B8E8 /* ContentView.swift */,
 				8609BAF9289A93F30055130A /* AppHeaderView.swift */,
 				86C23F6D28A3C9F100303924 /* ButtonView.swift */,
 			);
@@ -356,6 +363,16 @@
 				86C23F6728A3B55200303924 /* TimescheduleView.swift */,
 			);
 			path = TimeSchedule;
+			sourceTree = "<group>";
+		};
+		86C23F7328A5C1AB00303924 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				86C23F7128A5C07200303924 /* LoginView.swift */,
+				86C23F7428A5C1EE00303924 /* MailInputview.swift */,
+				86C23F7628A5C1FC00303924 /* PasswordInputView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -513,6 +530,7 @@
 				8609BAF628992EB80055130A /* LaunchDesignView.swift in Sources */,
 				863F79F9288FD5710065B8E8 /* ContentView.swift in Sources */,
 				8614205028A267310041F6B3 /* TrainerView.swift in Sources */,
+				86C23F7228A5C07200303924 /* LoginView.swift in Sources */,
 				86C23F6E28A3C9F100303924 /* ButtonView.swift in Sources */,
 				86BA3788289D3A2000D83C18 /* CalendarView.swift in Sources */,
 				86C23F7028A3F43100303924 /* AuthenticationClient.swift in Sources */,
@@ -524,6 +542,7 @@
 				8614204E28A267280041F6B3 /* TrainersView.swift in Sources */,
 				86C23F6228A39F4800303924 /* TimescheduleTileView.swift in Sources */,
 				8614204928A24FCA0041F6B3 /* TrainerStore.swift in Sources */,
+				86C23F7528A5C1EE00303924 /* MailInputview.swift in Sources */,
 				86290FA228913F6200D1B16B /* TicketStore.swift in Sources */,
 				86BA378A289D3A6F00D83C18 /* PlaceSelectView.swift in Sources */,
 				86C23F6828A3B55200303924 /* TimescheduleView.swift in Sources */,
@@ -534,6 +553,7 @@
 				86C23F6C28A3C80F00303924 /* CalendarSelectView.swift in Sources */,
 				8609BAF228992D4A0055130A /* LaunchScreenView.swift in Sources */,
 				8614204728A2471B0041F6B3 /* TrainerSelectView.swift in Sources */,
+				86C23F7728A5C1FC00303924 /* PasswordInputView.swift in Sources */,
 				863F7A5F288FD8390065B8E8 /* ReservationStore.swift in Sources */,
 				8609BAFA289A93F30055130A /* AppHeaderView.swift in Sources */,
 				86BA378E289D3B0000D83C18 /* MenuSelectView.swift in Sources */,
