@@ -64,8 +64,7 @@ let launchReducer: Reducer<LaunchState, LaunchAction, LaunchEnvironment> = .comb
                 .receive(on: environment.mainQueue)
                 .catchToEffect(LaunchAction.currentUserResponse)
         case let .currentUserResponse(.success(response)):
-            // if !response {
-            if response {
+            if !response {
                 state.isRegist = true
             }
             return .none
