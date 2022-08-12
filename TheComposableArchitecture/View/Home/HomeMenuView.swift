@@ -41,6 +41,15 @@ struct HomeMenuView: View {
                     MenuView(title: "お問い合わせ")
                 })
                 .offset(x: bounds.width * 0.3)
+                Divider()
+                NavigationLink(destination: LaunchScreenView(store: Store(initialState: LaunchState(),
+                                                                          reducer: launchReducer,
+                                                                          environment: LaunchEnvironment(mainQueue: .main, authenticationClient: .live)))
+                    .navigationBarHidden(true),
+                               label: {
+                    MenuView(title: "タイトルへ")
+                })
+                .offset(x: bounds.width * 0.3)
                 Spacer()
             }
             .padding(.leading)
