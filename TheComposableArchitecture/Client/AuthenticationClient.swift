@@ -17,7 +17,7 @@ struct AuthenticationClient {
 extension AuthenticationClient {
     static let live = AuthenticationClient(fetch: {
         Effect.task {
-            if let user = Auth.auth().currentUser {
+            if Auth.auth().currentUser != nil && UserDefaults.standard.string(forKey: "first_launch") != nil {
                 return true
             } else {
                 return false
