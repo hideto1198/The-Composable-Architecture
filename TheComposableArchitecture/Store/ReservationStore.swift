@@ -63,6 +63,7 @@ let reservationReducer: Reducer = Reducer<ReservationState, ReservationAction, R
         return .none
     case .reset:
         state.reservations.removeAll()
+        UserDefaults.standard.removeObject(forKey: "first_launch")
         return .none
     }
 }
