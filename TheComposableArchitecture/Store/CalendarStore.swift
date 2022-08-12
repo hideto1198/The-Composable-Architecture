@@ -45,12 +45,17 @@ struct CalendarState: Equatable {
     // MARK: - 選択できない日付を計算
     private mutating func banOldDay() {
         let today: Date = Date()
-        let yesterday: Date? = Calendar.current.date(byAdding: .day, value: 0, to: today)
-        let dateFormatter: DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        var yesterday: Date? = Calendar.current.date(byAdding: .day, value: 0, to: today)
+        var dateFormatter: DateFormatter {
+            let dateFormatter: DateFormatter = DateFormatter()
+            dateFormatter.calendar = Calendar(identifier: .gregorian)
+            dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy/MM/dd", options: 0, locale: Locale(identifier: "ja_JP"))
+            return dateFormatter
+        }
+        yesterday = dateFormatter.date(from: dateFormatter.string(from: yesterday!))
         for i in self.dates.indices {
             for n in self.dates[i].indices {
-                let date: Date? = dateFormatter.date(from: "\(self.year)-\(self.month)-\(self.dates[i][n].date)")
+                let date: Date? = dateFormatter.date(from: "\(self.year)/\(self.month)/\(self.dates[i][n].date)")
                 if date?.compare(yesterday!) == .orderedAscending {
                     self.dates[i][n].state = "×"
                 }
