@@ -15,8 +15,6 @@ struct SignInView: View {
         WithViewStore(self.store) { viewStore in
             ZStack {
                 VStack {
-                    Spacer()
-                        .frame(height: bounds.height * 0.1)
                     Image("LOGO")
                         .resizable()
                         .frame(width: bounds.width * 0.4, height: bounds.width * 0.4)
