@@ -15,6 +15,9 @@ struct SignUpState: Equatable {
     var isLoading: Bool = false
     var alert: AlertState<SignUpAction>?
     @BindableState var isRegister: Bool = false
+    var showButton: Bool = true
+    var withEmail: Bool = false
+    var withAppl: Bool = false
     
     fileprivate mutating func text_validation() -> Bool {
         if self.email == "" || self.password == "" || self.confirmPassword == "" {
@@ -36,6 +39,9 @@ enum SignUpAction: BindableAction, Equatable {
     case alertDismissed
     case sendMailResponse(Result<Bool, SendMailClient.Failure>)
     case signUpResponse(Result<Bool, SignUpClient.Failure>)
+    case onTapWithEmail
+    case onTapWithApple
+    case onTapClose
 }
 
 struct SignUpEnvironment {
@@ -56,17 +62,17 @@ let signUpReducer: Reducer = Reducer<SignUpState, SignUpAction, SignUpEnvironmen
         return .none
     case .onTapSignUp:
         /*
-        if !state.text_validation() {
-            return .none
-        }
-        state.isLoading = true
-        return environment.signUpClient.fetch(state.email, state.password)
-            .receive(on: environment.mainQueue)
-            .catchToEffect(SignUpAction.signUpResponse)
-        */
+         if !state.text_validation() {
+         return .none
+         }
+         state.isLoading = true
+         return environment.signUpClient.fetch(state.email, state.password)
+         .receive(on: environment.mainQueue)
+         .catchToEffect(SignUpAction.signUpResponse)
+         */
         state.isRegister = true
         return .none
-    //MARK: - 確認メールを送信を押した後の処理
+        //MARK: - 確認メールを送信を押した後の処理
     case .onTapSendMail:
         if !state.text_validation() {
             return .none
@@ -79,7 +85,7 @@ let signUpReducer: Reducer = Reducer<SignUpState, SignUpAction, SignUpEnvironmen
     case .alertDismissed:
         state.alert = nil
         return .none
-    //MARK: - 確認メールを送信した後のレスポンス(成功)を受ける処理
+        //MARK: - 確認メールを送信した後のレスポンス(成功)を受ける処理
     case let .sendMailResponse(.success(response)):
         state.isLoading = false
         if response {
@@ -88,12 +94,12 @@ let signUpReducer: Reducer = Reducer<SignUpState, SignUpAction, SignUpEnvironmen
             state.alert = AlertState(title: TextState("エラー"), message: TextState("このメールアドレスは既に確認されています。"))
         }
         return .none
-    //MARK: - 確認メールを送信した後のレスポンス(失敗)を受ける処理
+        //MARK: - 確認メールを送信した後のレスポンス(失敗)を受ける処理
     case .sendMailResponse(.failure):
         state.isLoading = false
         state.alert = AlertState(title: TextState("エラー"), message: TextState("確認メールの送信を失敗しました。時間をおいてお試しください。"))
         return .none
-    //MARK: - サインアップボタン押した後のレスポンス(成功)を受ける処理
+        //MARK: - サインアップボタン押した後のレスポンス(成功)を受ける処理
     case let .signUpResponse(.success(response)):
         state.isLoading = false
         if !response {
@@ -102,11 +108,24 @@ let signUpReducer: Reducer = Reducer<SignUpState, SignUpAction, SignUpEnvironmen
             state.isRegister = true
         }
         return .none
-    //MARK: - サインアップボタン押した後のレスポンスを受ける処理
+        //MARK: - サインアップボタン押した後のレスポンスを受ける処理
     case .signUpResponse(.failure):
         state.isLoading = false
         state.alert = AlertState(title: TextState("エラー"), message: TextState("エラーが発生しました。時間をおいてお試しください。"))
         return .none
+        // MARK: - メールアドレスで登録ボタン押した時
+    case .onTapWithEmail:
+        state.withEmail = true
+        state.showButton = false
+        return .none
+        // MARK: - 閉じるボタンを押した時
+    case .onTapClose:
+        state.withEmail = false
+        state.showButton = true
+        return .none
+    case .onTapWithApple:
+        return .none
     }
+    
 }
 .binding()
