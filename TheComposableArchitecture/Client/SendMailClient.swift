@@ -36,3 +36,9 @@ extension SendMailClient {
         .eraseToEffect()
     })
 }
+
+/* エラーを詳しく取得するために
+ - 35行目 .mapError{ _ in Failure() }
+ + 35行目 .mapError{ result in Failure(reuslt) }
+に変更してみる
+*/
