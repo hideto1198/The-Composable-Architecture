@@ -20,31 +20,29 @@ struct SignUpView: View {
                     Spacer()
                         .frame(height: bounds.height * 0.05)
                     if viewStore.showButton {
-                        Button(
-                            action: {
-                                viewStore.send(.onTapWithApple)
-                            }
-                        ){
-                            SignUpWithAppleButton()
-                                .frame(width: bounds.width * 0.8, height: bounds.height * 0.07)
-                        }
+                        SignInUpWithAppleButton(buttonType: .signUp,
+                                                completion: { result in
+                                                    switch result {
+                                                    case .success(_):
+                                                        viewStore.send(.onTapWithApple)
+                                                        return
+                                                    case .failure(_):
+                                                        return
+                                                    }
+                                                })
+                            .frame(width: bounds.width * 0.8, height: bounds.height * 0.06)
                         Button(
                             action: {
                                 viewStore.send(.onTapWithEmail, animation: .easeIn)
                             }
                         ){
-                            ButtonView(text: "メールアドレス登録")
+                            ButtonView(text: "メールアドレスで登録")
                         }
                     }
                     if viewStore.withEmail {
                         SignUpWithEmailView(viewStore: viewStore)
                     }
                     Spacer()
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color("app_color").edgesIgnoringSafeArea(.all))
-                if viewStore.isLoading {
-                    ActivityIndicator()
                 }
                 NavigationLink(
                     destination: RegisterView(store: Store(initialState: RegisterState(),
@@ -54,7 +52,12 @@ struct SignUpView: View {
                     isActive: viewStore.binding(\.$isRegister),
                     label: { Text("") }
                 )
+                if viewStore.isLoading {
+                    ActivityIndicator()
+                }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color("app_color").edgesIgnoringSafeArea(.all))
             .alert(
                 self.store.scope(state: \.alert),
                 dismiss: .alertDismissed
