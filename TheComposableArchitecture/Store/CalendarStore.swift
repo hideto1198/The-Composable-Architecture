@@ -17,7 +17,6 @@ struct CalendarState: Equatable {
     struct DateEntity: Equatable, Hashable {
         var date: String = ""
         var state: String = ""
-        var isTap: Bool = false
     }
     
     // MARK: - 初期カレンダー作成
