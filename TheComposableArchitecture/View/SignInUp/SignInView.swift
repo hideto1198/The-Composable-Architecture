@@ -24,6 +24,18 @@ struct SignInView: View {
                         .padding(.bottom)
                     PasswordInputView(password: viewStore.binding(\.$password))
                     Spacer()
+                    SignInUpWithAppleButton(buttonType: .signIn,
+                                            completion: { result in
+                                                switch result {
+                                                case .success(_):
+                                                    viewStore.send(.onTapWithApple(true))
+                                                    return
+                                                case .failure(_):
+                                                    viewStore.send(.onTapWithApple(false))
+                                                    return
+                                                }
+                                            })
+                        .frame(width: bounds.width * 0.8, height: bounds.height * 0.06)
                     Button(
                         action: {
                             viewStore.send(.onTapSignIn)
