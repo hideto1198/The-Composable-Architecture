@@ -13,12 +13,12 @@ struct ButtonView: View {
         HStack {
             Spacer()
             ZStack {
-                RoundedRectangle(cornerRadius: 3)
+                RoundedRectangle(cornerRadius: 7)
                     .stroke(Color.gray, lineWidth: 1)
                 Text("\(text)")
                     .foregroundColor(.primary)
             }
-            .frame(width: bounds.width * 0.8, height: bounds.height * 0.07)
+            .frame(width: bounds.width * 0.8, height: bounds.height * 0.06)
             .background(Color.white.opacity(0.2))
             Spacer()
         }
