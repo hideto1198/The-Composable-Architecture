@@ -22,6 +22,7 @@ enum SignInAction: BindableAction, Equatable {
     case onTapSignIn
     case signInResponse(Result<Bool, SignInClient.Failure>)
     case alertDismissed
+    case onTapWithApple(Bool)
 }
 
 struct SignInEnvironment {
@@ -40,6 +41,11 @@ let signInReducer: Reducer = Reducer<SignInState, SignInAction, SignInEnvironmen
             .catchToEffect(SignInAction.signInResponse)
     case let .signInResponse(.success(response)):
         state.isLoading = false
+        if !response {
+            state.alert = AlertState(title: TextState("エラー"),
+                                     message: TextState("サインアップが完了していません"))
+            return .none
+        }
         state.isHome = true
         return .none
         
@@ -50,6 +56,14 @@ let signInReducer: Reducer = Reducer<SignInState, SignInAction, SignInEnvironmen
         return .none
     case .alertDismissed:
         state.alert = nil
+        return .none
+    case let .onTapWithApple(result):
+        if result {
+            state.isHome = true
+        } else {
+            state.alert = AlertState(title: TextState("エラー"),
+                                     message: TextState("サインアップが完了していません。"))
+        }
         return .none
     }
 }
