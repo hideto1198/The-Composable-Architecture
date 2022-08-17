@@ -10,6 +10,7 @@ import ComposableArchitecture
 import Combine
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 struct SignInClient {
     var fetch: (_ email: String, _ password: String) -> Effect<Bool, Failure>
@@ -21,10 +22,16 @@ extension SignInClient {
         Effect.task {
             let data = try await Auth.auth().signIn(withEmail: email, password: password)
             if let user = data.user {
-                debugPrint(user.uid)
-                UserDefaults.standard.set(true, forKey: "first_launch")
+                let db = Firestore.firestore()
+                let data = try await db.collection("USERS").document("\(user.uid)").getDocument()
+                if data.exists {
+                    return true
+                } else {
+                    return false
+                }
+            } else {
+                return false
             }
-            return true
         }
         .mapError{ _ in Failure() }
         .eraseToEffect()
