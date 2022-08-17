@@ -18,6 +18,7 @@ enum HomeAction: Equatable {
     case reservationAction(ReservationAction)
     case ticketAction(TicketAction)
     case onMenuTap
+    case onAppear
     
 }
 
@@ -45,6 +46,11 @@ let homeReducer: Reducer = Reducer<HomeState, HomeAction, HomeEnvironment>.combi
             return .none
         case .onMenuTap:
             state.isMenu = state.isMenu ? false : true
+            return .none
+        case .onAppear:
+            if UserDefaults.standard.string(forKey: "first_launch") == nil {
+                UserDefaults.standard.set(true, forKey: "first_launch")
+            }
             return .none
         }
     }
