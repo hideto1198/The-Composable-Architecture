@@ -73,9 +73,11 @@
 		86BA378E289D3B0000D83C18 /* MenuSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA378D289D3B0000D83C18 /* MenuSelectView.swift */; };
 		86BA3790289D3E4700D83C18 /* CalendarTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA378F289D3E4700D83C18 /* CalendarTileView.swift */; };
 		86BA3792289D41C100D83C18 /* CalendarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BA3791289D41C100D83C18 /* CalendarStore.swift */; };
-		86BB01F128AA686000435C32 /* SignUpWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01F028AA686000435C32 /* SignUpWithAppleButton.swift */; };
+		86BB01F128AA686000435C32 /* SignInUpWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01F028AA686000435C32 /* SignInUpWithAppleButton.swift */; };
 		86BB01F328AA69C500435C32 /* SignUpWithEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01F228AA69C500435C32 /* SignUpWithEmailView.swift */; };
 		86BB01F628AA832700435C32 /* SignUpWithAppleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01F528AA832700435C32 /* SignUpWithAppleClient.swift */; };
+		86BB01FE28AD0C7A00435C32 /* MakeReservationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01FD28AD0C7A00435C32 /* MakeReservationListView.swift */; };
+		86BB020028AD0CA300435C32 /* MakeReservationCheckButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01FF28AD0CA300435C32 /* MakeReservationCheckButtonView.swift */; };
 		86C23F6228A39F4800303924 /* TimescheduleTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6128A39F4800303924 /* TimescheduleTileView.swift */; };
 		86C23F6428A39FEC00303924 /* TimescheduleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6328A39FEC00303924 /* TimescheduleStore.swift */; };
 		86C23F6628A3A12600303924 /* TimeshceduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6528A3A12600303924 /* TimeshceduleClient.swift */; };
@@ -163,10 +165,12 @@
 		86BA378D289D3B0000D83C18 /* MenuSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSelectView.swift; sourceTree = "<group>"; };
 		86BA378F289D3E4700D83C18 /* CalendarTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTileView.swift; sourceTree = "<group>"; };
 		86BA3791289D41C100D83C18 /* CalendarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarStore.swift; sourceTree = "<group>"; };
-		86BB01F028AA686000435C32 /* SignUpWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWithAppleButton.swift; sourceTree = "<group>"; };
+		86BB01F028AA686000435C32 /* SignInUpWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUpWithAppleButton.swift; sourceTree = "<group>"; };
 		86BB01F228AA69C500435C32 /* SignUpWithEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWithEmailView.swift; sourceTree = "<group>"; };
 		86BB01F428AA823700435C32 /* TheComposableArchitecture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheComposableArchitecture.entitlements; sourceTree = "<group>"; };
 		86BB01F528AA832700435C32 /* SignUpWithAppleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWithAppleClient.swift; sourceTree = "<group>"; };
+		86BB01FD28AD0C7A00435C32 /* MakeReservationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReservationListView.swift; sourceTree = "<group>"; };
+		86BB01FF28AD0CA300435C32 /* MakeReservationCheckButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReservationCheckButtonView.swift; sourceTree = "<group>"; };
 		86C23F6128A39F4800303924 /* TimescheduleTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleTileView.swift; sourceTree = "<group>"; };
 		86C23F6328A39FEC00303924 /* TimescheduleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleStore.swift; sourceTree = "<group>"; };
 		86C23F6528A3A12600303924 /* TimeshceduleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeshceduleClient.swift; sourceTree = "<group>"; };
@@ -246,6 +250,8 @@
 				8614204628A2471B0041F6B3 /* TrainerSelectView.swift */,
 				86C23F6B28A3C80F00303924 /* CalendarSelectView.swift */,
 				86C23F6928A3C7DE00303924 /* TimeSelectView.swift */,
+				86BB01FD28AD0C7A00435C32 /* MakeReservationListView.swift */,
+				86BB01FF28AD0CA300435C32 /* MakeReservationCheckButtonView.swift */,
 			);
 			path = MakeReservation;
 			sourceTree = "<group>";
@@ -449,7 +455,7 @@
 				86C23F7A28A6474800303924 /* SignInUpView.swift */,
 				86C23F7128A5C07200303924 /* SignInView.swift */,
 				86C23F7C28A647DA00303924 /* SignUpView.swift */,
-				86BB01F028AA686000435C32 /* SignUpWithAppleButton.swift */,
+				86BB01F028AA686000435C32 /* SignInUpWithAppleButton.swift */,
 				86BB01F228AA69C500435C32 /* SignUpWithEmailView.swift */,
 			);
 			path = SignInUp;
@@ -637,6 +643,7 @@
 				863F7A69288FEE690065B8E8 /* RootStore.swift in Sources */,
 				8655502B28A677E800924528 /* SignUpClient.swift in Sources */,
 				86BA3790289D3E4700D83C18 /* CalendarTileView.swift in Sources */,
+				86BB020028AD0CA300435C32 /* MakeReservationCheckButtonView.swift in Sources */,
 				863F7A67288FECF30065B8E8 /* ReservationView.swift in Sources */,
 				8614204E28A267280041F6B3 /* TrainersView.swift in Sources */,
 				86C23F6228A39F4800303924 /* TimescheduleTileView.swift in Sources */,
@@ -672,8 +679,9 @@
 				863F79F7288FD5710065B8E8 /* TheComposableArchitectureApp.swift in Sources */,
 				863F7A6F289000EB0065B8E8 /* ActivityIndicator.swift in Sources */,
 				863F7A62288FD9000065B8E8 /* ReservationClient.swift in Sources */,
-				86BB01F128AA686000435C32 /* SignUpWithAppleButton.swift in Sources */,
+				86BB01F128AA686000435C32 /* SignInUpWithAppleButton.swift in Sources */,
 				8609BAFC289A95CF0055130A /* MakeReservationView.swift in Sources */,
+				86BB01FE28AD0C7A00435C32 /* MakeReservationListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
