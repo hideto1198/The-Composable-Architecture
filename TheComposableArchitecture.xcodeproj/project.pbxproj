@@ -78,6 +78,7 @@
 		86BB01F628AA832700435C32 /* SignUpWithAppleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01F528AA832700435C32 /* SignUpWithAppleClient.swift */; };
 		86BB01FE28AD0C7A00435C32 /* MakeReservationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01FD28AD0C7A00435C32 /* MakeReservationListView.swift */; };
 		86BB020028AD0CA300435C32 /* MakeReservationCheckButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01FF28AD0CA300435C32 /* MakeReservationCheckButtonView.swift */; };
+		86BB020428AD24C000435C32 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86BB020628AD24C000435C32 /* Localizable.strings */; };
 		86C23F6228A39F4800303924 /* TimescheduleTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6128A39F4800303924 /* TimescheduleTileView.swift */; };
 		86C23F6428A39FEC00303924 /* TimescheduleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6328A39FEC00303924 /* TimescheduleStore.swift */; };
 		86C23F6628A3A12600303924 /* TimeshceduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6528A3A12600303924 /* TimeshceduleClient.swift */; };
@@ -171,6 +172,9 @@
 		86BB01F528AA832700435C32 /* SignUpWithAppleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpWithAppleClient.swift; sourceTree = "<group>"; };
 		86BB01FD28AD0C7A00435C32 /* MakeReservationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReservationListView.swift; sourceTree = "<group>"; };
 		86BB01FF28AD0CA300435C32 /* MakeReservationCheckButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeReservationCheckButtonView.swift; sourceTree = "<group>"; };
+		86BB020128AD235500435C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		86BB020528AD24C000435C32 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		86BB020728AD24DD00435C32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		86C23F6128A39F4800303924 /* TimescheduleTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleTileView.swift; sourceTree = "<group>"; };
 		86C23F6328A39FEC00303924 /* TimescheduleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleStore.swift; sourceTree = "<group>"; };
 		86C23F6528A3A12600303924 /* TimeshceduleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeshceduleClient.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 		863F79F5288FD5710065B8E8 /* TheComposableArchitecture */ = {
 			isa = PBXGroup;
 			children = (
+				86BB020128AD235500435C32 /* Info.plist */,
 				86BB01F428AA823700435C32 /* TheComposableArchitecture.entitlements */,
 				863F79F6288FD5710065B8E8 /* TheComposableArchitectureApp.swift */,
 				863F7A5D288FD80E0065B8E8 /* View */,
@@ -330,6 +335,7 @@
 				863F79FA288FD5710065B8E8 /* Assets.xcassets */,
 				863F7A20288FD5AE0065B8E8 /* GoogleService-Info.plist */,
 				863F79FC288FD5710065B8E8 /* Preview Content */,
+				86BB020628AD24C000435C32 /* Localizable.strings */,
 			);
 			path = TheComposableArchitecture;
 			sourceTree = "<group>";
@@ -569,6 +575,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ja,
 				Base,
 			);
 			mainGroup = 863F79EA288FD5700065B8E8;
@@ -593,6 +600,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				863F79FE288FD5710065B8E8 /* Preview Assets.xcassets in Resources */,
+				86BB020428AD24C000435C32 /* Localizable.strings in Resources */,
 				863F79FB288FD5710065B8E8 /* Assets.xcassets in Resources */,
 				863F7A21288FD5AE0065B8E8 /* GoogleService-Info.plist in Resources */,
 			);
@@ -716,6 +724,18 @@
 			targetProxy = 863F7A0E288FD5710065B8E8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		86BB020628AD24C000435C32 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86BB020528AD24C000435C32 /* ja */,
+				86BB020728AD24DD00435C32 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		863F7A15288FD5710065B8E8 /* Debug */ = {
@@ -847,6 +867,7 @@
 				DEVELOPMENT_TEAM = 97TBWXLG65;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TheComposableArchitecture/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -881,6 +902,7 @@
 				DEVELOPMENT_TEAM = 97TBWXLG65;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TheComposableArchitecture/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
