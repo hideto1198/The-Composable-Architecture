@@ -14,48 +14,54 @@ struct MakeReservationView: View {
         WithViewStore(self.store) { viewStore in
             VStack {
                 AppHeaderView(title: "予約画面")
-                ScrollView{
-                    VStack(alignment: .leading) {
-                        Group {
-                            MenuSelectView(viewStore: viewStore)
-                            PlaceSelectView(viewStore: viewStore)
-                        }
-                        .padding(.leading)
-                        if viewStore.showReservationDate {
-                            CalendarSelectView(viewStore: viewStore)
-                                .padding([.horizontal, .top])
-                        }
-                        if viewStore.showCalendar {
-                            CalendarView(viewStore: viewStore)
-                        }
-                        if viewStore.showTrainerSelector {
-                            TrainerSelectView(viewStore: viewStore)
-                                .padding([.horizontal, .top])
-                            if viewStore.showTrainer {
-                                TrainersView(viewStore: viewStore)
+                ZStack {
+                    ScrollView{
+                        VStack(alignment: .leading) {
+                            Group {
+                                MenuSelectView(viewStore: viewStore)
+                                PlaceSelectView(viewStore: viewStore)
+                            }
+                            .padding(.leading)
+                            if viewStore.showReservationDate {
+                                CalendarSelectView(viewStore: viewStore)
+                                    .padding([.horizontal, .top])
+                            }
+                            if viewStore.showCalendar {
+                                CalendarView(viewStore: viewStore)
+                            }
+                            if viewStore.showTrainerSelector {
+                                TrainerSelectView(viewStore: viewStore)
+                                    .padding([.horizontal, .top])
+                                if viewStore.showTrainer {
+                                    TrainersView(viewStore: viewStore)
+                                        .padding(.horizontal)
+                                }
+                            }
+                            if viewStore.showReservationTime {
+                                TimeSelectView(viewStore: viewStore)
+                                    .padding([.horizontal, .top])
+                                
+                            }
+                            if viewStore.showTimeSchedule {
+                                TimescheduleView(viewStore: viewStore)
                                     .padding(.horizontal)
                             }
-                        }
-                        if viewStore.showReservationTime {
-                            TimeSelectView(viewStore: viewStore)
-                                .padding([.horizontal, .top])
-
-                        }
-                        if viewStore.showTimeSchedule {
-                            TimescheduleView(viewStore: viewStore)
-                                .padding(.horizontal)
-                        }
-                        if viewStore.showAddButton {
-                            Button(
-                                action: {
-                                    viewStore.send(.onTapAddButton, animation: .easeInOut)
+                            if viewStore.showAddButton {
+                                Button(
+                                    action: {
+                                        viewStore.send(.onTapAddButton, animation: .easeInOut)
+                                    }
+                                ){
+                                    ButtonView(text: "追加")
                                 }
-                            ){
-                                ButtonView(text: "追加")
                             }
                         }
+                        Spacer()
                     }
-                    Spacer()
+                    MakeReservationCheckButtonView(viewStore: viewStore)
+                }
+                .sheet(isPresented: viewStore.binding(\.$isSheet)) {
+                    MakeReservationListView(viewStore: viewStore)
                 }
             }
         }
