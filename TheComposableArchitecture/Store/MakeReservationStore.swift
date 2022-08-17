@@ -9,7 +9,8 @@ import Foundation
 import ComposableArchitecture
 
 
-struct MakeReservationEntity: Equatable {
+struct MakeReservationEntity: Equatable, Identifiable {
+    var id: String = UUID().uuidString
     var menu_name: String
     var place_name: String
     var year: String
@@ -22,7 +23,7 @@ struct MakeReservationEntity: Equatable {
 }
 
 struct MakeReservationState: Equatable {
-    var reservatopns: [MakeReservationEntity] = []
+    var reservations: [MakeReservationEntity] = []
     var menuSelector: Int = 0
     var placeSelector: Int = 0
     var trainerSelector: Int = 0
@@ -45,6 +46,7 @@ struct MakeReservationState: Equatable {
     var time_from: String = ""
     var time_to: String = ""
     var displayTime: String = ""
+    @BindableState var isSheet: Bool = false
     
     fileprivate mutating func resetState(){
         self.trainer = "選択してください"
@@ -61,7 +63,8 @@ struct MakeReservationState: Equatable {
     }
 }
 
-enum MakeReservationAction: Equatable {
+enum MakeReservationAction: BindableAction, Equatable {
+    case binding(BindingAction<MakeReservationState>)
     case calendarAction(CalendarAction)
     case trainerAction(TrainerAction)
     case timescheduleAction(TimescheduleAction)
@@ -71,6 +74,8 @@ enum MakeReservationAction: Equatable {
     case onTapDate
     case onTapTime
     case onTapAddButton
+    case onTapCheckButton
+    case onDelete(IndexSet)
 }
 
 struct MakeReservationEnvironment {
@@ -96,6 +101,8 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
                                  environment: { .init(timescheduleClient: $0.timescheduleClient, mainQueue: $0.mainQueue) }),
     Reducer { state, action, _ in
         switch action {
+        case .binding:
+            return .none
         // MARK: - カレンダーの日付を押したときの処理
         case let .calendarAction(.onTapTile(date)):
             state.showTrainer = false
@@ -187,11 +194,28 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
             state.showTimeSchedule.toggle()
             return .none
         case .onTapAddButton:
-            debugPrint("trainer:\(state.trainer)¥nyear: \(state.year)¥nmonth: \(state.month)¥nday: \(state.day)¥ntime_from: \(state.time_from)¥ntime_to: \(state.time_to)¥ndisplayTime: \(state.displayTime)")
+            state.reservations.append(MakeReservationEntity(menu_name: state.menuSelector == 0 ? "パーソナルトレーニング" : "",
+                                                            place_name: state.placeSelector == 1 ? "板垣店" : "二の宮店",
+                                                            year: state.year,
+                                                            month: state.month,
+                                                            day: state.day,
+                                                            trainer_name: state.trainer,
+                                                            time_from: state.time_from,
+                                                            time_to: state.time_to,
+                                                            display_time: state.displayTime))
+            state.resetState()
+            state.placeSelector = 0
+            return .none
+        case .onTapCheckButton:
+            state.isSheet = true
+            return .none
+        case let .onDelete(offsets):
+            state.reservations.remove(atOffsets: offsets)
             return .none
         }
     }
 )
+.binding()
 
 fileprivate func next_time_value(time: String) -> String {
     let times: [String] = [
