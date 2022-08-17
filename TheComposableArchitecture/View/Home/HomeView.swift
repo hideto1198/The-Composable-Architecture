@@ -28,6 +28,9 @@ struct HomeView: View {
                     HomeMenuView(viewStore: viewStore)
                 }
             }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
         }
     }
 }
