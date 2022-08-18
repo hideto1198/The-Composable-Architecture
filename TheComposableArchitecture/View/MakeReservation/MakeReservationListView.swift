@@ -10,32 +10,42 @@ import ComposableArchitecture
 
 struct MakeReservationListView: View {
     let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
+    
     var body: some View {
-        VStack {
-            Text("予約一覧")
-                .font(.custom("", size: 16))
-                .padding(.top)
-            List {
-                ForEach(viewStore.reservations) { reservation in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("日時　　　：\(reservation.year)年\(reservation.month)月\(reservation.day)日 \(reservation.time_from)〜\(reservation.display_time)")
-                                .minimumScaleFactor(0.5)
-                            Text("場所　　　： \(reservation.place_name)")
-                            Text("トレーナー： \(reservation.menu_name)")
+        ZStack {
+            VStack {
+                Text("予約一覧")
+                    .font(.custom("", size: 16))
+                    .padding(.top)
+                List {
+                    ForEach(viewStore.reservations) { reservation in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("メニュー　： \(reservation.menu_name)")
+                                Text("日時　　　： \(reservation.year)年\(reservation.month)月\(reservation.day)日 \(reservation.time_from)〜\(reservation.display_time)")
+                                Text("トレーナー： \(reservation.trainer_name)")
+                                Text("場所　　　： \(reservation.place_name)")
+                            }
+                            .font(.custom("", size: 15))
+                            Spacer()
                         }
-                        Spacer()
                     }
+                    .onDelete(perform: { offsets in
+                        viewStore.send(.onDelete(offsets))
+                    })
                 }
-                .onDelete(perform: { offsets in
-                    viewStore.send(.onDelete(offsets))
-                })
+                Spacer()
+                Button(
+                    action:{
+                        viewStore.send(.onTapConfirm)
+                    }
+                ){
+                    ButtonView(text: "確定")
+                }
+                .padding(.vertical)
             }
-            Spacer()
-            Button(
-                action:{}
-            ){
-                ButtonView(text: "確定")
+            if viewStore.isLoading {
+                ActivityIndicator()
             }
         }
     }
@@ -43,7 +53,15 @@ struct MakeReservationListView: View {
 
 struct MakeReservationListView_Previews: PreviewProvider {
     static var previews: some View {
-        MakeReservationListView(viewStore: ViewStore(Store(initialState: MakeReservationState(),
+        MakeReservationListView(viewStore: ViewStore(Store(initialState: MakeReservationState(reservations: [MakeReservationEntity(menu_name: "パーソナルトレーニング",
+                                                                                                                                   place_name: "板垣店",
+                                                                                                                                   year: "2022",
+                                                                                                                                   month: "8",
+                                                                                                                                   day: "19",
+                                                                                                                                   trainer_name: "テスト　トレーナー",
+                                                                                                                                   time_from: "19:00",
+                                                                                                                                   time_to: "19:30",
+                                                                                                                                   display_time: "20:00")]),
                                                            reducer: makeReservationReducer,
                                                            environment: .live)))
     }
