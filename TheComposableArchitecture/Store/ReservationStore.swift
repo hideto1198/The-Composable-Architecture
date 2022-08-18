@@ -28,10 +28,13 @@ enum ReservationAction: Equatable {
     case reservationResponse(Result<[ReservationEntity], ReservationClient.Failure>)
     case onTapGesture(String)
     case reset
+    case onTapDelete(ReservationEntity)
+    
 }
 
 struct ReservationEnvironment {
     var reservationClient: ReservationClient
+    var deleteClient: DeleteClient
     var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
@@ -64,6 +67,8 @@ let reservationReducer: Reducer = Reducer<ReservationState, ReservationAction, R
     case .reset:
         state.reservations.removeAll()
         UserDefaults.standard.removeObject(forKey: "first_launch")
+        return .none
+    case let .onTapDelete(reservation):
         return .none
     }
 }
