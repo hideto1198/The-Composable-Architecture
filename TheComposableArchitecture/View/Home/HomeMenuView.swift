@@ -15,7 +15,7 @@ struct HomeMenuView: View {
             VStack(alignment: .leading) {
                 Button(
                     action: {
-                        viewStore.send(.onMenuTap, animation: .easeOut(duration: 0.5))
+                        viewStore.send(.onMenuTap, animation: .easeOut)
                     }
                 ){
                     Image(systemName: "xmark")
