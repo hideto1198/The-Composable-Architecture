@@ -79,6 +79,8 @@
 		86BB01FE28AD0C7A00435C32 /* MakeReservationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01FD28AD0C7A00435C32 /* MakeReservationListView.swift */; };
 		86BB020028AD0CA300435C32 /* MakeReservationCheckButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB01FF28AD0CA300435C32 /* MakeReservationCheckButtonView.swift */; };
 		86BB020428AD24C000435C32 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86BB020628AD24C000435C32 /* Localizable.strings */; };
+		86BB020928AE5A2C00435C32 /* SetReservationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB020828AE5A2C00435C32 /* SetReservationClient.swift */; };
+		86BB020B28AE618500435C32 /* DeleteClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB020A28AE618500435C32 /* DeleteClient.swift */; };
 		86C23F6228A39F4800303924 /* TimescheduleTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6128A39F4800303924 /* TimescheduleTileView.swift */; };
 		86C23F6428A39FEC00303924 /* TimescheduleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6328A39FEC00303924 /* TimescheduleStore.swift */; };
 		86C23F6628A3A12600303924 /* TimeshceduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6528A3A12600303924 /* TimeshceduleClient.swift */; };
@@ -175,6 +177,8 @@
 		86BB020128AD235500435C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		86BB020528AD24C000435C32 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		86BB020728AD24DD00435C32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		86BB020828AE5A2C00435C32 /* SetReservationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetReservationClient.swift; sourceTree = "<group>"; };
+		86BB020A28AE618500435C32 /* DeleteClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteClient.swift; sourceTree = "<group>"; };
 		86C23F6128A39F4800303924 /* TimescheduleTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleTileView.swift; sourceTree = "<group>"; };
 		86C23F6328A39FEC00303924 /* TimescheduleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleStore.swift; sourceTree = "<group>"; };
 		86C23F6528A3A12600303924 /* TimeshceduleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeshceduleClient.swift; sourceTree = "<group>"; };
@@ -413,6 +417,8 @@
 				8655502A28A677E800924528 /* SignUpClient.swift */,
 				8655503928A687E300924528 /* RegisterClient.swift */,
 				86BB01F528AA832700435C32 /* SignUpWithAppleClient.swift */,
+				86BB020828AE5A2C00435C32 /* SetReservationClient.swift */,
+				86BB020A28AE618500435C32 /* DeleteClient.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -635,6 +641,7 @@
 				86C23F6628A3A12600303924 /* TimeshceduleClient.swift in Sources */,
 				86EA523F2894013900939659 /* HomeMenuView.swift in Sources */,
 				8609BAF628992EB80055130A /* LaunchDesignView.swift in Sources */,
+				86BB020B28AE618500435C32 /* DeleteClient.swift in Sources */,
 				86C23F7B28A6474800303924 /* SignInUpView.swift in Sources */,
 				863F79F9288FD5710065B8E8 /* ContentView.swift in Sources */,
 				8655502928A670BF00924528 /* SendMailClient.swift in Sources */,
@@ -645,6 +652,7 @@
 				86BA3788289D3A2000D83C18 /* CalendarView.swift in Sources */,
 				86C23F7028A3F43100303924 /* AuthenticationClient.swift in Sources */,
 				86BB01F328AA69C500435C32 /* SignUpWithEmailView.swift in Sources */,
+				86BB020928AE5A2C00435C32 /* SetReservationClient.swift in Sources */,
 				86C23F6A28A3C7DE00303924 /* TimeSelectView.swift in Sources */,
 				86290FA42891415700D1B16B /* TicketClient.swift in Sources */,
 				8655503828A6832400924528 /* BirthdaySelectorView.swift in Sources */,

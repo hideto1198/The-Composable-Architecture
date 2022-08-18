@@ -22,10 +22,12 @@ enum RootAction {
 struct RootEnvironment {
     var reservationClient: ReservationClient
     var ticketClient: TicketClient
+    var deleteClient: DeleteClient
     var mainQueue: AnySchedulerOf<DispatchQueue>
     static let live = Self(
         reservationClient: ReservationClient.live,
         ticketClient: TicketClient.live,
+        deleteClient: DeleteClient.live,
         mainQueue: .main
     )
 }
@@ -43,7 +45,7 @@ let rootReducer: Reducer = Reducer<RootState, RootAction, RootEnvironment>.combi
     reservationReducer
         .pullback(state: \.reservation,
                   action: /RootAction.reservation,
-                  environment: { .init(reservationClient: $0.reservationClient, mainQueue: $0.mainQueue)}),
+                  environment: { .init(reservationClient: $0.reservationClient, deleteClient: $0.deleteClient, mainQueue: $0.mainQueue)}),
     ticketReducer
         .pullback(state: \.ticket,
                   action: /RootAction.ticket,
