@@ -64,6 +64,10 @@ struct MakeReservationView: View {
                     MakeReservationListView(viewStore: viewStore)
                 }
             }
+            .alert(self.store.scope(state: \.alert), dismiss: .alertDismissed)
+            .onAppear {
+                viewStore.send(.ticketAction(.getTicket))
+            }
         }
     }
 }
