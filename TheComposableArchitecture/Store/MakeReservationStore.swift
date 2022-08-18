@@ -40,6 +40,7 @@ struct MakeReservationState: Equatable {
     var calendarState: CalendarState = CalendarState()
     var trainerState: TrainerState = TrainerState()
     var timescheduleState: TimescheduleState = TimescheduleState()
+    var ticketState: TicketState = TicketState()
     var year: String = ""
     var month: String = ""
     var day: String = ""
@@ -47,6 +48,8 @@ struct MakeReservationState: Equatable {
     var time_to: String = ""
     var displayTime: String = ""
     @BindableState var isSheet: Bool = false
+    var alert: AlertState<MakeReservationAction>?
+    var isLoading: Bool = false
     
     fileprivate mutating func resetState(){
         self.trainer = "選択してください"
@@ -68,6 +71,7 @@ enum MakeReservationAction: BindableAction, Equatable {
     case calendarAction(CalendarAction)
     case trainerAction(TrainerAction)
     case timescheduleAction(TimescheduleAction)
+    case ticketAction(TicketAction)
     case onSelectMenu(Int)
     case onSelectPlace(Int)
     case onTapTrainer
@@ -76,15 +80,22 @@ enum MakeReservationAction: BindableAction, Equatable {
     case onTapAddButton
     case onTapCheckButton
     case onDelete(IndexSet)
+    case alertDismissed
+    case onTapConfirm
+    case setReservationResponse(Result<Bool, SetReservationClient.Failure>)
 }
 
 struct MakeReservationEnvironment {
     var trainerClient: TrainerClient
     var timescheduleClient: TimescheduleClient
+    var ticketClient: TicketClient
+    var setReservationClient: SetReservationClient
     var mainQueue: AnySchedulerOf<DispatchQueue>
     static let live = Self(
         trainerClient: TrainerClient.live,
         timescheduleClient: TimescheduleClient.live,
+        ticketClient: TicketClient.live,
+        setReservationClient: SetReservationClient.live,
         mainQueue: .main
     )
 }
@@ -99,7 +110,10 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
     timescheduleReducer.pullback(state: \MakeReservationState.timescheduleState,
                                  action: /MakeReservationAction.timescheduleAction,
                                  environment: { .init(timescheduleClient: $0.timescheduleClient, mainQueue: $0.mainQueue) }),
-    Reducer { state, action, _ in
+    ticketReducer.pullback(state: \MakeReservationState.ticketState,
+                           action: /MakeReservationAction.ticketAction,
+                           environment: { .init(ticketClient: $0.ticketClient, mainQueue: $0.mainQueue)}),
+    Reducer { state, action, environment in
         switch action {
         case .binding:
             return .none
@@ -162,7 +176,10 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
             
         case .timescheduleAction:
             return .none
-            
+        case .ticketAction(.getTicket):
+            return .none
+        case .ticketAction:
+            return .none
         case let .onSelectMenu(index):
             state.menuSelector = index
             return .none
@@ -189,29 +206,55 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
             state.showReservationDate = true
             return .none
             
-        // MARK: - 追加ボタンを押したときの処理
         case .onTapTime:
             state.showTimeSchedule.toggle()
             return .none
+        // MARK: - 追加ボタンを押したときの処理
         case .onTapAddButton:
-            state.reservations.append(MakeReservationEntity(menu_name: state.menuSelector == 0 ? "パーソナルトレーニング" : "",
-                                                            place_name: state.placeSelector == 1 ? "板垣店" : "二の宮店",
-                                                            year: state.year,
-                                                            month: state.month,
-                                                            day: state.day,
-                                                            trainer_name: state.trainer,
-                                                            time_from: state.time_from,
-                                                            time_to: state.time_to,
-                                                            display_time: state.displayTime))
-            state.resetState()
-            state.placeSelector = 0
-            return .none
+            if state.ticketState.ticket.counts == state.reservations.count {
+                state.alert = AlertState(title: TextState("エラー"), message: TextState("これ以上追加できません。"))
+                return .none
+            } else {
+                state.reservations.append(MakeReservationEntity(menu_name: state.menuSelector == 0 ? "パーソナルトレーニング" : "",
+                                                                place_name: state.placeSelector == 1 ? "板垣店" : "二の宮店",
+                                                                year: state.year,
+                                                                month: state.month,
+                                                                day: state.day,
+                                                                trainer_name: state.trainer,
+                                                                time_from: state.time_from,
+                                                                time_to: state.time_to,
+                                                                display_time: state.displayTime))
+                state.resetState()
+                state.placeSelector = 0
+                return .none
+            }
         case .onTapCheckButton:
             state.isSheet = true
             return .none
         case let .onDelete(offsets):
             state.reservations.remove(atOffsets: offsets)
             return .none
+        case .alertDismissed:
+            state.alert = nil
+            return .none
+        case .onTapConfirm:
+            guard state.reservations.count != 0 else {
+                return .none
+            }
+            state.isLoading = true
+            return environment.setReservationClient.fetch(state.reservations)
+                .receive(on: environment.mainQueue)
+                .catchToEffect(MakeReservationAction.setReservationResponse)
+        case let .setReservationResponse(.success(result)):
+            state.isLoading = false
+            state.reservations.removeAll()
+            state.alert = AlertState(title: TextState("確認"), message: TextState("予約が完了しました"))
+            return .none
+            
+        case .setReservationResponse(.failure):
+            state.isLoading = false
+            return .none
+            
         }
     }
 )
