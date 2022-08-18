@@ -16,9 +16,10 @@ struct TrainersView: View {
                 HStack {
                     ForEach(viewStore.trainerState.trainers) { trainer in
                         TrainerView(viewStore:viewStore, trainer: trainer)
-                            .padding([.bottom, .trailing])
+                            .padding([.bottom, .horizontal])
                     }
                 }
+                .padding(.top)
             }
         }else{
             VStack {
