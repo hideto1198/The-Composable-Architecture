@@ -9,6 +9,7 @@ import ComposableArchitecture
 import FirebaseFunctions
 import Combine
 import Foundation
+import FirebaseAuth
 
 struct TicketClient {
     var fetch: () -> Effect<TicketEntity, Failure>
@@ -19,7 +20,8 @@ extension TicketClient {
     static let live = TicketClient(fetch: {
         Effect.task {
             let functions = Functions.functions()
-            let data = try await functions.httpsCallable("get_plan").call()
+            let userID: String = Auth.auth().currentUser!.uid
+            let data = try await functions.httpsCallable("get_plan").call(["userID": userID])
             var result: TicketEntity = TicketEntity()
             if let data = data.data {
                 let datas: NSDictionary = (data as! NSDictionary)["data"] as! NSDictionary
