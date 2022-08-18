@@ -14,15 +14,16 @@ struct TrainerView: View {
     var body: some View {
         ZStack {
             Color("background")
-                .cornerRadius(3)
-                .shadow(color: Color.gray, radius: 3, x: 5, y:5)
-            RoundedRectangle(cornerRadius: 3)
+                .cornerRadius(15)
+                .shadow(color: Color.gray.opacity(0.8), radius: 3, x: 2, y:6)
+            RoundedRectangle(cornerRadius: 15)
                 .stroke(Color("app_color"))
             HStack {
                 ZStack {
                     HStack {
                         Image("LOGO")
                             .resizable()
+                            .cornerRadius(15)
                     }
                 }
                 .frame(width: bounds.width * 0.31, height: bounds.height * 0.2)
@@ -55,7 +56,7 @@ struct TrainerView: View {
                 Spacer()
             }
         }
-        .frame(width: bounds.width * 0.9, height: bounds.height * 0.23)
+        .frame(width: bounds.width * 0.85, height: bounds.height * 0.23)
         
     }
 }
