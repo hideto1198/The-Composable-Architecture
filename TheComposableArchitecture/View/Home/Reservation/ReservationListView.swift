@@ -20,7 +20,8 @@ struct ReservationListView: View {
                 if reservation.isTap {
                     Button(
                         action: {
-                            self.viewStore.send(.ticketAction(.getTicket), animation: .easeIn)
+                            self.viewStore.send(.reservationAction(.onTapDelete(reservation)))
+                            // self.viewStore.send(.ticketAction(.getTicket), animation: .easeIn)
                         }
                     ){
                         CancelButtonView()
@@ -41,6 +42,7 @@ struct ReservationListView_Previews: PreviewProvider {
                 environment: HomeEnvironment(
                     reservationClient: .live,
                     ticketClient: .live,
+                    deleteClient: .live,
                     mainQueue: .main)
             ))
         )
