@@ -14,10 +14,19 @@ struct MenuSelectView: View {
         HStack {
             Text("メニュー")
             Spacer()
-            Picker("Tab", selection: viewStore.binding(get: {_ in viewStore.menuSelector} , send: {.onSelectMenu($0)}).animation(.linear)
-            ){
-                Text("パーソナルトレーニング")
-                    .tag(0)
+            if #available(iOS 15, *) {
+                Picker("Tab", selection: viewStore.binding(get: {_ in viewStore.menuSelector} , send: {.onSelectMenu($0)}).animation(.linear)
+                ){
+                    Text("パーソナルトレーニング")
+                        .tag(0)
+                }
+            } else {
+                Picker("Tab", selection: viewStore.binding(get: {_ in viewStore.menuSelector} , send: {.onSelectMenu($0)}).animation(.linear)
+                ){
+                    Text("パーソナルトレーニング")
+                        .tag(0)
+                }
+                .pickerStyle(.segmented)
             }
         }
     }
