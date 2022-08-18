@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import FirebaseFunctions
+import FirebaseAuth
 import Combine
 import Foundation
 
@@ -19,7 +20,8 @@ extension ReservationClient {
     static let live = ReservationClient(fetch: {
             Effect.task {
                 let functions = Functions.functions()
-                let data = try await functions.httpsCallable("test").call()
+                let userID: String = Auth.auth().currentUser!.uid
+                let data = try await functions.httpsCallable("test").call(["userID": userID])
                 var result: [ReservationEntity] = []
                 if let data = data.data {
                     let datas: NSDictionary = (data as! NSDictionary)["data"] as! NSDictionary
