@@ -19,7 +19,11 @@ struct MakeReservationView: View {
                         VStack(alignment: .leading) {
                             Group {
                                 MenuSelectView(viewStore: viewStore)
+                                    .padding(.top)
                                 PlaceSelectView(viewStore: viewStore)
+                                    .onTapGesture {
+                                        viewStore.send(.ticketAction(.getTicket))
+                                    }
                             }
                             .padding(.leading)
                             if viewStore.showReservationDate {
@@ -61,13 +65,10 @@ struct MakeReservationView: View {
                     MakeReservationCheckButtonView(viewStore: viewStore)
                 }
                 .sheet(isPresented: viewStore.binding(\.$isSheet)) {
-                    MakeReservationListView(viewStore: viewStore)
+                    MakeReservationListView(store: self.store)
                 }
             }
             .alert(self.store.scope(state: \.alert), dismiss: .alertDismissed)
-            .onAppear {
-                viewStore.send(.ticketAction(.getTicket))
-            }
         }
     }
 }
