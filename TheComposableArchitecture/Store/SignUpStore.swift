@@ -102,9 +102,13 @@ let signUpReducer: Reducer = Reducer<SignUpState, SignUpAction, SignUpEnvironmen
         }
         return .none
     //MARK: - サインアップボタン押した後のレスポンスを受ける処理
-    case .signUpResponse(.failure):
+    case let .signUpResponse(.failure(error)):
         state.isLoading = false
-        state.alert = AlertState(title: TextState("エラー"), message: TextState("エラーが発生しました。時間をおいてお試しください。"))
+        if error.wrappedError._code == 17009 {
+            state.alert = AlertState(title: TextState("エラー"), message: TextState("メールアドレスまたは、パスワードが間違っています。"))
+        } else {
+            state.alert = AlertState(title: TextState("エラー"), message: TextState("エラーが発生しました。時間をおいてお試しください。"))
+        }
         return .none
     // MARK: - メールアドレスで登録ボタン押した時
     case .onTapWithEmail:
