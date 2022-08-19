@@ -9,51 +9,53 @@ import SwiftUI
 import ComposableArchitecture
 
 struct MakeReservationListView: View {
-    let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
-    
+    let store: Store<MakeReservationState, MakeReservationAction>
     var body: some View {
-        ZStack {
-            VStack {
-                Text("予約一覧")
-                    .font(.custom("", size: 16))
-                    .padding(.top)
-                List {
-                    ForEach(viewStore.reservations) { reservation in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("メニュー　： \(reservation.menu_name)")
-                                Text("日時　　　： \(reservation.year)年\(reservation.month)月\(reservation.day)日 \(reservation.time_from)〜\(reservation.display_time)")
-                                Text("トレーナー： \(reservation.trainer_name)")
-                                Text("場所　　　： \(reservation.place_name)")
+        WithViewStore(self.store) { viewStore in
+            ZStack {
+                VStack {
+                    Text("予約一覧")
+                        .font(.custom("", size: 16))
+                        .padding(.top)
+                    List {
+                        ForEach(viewStore.reservations) { reservation in
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text("メニュー　： \(reservation.menu_name)")
+                                    Text("日時　　　： \(reservation.year)年\(reservation.month)月\(reservation.day)日 \(reservation.time_from)〜\(reservation.display_time)")
+                                    Text("トレーナー： \(reservation.trainer_name)")
+                                    Text("場所　　　： \(reservation.place_name)")
+                                }
+                                .font(.custom("", size: 15))
+                                Spacer()
                             }
-                            .font(.custom("", size: 15))
-                            Spacer()
                         }
+                        .onDelete(perform: { offsets in
+                            viewStore.send(.onDelete(offsets))
+                        })
                     }
-                    .onDelete(perform: { offsets in
-                        viewStore.send(.onDelete(offsets))
-                    })
-                }
-                Spacer()
-                Button(
-                    action:{
-                        viewStore.send(.onTapConfirm)
+                    Spacer()
+                    Button(
+                        action:{
+                            viewStore.send(.onTapConfirm)
+                        }
+                    ){
+                        ButtonView(text: "確定")
                     }
-                ){
-                    ButtonView(text: "確定")
+                    .padding(.vertical)
                 }
-                .padding(.vertical)
+                if viewStore.isLoading {
+                    LoadingView()
+                }
             }
-            if viewStore.isLoading {
-                ActivityIndicator()
-            }
+            .alert(self.store.scope(state: \.alert), dismiss: .alertDismissed)
         }
     }
 }
 
 struct MakeReservationListView_Previews: PreviewProvider {
     static var previews: some View {
-        MakeReservationListView(viewStore: ViewStore(Store(initialState: MakeReservationState(reservations: [MakeReservationEntity(menu_name: "パーソナルトレーニング",
+        MakeReservationListView(store: Store(initialState: MakeReservationState(reservations: [MakeReservationEntity(menu_name: "パーソナルトレーニング",
                                                                                                                                    place_name: "板垣店",
                                                                                                                                    year: "2022",
                                                                                                                                    month: "8",
@@ -63,6 +65,6 @@ struct MakeReservationListView_Previews: PreviewProvider {
                                                                                                                                    time_to: "19:30",
                                                                                                                                    display_time: "20:00")]),
                                                            reducer: makeReservationReducer,
-                                                           environment: .live)))
+                                                           environment: .live))
     }
 }
