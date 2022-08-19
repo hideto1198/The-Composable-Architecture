@@ -32,3 +32,12 @@ extension SignUpClient {
         .eraseToEffect()
     })
 }
+/* エラーの詳細を受け取る
+struct Failure: Error, Equatable {} →
+struct Failure: Error, Equatable {
+    var wrappedError: Error
+}
+
+.mapError{ _ in Failure() } →
+.mapError(Failure(wrappedError: $0))
+*/
