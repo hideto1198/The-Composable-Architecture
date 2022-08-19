@@ -27,7 +27,12 @@ struct HomeView: View {
                         }
                     HomeMenuView(viewStore: viewStore)
                 }
+                if viewStore.isLoading {
+                    LoadingView()
+                }
             }
+            .alert(self.store.scope(state: \.alert),
+                   dismiss: .alertDismissed)
             .onAppear {
                 viewStore.send(.onAppear)
             }
