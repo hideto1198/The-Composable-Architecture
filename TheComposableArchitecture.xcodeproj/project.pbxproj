@@ -80,6 +80,7 @@
 		86BB020428AD24C000435C32 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86BB020628AD24C000435C32 /* Localizable.strings */; };
 		86BB020928AE5A2C00435C32 /* SetReservationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB020828AE5A2C00435C32 /* SetReservationClient.swift */; };
 		86BB020B28AE618500435C32 /* DeleteClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB020A28AE618500435C32 /* DeleteClient.swift */; };
+		86BB020D28AFA4EC00435C32 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB020C28AFA4EC00435C32 /* LoadingView.swift */; };
 		86C23F6228A39F4800303924 /* TimescheduleTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6128A39F4800303924 /* TimescheduleTileView.swift */; };
 		86C23F6428A39FEC00303924 /* TimescheduleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6328A39FEC00303924 /* TimescheduleStore.swift */; };
 		86C23F6628A3A12600303924 /* TimeshceduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6528A3A12600303924 /* TimeshceduleClient.swift */; };
@@ -177,6 +178,7 @@
 		86BB020728AD24DD00435C32 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		86BB020828AE5A2C00435C32 /* SetReservationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetReservationClient.swift; sourceTree = "<group>"; };
 		86BB020A28AE618500435C32 /* DeleteClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteClient.swift; sourceTree = "<group>"; };
+		86BB020C28AFA4EC00435C32 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		86C23F6128A39F4800303924 /* TimescheduleTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleTileView.swift; sourceTree = "<group>"; };
 		86C23F6328A39FEC00303924 /* TimescheduleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleStore.swift; sourceTree = "<group>"; };
 		86C23F6528A3A12600303924 /* TimeshceduleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeshceduleClient.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				863F79F8288FD5710065B8E8 /* ContentView.swift */,
 				8609BAF9289A93F30055130A /* AppHeaderView.swift */,
 				86C23F6D28A3C9F100303924 /* ButtonView.swift */,
+				86BB020C28AFA4EC00435C32 /* LoadingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				863F7A62288FD9000065B8E8 /* ReservationClient.swift in Sources */,
 				86BB01F128AA686000435C32 /* SignInUpWithAppleButton.swift in Sources */,
 				8609BAFC289A95CF0055130A /* MakeReservationView.swift in Sources */,
+				86BB020D28AFA4EC00435C32 /* LoadingView.swift in Sources */,
 				86BB01FE28AD0C7A00435C32 /* MakeReservationListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

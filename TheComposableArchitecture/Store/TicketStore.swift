@@ -34,6 +34,7 @@ struct TicketEnvironment {
 }
 
 let ticketReducer: Reducer = Reducer<TicketState, TicketAction, TicketEnvironment> { state, action, environment in
+    
     switch action {
     case .getTicket:
         return environment.ticketClient.fetch()
@@ -45,8 +46,8 @@ let ticketReducer: Reducer = Reducer<TicketState, TicketAction, TicketEnvironmen
         return .none
         
     case .ticketResponse(.failure):
-        
         return .none
+
     }
         
 }
