@@ -81,6 +81,7 @@ enum MakeReservationAction: BindableAction, Equatable {
     case onTapCheckButton
     case onDelete(IndexSet)
     case alertDismissed
+    case onConfirmAlertDismissed
     case onTapConfirm
     case setReservationResponse(Result<Bool, SetReservationClient.Failure>)
 }
@@ -176,8 +177,7 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
             
         case .timescheduleAction:
             return .none
-        case .ticketAction(.getTicket):
-            return .none
+        
         case .ticketAction:
             return .none
         case let .onSelectMenu(index):
@@ -228,7 +228,16 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
                 state.placeSelector = 0
                 return .none
             }
+        // MARK: - 予約リストをチェックする
         case .onTapCheckButton:
+            let dateFormatter: DateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy年MM月dd日 H:m"
+            let sorted_reservations: [MakeReservationEntity] = state.reservations.sorted(by: { (ldate, rdate) -> Bool in
+                let left_date: Date = dateFormatter.date(from: "\(ldate.year)年\(ldate.month)月\(ldate.day)日 \(ldate.time_from)")!
+                let right_date: Date = dateFormatter.date(from: "\(rdate.year)年\(rdate.month)月\(rdate.day)日 \(rdate.time_from)")!
+                return left_date < right_date
+            })
+            state.reservations = sorted_reservations
             state.isSheet = true
             return .none
         case let .onDelete(offsets):
@@ -248,13 +257,15 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         case let .setReservationResponse(.success(result)):
             state.isLoading = false
             state.reservations.removeAll()
-            state.alert = AlertState(title: TextState("確認"), message: TextState("予約が完了しました"))
+            state.alert = AlertState(title: TextState("確認"), message: TextState("予約が完了しました"), dismissButton: .default(TextState("OK"), action: .send(.onConfirmAlertDismissed)))
             return .none
             
         case .setReservationResponse(.failure):
             state.isLoading = false
             return .none
-            
+        case .onConfirmAlertDismissed:
+            state.isSheet = false
+            return .none
         }
     }
 )
