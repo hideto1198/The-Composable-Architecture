@@ -12,7 +12,12 @@ import FirebaseAuth
 
 struct SignUpClient {
     var fetch: (_ email: String, _ password: String) -> Effect<Bool, Failure>
-    struct Failure: Error, Equatable {}
+    struct Failure: Error, Equatable {
+        static func == (lhs: SignUpClient.Failure, rhs: SignUpClient.Failure) -> Bool {
+            return true
+        }
+        var wrappedError: Error
+    }
 }
 
 extension SignUpClient {
@@ -28,7 +33,7 @@ extension SignUpClient {
             }
             return false
         }
-        .mapError{ _ in Failure() }
+        .mapError{ Failure(wrappedError: $0) }
         .eraseToEffect()
     })
 }
