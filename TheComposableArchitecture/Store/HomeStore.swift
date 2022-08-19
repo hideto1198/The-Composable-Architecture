@@ -12,6 +12,8 @@ struct HomeState: Equatable {
     var reservationState: ReservationState = ReservationState()
     var ticketState: TicketState = TicketState()
     var isMenu: Bool = false
+    var isLoading: Bool = false
+    var alert: AlertState<HomeAction>?
 }
 
 enum HomeAction: Equatable {
@@ -22,6 +24,8 @@ enum HomeAction: Equatable {
     case deleteResponse(Result<Bool, DeleteClient.Failure>)
     case getTicket
     case ticketResponse(Result<TicketEntity, TicketClient.Failure>)
+    case alertDismissed
+    case onTapOk(ReservationEntity)
 }
 
 struct HomeEnvironment {
@@ -47,10 +51,12 @@ let homeReducer: Reducer = Reducer<HomeState, HomeAction, HomeEnvironment>.combi
     Reducer { state, action, environment in
         switch action {
         case let .reservationAction(.onTapDelete(reservation)):
-            state.reservationState.isLoading = true
-            return environment.deleteClient.fetch(reservation)
-                .receive(on: environment.mainQueue)
-                .catchToEffect(HomeAction.deleteResponse)
+            state.alert = AlertState(title: TextState("確認"),
+                                     message: TextState("予約をキャンセルしてよろしいでしょうか"),
+                                     primaryButton: .cancel(TextState("いいえ")),
+                                     secondaryButton: .destructive(TextState("はい"),
+                                                               action: .send(HomeAction.onTapOk(reservation))))
+            return .none
         case .ticketAction(.getTicket):
             return .none
         case .reservationAction, .ticketAction:
@@ -64,13 +70,14 @@ let homeReducer: Reducer = Reducer<HomeState, HomeAction, HomeEnvironment>.combi
             }
             return .none
         case let .deleteResponse(.success(response)):
-            state.reservationState.isLoading = false
+            state.isLoading = false
             if response {
                 return Effect(value: HomeAction.getTicket)
             } else {
                 return .none
             }
         case .deleteResponse(.failure):
+            state.isLoading = false
             return .none
         case .getTicket:
             return environment.ticketClient.fetch()
@@ -80,6 +87,18 @@ let homeReducer: Reducer = Reducer<HomeState, HomeAction, HomeEnvironment>.combi
             state.ticketState.ticket = response
             return Effect(value: HomeAction.reservationAction(.getReservation))
         case .ticketResponse(.failure):
+            return .none
+        case let .onTapOk(reservation):
+            state.alert = nil
+            state.isLoading = true
+            for i in state.reservationState.reservations.indices {
+                state.reservationState.reservations[i].isTap = false
+            }
+            return environment.deleteClient.fetch(reservation)
+                .receive(on: environment.mainQueue)
+                .catchToEffect(HomeAction.deleteResponse)
+        case .alertDismissed:
+            state.alert = nil
             return .none
         }
     }
