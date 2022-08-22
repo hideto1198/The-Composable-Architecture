@@ -53,7 +53,7 @@ struct RegisterView: View {
                     label: { Text("") }
                 )
                 if viewStore.isLoading {
-                    ActivityIndicator()
+                    LoadingView()
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
