@@ -81,6 +81,19 @@
 		86BB020928AE5A2C00435C32 /* SetReservationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB020828AE5A2C00435C32 /* SetReservationClient.swift */; };
 		86BB020B28AE618500435C32 /* DeleteClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB020A28AE618500435C32 /* DeleteClient.swift */; };
 		86BB020D28AFA4EC00435C32 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB020C28AFA4EC00435C32 /* LoadingView.swift */; };
+		86BB021028B28B3E00435C32 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB020F28B28B3E00435C32 /* ProfileView.swift */; };
+		86BB021228B28B5200435C32 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB021128B28B5100435C32 /* ProfileStore.swift */; };
+		86BB021428B28BEE00435C32 /* ProfileContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB021328B28BEE00435C32 /* ProfileContentView.swift */; };
+		86BB025A28B3030500435C32 /* CodeReadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB025928B3030500435C32 /* CodeReadView.swift */; };
+		86BB025C28B33A7A00435C32 /* TicketReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB025B28B33A7A00435C32 /* TicketReaderView.swift */; };
+		86BB025E28B359D200435C32 /* CodeReadStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB025D28B359D200435C32 /* CodeReadStore.swift */; };
+		86BB026028B36DFA00435C32 /* CodeReadClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB025F28B36DFA00435C32 /* CodeReadClient.swift */; };
+		86BB026228B386F800435C32 /* EditUserNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB026128B386F800435C32 /* EditUserNameView.swift */; };
+		86BB026428B38E6900435C32 /* InputProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB026328B38E6900435C32 /* InputProfileTextField.swift */; };
+		86BB026628B3934A00435C32 /* EditUserBirthdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB026528B3934A00435C32 /* EditUserBirthdayView.swift */; };
+		86BB026928B3986400435C32 /* EditUserSexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB026828B3986400435C32 /* EditUserSexView.swift */; };
+		86BB026B28B3A3A500435C32 /* ProfileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB026A28B3A3A500435C32 /* ProfileClient.swift */; };
+		86BB026D28B3B4D000435C32 /* SignOutClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB026C28B3B4D000435C32 /* SignOutClient.swift */; };
 		86C23F6228A39F4800303924 /* TimescheduleTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6128A39F4800303924 /* TimescheduleTileView.swift */; };
 		86C23F6428A39FEC00303924 /* TimescheduleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6328A39FEC00303924 /* TimescheduleStore.swift */; };
 		86C23F6628A3A12600303924 /* TimeshceduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F6528A3A12600303924 /* TimeshceduleClient.swift */; };
@@ -179,6 +192,19 @@
 		86BB020828AE5A2C00435C32 /* SetReservationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetReservationClient.swift; sourceTree = "<group>"; };
 		86BB020A28AE618500435C32 /* DeleteClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteClient.swift; sourceTree = "<group>"; };
 		86BB020C28AFA4EC00435C32 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		86BB020F28B28B3E00435C32 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		86BB021128B28B5100435C32 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+		86BB021328B28BEE00435C32 /* ProfileContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContentView.swift; sourceTree = "<group>"; };
+		86BB025928B3030500435C32 /* CodeReadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeReadView.swift; sourceTree = "<group>"; };
+		86BB025B28B33A7A00435C32 /* TicketReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketReaderView.swift; sourceTree = "<group>"; };
+		86BB025D28B359D200435C32 /* CodeReadStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeReadStore.swift; sourceTree = "<group>"; };
+		86BB025F28B36DFA00435C32 /* CodeReadClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeReadClient.swift; sourceTree = "<group>"; };
+		86BB026128B386F800435C32 /* EditUserNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserNameView.swift; sourceTree = "<group>"; };
+		86BB026328B38E6900435C32 /* InputProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputProfileTextField.swift; sourceTree = "<group>"; };
+		86BB026528B3934A00435C32 /* EditUserBirthdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserBirthdayView.swift; sourceTree = "<group>"; };
+		86BB026828B3986400435C32 /* EditUserSexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserSexView.swift; sourceTree = "<group>"; };
+		86BB026A28B3A3A500435C32 /* ProfileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileClient.swift; sourceTree = "<group>"; };
+		86BB026C28B3B4D000435C32 /* SignOutClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutClient.swift; sourceTree = "<group>"; };
 		86C23F6128A39F4800303924 /* TimescheduleTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleTileView.swift; sourceTree = "<group>"; };
 		86C23F6328A39FEC00303924 /* TimescheduleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescheduleStore.swift; sourceTree = "<group>"; };
 		86C23F6528A3A12600303924 /* TimeshceduleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeshceduleClient.swift; sourceTree = "<group>"; };
@@ -269,10 +295,10 @@
 			children = (
 				8609BAFF289A97C20055130A /* Reservation */,
 				86290F9F28913F4300D1B16B /* HomeView.swift */,
-				86290FA52891486B00D1B16B /* TicketView.swift */,
 				86EA523C2893FAFA00939659 /* HomeHeaderView.swift */,
 				86EA523E2894013900939659 /* HomeMenuView.swift */,
 				868E8C6B28959A9B0071A920 /* MenuView.swift */,
+				86290FA52891486B00D1B16B /* TicketView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -280,10 +306,10 @@
 		8609BAFF289A97C20055130A /* Reservation */ = {
 			isa = PBXGroup;
 			children = (
+				863F7A7028900F700065B8E8 /* CancelButtonView.swift */,
 				863F7A66288FECF30065B8E8 /* ReservationView.swift */,
 				863F7A6A288FFEA20065B8E8 /* ReservationRowView.swift */,
 				863F7A6C288FFFAF0065B8E8 /* ReservationListView.swift */,
-				863F7A7028900F700065B8E8 /* CancelButtonView.swift */,
 			);
 			path = Reservation;
 			sourceTree = "<group>";
@@ -372,17 +398,19 @@
 		863F7A5C288FD8030065B8E8 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				863F7A5E288FD8390065B8E8 /* ReservationStore.swift */,
-				86290FA128913F6200D1B16B /* TicketStore.swift */,
+				86BA3791289D41C100D83C18 /* CalendarStore.swift */,
+				86BB025D28B359D200435C32 /* CodeReadStore.swift */,
 				86EA523A2893D0A800939659 /* HomeStore.swift */,
 				8609BAF328992DB50055130A /* LaunchStore.swift */,
 				8609BB01289A984C0055130A /* MakeReservationStore.swift */,
-				86BA3791289D41C100D83C18 /* CalendarStore.swift */,
-				8614204828A24FCA0041F6B3 /* TrainerStore.swift */,
-				86C23F6328A39FEC00303924 /* TimescheduleStore.swift */,
+				86BB021128B28B5100435C32 /* ProfileStore.swift */,
+				863F7A5E288FD8390065B8E8 /* ReservationStore.swift */,
+				8655503028A67CBA00924528 /* RegisterStore.swift */,
 				86C23F7828A6410300303924 /* SignInStore.swift */,
 				86C23F7E28A6489500303924 /* SignUpStore.swift */,
-				8655503028A67CBA00924528 /* RegisterStore.swift */,
+				86290FA128913F6200D1B16B /* TicketStore.swift */,
+				8614204828A24FCA0041F6B3 /* TrainerStore.swift */,
+				86C23F6328A39FEC00303924 /* TimescheduleStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -390,15 +418,17 @@
 		863F7A5D288FD80E0065B8E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				86BB025828B302ED00435C32 /* CodeReaderView */,
+				86BB020E28B28B2D00435C32 /* ProfileView */,
 				8655503228A67E3900924528 /* Register */,
 				86C23F7328A5C1AB00303924 /* SignInUp */,
 				8609BB00289A97ED0055130A /* LaunchScreen */,
 				8609BAFE289A97550055130A /* Home */,
 				8609BAFD289A97450055130A /* MakeReservation */,
 				863F7A6E289000EB0065B8E8 /* ActivityIndicator.swift */,
-				863F79F8288FD5710065B8E8 /* ContentView.swift */,
 				8609BAF9289A93F30055130A /* AppHeaderView.swift */,
 				86C23F6D28A3C9F100303924 /* ButtonView.swift */,
+				863F79F8288FD5710065B8E8 /* ContentView.swift */,
 				86BB020C28AFA4EC00435C32 /* LoadingView.swift */,
 			);
 			path = View;
@@ -407,18 +437,21 @@
 		863F7A60288FD8E90065B8E8 /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				863F7A61288FD9000065B8E8 /* ReservationClient.swift */,
-				86290FA32891415700D1B16B /* TicketClient.swift */,
-				8614204A28A251740041F6B3 /* TrainerClient.swift */,
-				86C23F6528A3A12600303924 /* TimeshceduleClient.swift */,
 				86C23F6F28A3F43100303924 /* AuthenticationClient.swift */,
+				86BB025F28B36DFA00435C32 /* CodeReadClient.swift */,
+				86BB020A28AE618500435C32 /* DeleteClient.swift */,
+				863F7A61288FD9000065B8E8 /* ReservationClient.swift */,
 				86C23F8028A64D1A00303924 /* SignInClient.swift */,
 				8655502828A670BF00924528 /* SendMailClient.swift */,
 				8655502A28A677E800924528 /* SignUpClient.swift */,
 				8655503928A687E300924528 /* RegisterClient.swift */,
 				86BB01F528AA832700435C32 /* SignUpWithAppleClient.swift */,
+				86BB026C28B3B4D000435C32 /* SignOutClient.swift */,
 				86BB020828AE5A2C00435C32 /* SetReservationClient.swift */,
-				86BB020A28AE618500435C32 /* DeleteClient.swift */,
+				86C23F6528A3A12600303924 /* TimeshceduleClient.swift */,
+				8614204A28A251740041F6B3 /* TrainerClient.swift */,
+				86290FA32891415700D1B16B /* TicketClient.swift */,
+				86BB026A28B3A3A500435C32 /* ProfileClient.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -433,10 +466,10 @@
 		8655503228A67E3900924528 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				8655502E28A67CAB00924528 /* RegisterView.swift */,
-				8655503328A67F8200924528 /* InputTextField.swift */,
-				8655503528A6822600924528 /* SexSelectorView.swift */,
 				8655503728A6832400924528 /* BirthdaySelectorView.swift */,
+				8655502E28A67CAB00924528 /* RegisterView.swift */,
+				8655503528A6822600924528 /* SexSelectorView.swift */,
+				8655503328A67F8200924528 /* InputTextField.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -448,6 +481,28 @@
 				86BA378F289D3E4700D83C18 /* CalendarTileView.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		86BB020E28B28B2D00435C32 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				86BB020F28B28B3E00435C32 /* ProfileView.swift */,
+				86BB021328B28BEE00435C32 /* ProfileContentView.swift */,
+				86BB026128B386F800435C32 /* EditUserNameView.swift */,
+				86BB026328B38E6900435C32 /* InputProfileTextField.swift */,
+				86BB026528B3934A00435C32 /* EditUserBirthdayView.swift */,
+				86BB026828B3986400435C32 /* EditUserSexView.swift */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		86BB025828B302ED00435C32 /* CodeReaderView */ = {
+			isa = PBXGroup;
+			children = (
+				86BB025928B3030500435C32 /* CodeReadView.swift */,
+				86BB025B28B33A7A00435C32 /* TicketReaderView.swift */,
+			);
+			path = CodeReaderView;
 			sourceTree = "<group>";
 		};
 		86C23F6028A39F2A00303924 /* TimeSchedule */ = {
@@ -633,16 +688,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86BB021228B28B5200435C32 /* ProfileStore.swift in Sources */,
 				863F7A7128900F700065B8E8 /* CancelButtonView.swift in Sources */,
 				8655503A28A687E300924528 /* RegisterClient.swift in Sources */,
+				86BB026628B3934A00435C32 /* EditUserBirthdayView.swift in Sources */,
 				86EA523B2893D0A800939659 /* HomeStore.swift in Sources */,
 				8655502F28A67CAB00924528 /* RegisterView.swift in Sources */,
+				86BB026B28B3A3A500435C32 /* ProfileClient.swift in Sources */,
 				8614204B28A251740041F6B3 /* TrainerClient.swift in Sources */,
 				86C23F6628A3A12600303924 /* TimeshceduleClient.swift in Sources */,
 				86EA523F2894013900939659 /* HomeMenuView.swift in Sources */,
 				8609BAF628992EB80055130A /* LaunchDesignView.swift in Sources */,
 				86BB020B28AE618500435C32 /* DeleteClient.swift in Sources */,
 				86C23F7B28A6474800303924 /* SignInUpView.swift in Sources */,
+				86BB026228B386F800435C32 /* EditUserNameView.swift in Sources */,
 				863F79F9288FD5710065B8E8 /* ContentView.swift in Sources */,
 				8655502928A670BF00924528 /* SendMailClient.swift in Sources */,
 				8614205028A267310041F6B3 /* TrainerView.swift in Sources */,
@@ -650,12 +709,15 @@
 				86C23F7928A6410300303924 /* SignInStore.swift in Sources */,
 				86C23F6E28A3C9F100303924 /* ButtonView.swift in Sources */,
 				86BA3788289D3A2000D83C18 /* CalendarView.swift in Sources */,
+				86BB021428B28BEE00435C32 /* ProfileContentView.swift in Sources */,
+				86BB026D28B3B4D000435C32 /* SignOutClient.swift in Sources */,
 				86C23F7028A3F43100303924 /* AuthenticationClient.swift in Sources */,
 				86BB01F328AA69C500435C32 /* SignUpWithEmailView.swift in Sources */,
 				86BB020928AE5A2C00435C32 /* SetReservationClient.swift in Sources */,
 				86C23F6A28A3C7DE00303924 /* TimeSelectView.swift in Sources */,
 				86290FA42891415700D1B16B /* TicketClient.swift in Sources */,
 				8655503828A6832400924528 /* BirthdaySelectorView.swift in Sources */,
+				86BB026428B38E6900435C32 /* InputProfileTextField.swift in Sources */,
 				8655502B28A677E800924528 /* SignUpClient.swift in Sources */,
 				86BA3790289D3E4700D83C18 /* CalendarTileView.swift in Sources */,
 				86BB020028AD0CA300435C32 /* MakeReservationCheckButtonView.swift in Sources */,
@@ -676,6 +738,7 @@
 				8609BB02289A984C0055130A /* MakeReservationStore.swift in Sources */,
 				86290FA028913F4300D1B16B /* HomeView.swift in Sources */,
 				86BB01F628AA832700435C32 /* SignUpWithAppleClient.swift in Sources */,
+				86BB026928B3986400435C32 /* EditUserSexView.swift in Sources */,
 				86C23F6C28A3C80F00303924 /* CalendarSelectView.swift in Sources */,
 				8609BAF228992D4A0055130A /* LaunchScreenView.swift in Sources */,
 				8614204728A2471B0041F6B3 /* TrainerSelectView.swift in Sources */,
@@ -689,15 +752,20 @@
 				868E8C6C28959A9B0071A920 /* MenuView.swift in Sources */,
 				86EA523D2893FAFA00939659 /* HomeHeaderView.swift in Sources */,
 				86C23F8128A64D1A00303924 /* SignInClient.swift in Sources */,
+				86BB025E28B359D200435C32 /* CodeReadStore.swift in Sources */,
 				8655503128A67CBA00924528 /* RegisterStore.swift in Sources */,
 				8609BAF428992DB50055130A /* LaunchStore.swift in Sources */,
+				86BB026028B36DFA00435C32 /* CodeReadClient.swift in Sources */,
+				86BB025A28B3030500435C32 /* CodeReadView.swift in Sources */,
 				863F79F7288FD5710065B8E8 /* TheComposableArchitectureApp.swift in Sources */,
 				863F7A6F289000EB0065B8E8 /* ActivityIndicator.swift in Sources */,
 				863F7A62288FD9000065B8E8 /* ReservationClient.swift in Sources */,
 				86BB01F128AA686000435C32 /* SignInUpWithAppleButton.swift in Sources */,
 				8609BAFC289A95CF0055130A /* MakeReservationView.swift in Sources */,
 				86BB020D28AFA4EC00435C32 /* LoadingView.swift in Sources */,
+				86BB021028B28B3E00435C32 /* ProfileView.swift in Sources */,
 				86BB01FE28AD0C7A00435C32 /* MakeReservationListView.swift in Sources */,
+				86BB025C28B33A7A00435C32 /* TicketReaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
