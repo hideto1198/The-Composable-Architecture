@@ -24,32 +24,52 @@ struct HomeMenuView: View {
                         .foregroundColor(.primary)
                 }
                 .offset(x: bounds.width * 0.3)
-                NavigationLink(
-                    destination: MakeReservationView(store:
-                                                        Store(initialState: MakeReservationState(),
-                                                                          reducer: makeReservationReducer,
-                                                              environment: .live)
-                                                                 
-                                                    )
-                                    .navigationBarHidden(true),
-                    label: {
-                    MenuView(title: "予約")
-                })
-                .offset(x: bounds.width * 0.3)
-                Divider()
-                NavigationLink(destination: EmptyView(), label: {
-                    MenuView(title: "お問い合わせ")
-                })
-                .offset(x: bounds.width * 0.3)
-                Divider()
-                NavigationLink(destination: LaunchScreenView(store: Store(initialState: LaunchState(),
-                                                                          reducer: launchReducer,
-                                                                          environment: LaunchEnvironment(mainQueue: .main, authenticationClient: .live)))
-                    .navigationBarHidden(true),
-                               label: {
-                    MenuView(title: "タイトルへ")
-                })
-                .offset(x: bounds.width * 0.3)
+                Group {
+                    NavigationLink(destination: ProfileView(store: Store(initialState: ProfileState(),
+                                                                         reducer: profileReducer,
+                                                                         environment: .live))
+                        .navigationBarHidden(true),
+                                   label: { MenuView(title: "基本情報")}
+                    )
+                    .offset(x: bounds.width * 0.3)
+                    Divider()
+                    NavigationLink(
+                        destination: MakeReservationView(store:
+                                                            Store(initialState: MakeReservationState(),
+                                                                  reducer: makeReservationReducer,
+                                                                  environment: .live)
+                                                         
+                                                        )
+                        .navigationBarHidden(true),
+                        label: {
+                            MenuView(title: "予約")
+                        })
+                    .offset(x: bounds.width * 0.3)
+                    Divider()
+                    NavigationLink(
+                        destination: TicketReaderView(store: Store(initialState: CodeReadState(),
+                                                                   reducer: codeReadReducer,
+                                                                   environment: .live))
+                            .navigationBarHidden(true),
+                        label: {
+                            MenuView(title: "チケット追加")
+                        })
+                    .offset(x: bounds.width * 0.3)
+                    Divider()
+                    NavigationLink(destination: EmptyView(), label: {
+                        MenuView(title: "お問い合わせ")
+                    })
+                    .offset(x: bounds.width * 0.3)
+                    Divider()
+                    NavigationLink(destination: LaunchScreenView(store: Store(initialState: LaunchState(),
+                                                                              reducer: launchReducer,
+                                                                              environment: LaunchEnvironment(mainQueue: .main, authenticationClient: .live)))
+                        .navigationBarHidden(true),
+                                   label: {
+                        MenuView(title: "タイトルへ")
+                    })
+                    .offset(x: bounds.width * 0.3)
+                }
                 Spacer()
             }
             .padding(.leading)
