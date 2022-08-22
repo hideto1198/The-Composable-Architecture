@@ -12,29 +12,8 @@ struct ReservationView: View {
     let viewStore: ViewStore<HomeState, HomeAction>
     var body: some View {
         ZStack {
-            VStack {
-                ReservationListView(viewStore: self.viewStore)
-                HStack {
-                    Spacer()
-                    Button(
-                        action: {
-                            self.viewStore.send(.reservationAction(.getReservation), animation: .easeIn)
-                        }
-                    ){
-                        Text("取得")
-                    }
-                    Spacer()
-                    Button(
-                        action: {
-                            self.viewStore.send(.reservationAction(.reset), animation: .easeIn)
-                        }
-                    ){
-                        Text("リセット")
-                    }
-                    Spacer()
-                }
-                .padding(.bottom)
-            }
+            ReservationListView(viewStore: self.viewStore)
+            .padding(.bottom)
             if self.viewStore.reservationState.isLoading {
                 ActivityIndicator()
             }
