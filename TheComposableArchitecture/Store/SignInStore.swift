@@ -36,7 +36,7 @@ let signInReducer: Reducer = Reducer<SignInState, SignInAction, SignInEnvironmen
         return .none
     case .onTapSignIn:
         state.isLoading = true
-        return environment.signInClient.fetch(state.email, state.password)
+        return environment.signInClient.fetch(state.email, state.password, false)
             .receive(on: environment.mainQueue)
             .catchToEffect(SignInAction.signInResponse)
     case let .signInResponse(.success(response)):
@@ -49,7 +49,7 @@ let signInReducer: Reducer = Reducer<SignInState, SignInAction, SignInEnvironmen
         state.isHome = true
         return .none
         
-    case .signInResponse(.failure):
+    case let .signInResponse(.failure(response)):
         state.isLoading = false
         state.alert = AlertState(title: TextState("エラー"),
                                  message: TextState("メールアドレスまたはパスワードが間違っています"))
@@ -59,7 +59,10 @@ let signInReducer: Reducer = Reducer<SignInState, SignInAction, SignInEnvironmen
         return .none
     case let .onTapWithApple(result):
         if result {
-            state.isHome = true
+            state.isLoading = true
+            return environment.signInClient.fetch(state.email, state.password, true)
+                .receive(on: environment.mainQueue)
+                .catchToEffect(SignInAction.signInResponse)
         } else {
             state.alert = AlertState(title: TextState("エラー"),
                                      message: TextState("サインアップが完了していません。"))
