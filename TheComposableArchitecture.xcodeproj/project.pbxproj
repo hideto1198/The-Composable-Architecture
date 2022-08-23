@@ -418,8 +418,9 @@
 		863F7A5D288FD80E0065B8E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				86BB025828B302ED00435C32 /* CodeReaderView */,
-				86BB020E28B28B2D00435C32 /* ProfileView */,
+				86BB026E28B47EDD00435C32 /* Withdraw */,
+				86BB025828B302ED00435C32 /* CodeReader */,
+				86BB020E28B28B2D00435C32 /* Profile */,
 				8655503228A67E3900924528 /* Register */,
 				86C23F7328A5C1AB00303924 /* SignInUp */,
 				8609BB00289A97ED0055130A /* LaunchScreen */,
@@ -483,7 +484,7 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		86BB020E28B28B2D00435C32 /* ProfileView */ = {
+		86BB020E28B28B2D00435C32 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				86BB020F28B28B3E00435C32 /* ProfileView.swift */,
@@ -493,16 +494,23 @@
 				86BB026528B3934A00435C32 /* EditUserBirthdayView.swift */,
 				86BB026828B3986400435C32 /* EditUserSexView.swift */,
 			);
-			path = ProfileView;
+			path = Profile;
 			sourceTree = "<group>";
 		};
-		86BB025828B302ED00435C32 /* CodeReaderView */ = {
+		86BB025828B302ED00435C32 /* CodeReader */ = {
 			isa = PBXGroup;
 			children = (
 				86BB025928B3030500435C32 /* CodeReadView.swift */,
 				86BB025B28B33A7A00435C32 /* TicketReaderView.swift */,
 			);
-			path = CodeReaderView;
+			path = CodeReader;
+			sourceTree = "<group>";
+		};
+		86BB026E28B47EDD00435C32 /* Withdraw */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Withdraw;
 			sourceTree = "<group>";
 		};
 		86C23F6028A39F2A00303924 /* TimeSchedule */ = {

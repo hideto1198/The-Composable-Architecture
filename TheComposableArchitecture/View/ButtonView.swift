@@ -19,7 +19,7 @@ struct ButtonView: View {
                     .foregroundColor(.primary)
             }
             .frame(width: bounds.width * 0.8, height: bounds.height * 0.06)
-            .background(Color.white.opacity(0.2))
+            .background(Color.white.opacity(0.2).cornerRadius(7))
             Spacer()
         }
     }

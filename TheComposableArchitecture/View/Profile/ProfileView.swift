@@ -52,16 +52,23 @@ struct ProfileView: View {
                                                value: UserDefaults.standard.string(forKey: "sex")!)
                         }
                     )
-                    Spacer()
-                    Button(
-                        action: {
-                            viewStore.send(.confirmSignout)
-                        }
-                    ){
-                        ButtonView(text: "サインアウト")
-                    }
                 }
                 Spacer()
+                Button(
+                    action: {
+                        viewStore.send(.confirmSignout)
+                    }
+                ){
+                    ButtonView(text: "サインアウト")
+                }
+                Button(
+                    action: {
+                        viewStore.send(.confirmSignout)
+                    }
+                ){
+                    ButtonView(text: "退会する")
+                        .foregroundColor(.red)
+                }
             }
             .gesture(
                 DragGesture(minimumDistance: 5)
