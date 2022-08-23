@@ -15,7 +15,7 @@ struct LoadingView: View {
                 Spacer()
                 ZStack {
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.white)
+                        .fill(Color("primary_white"))
                         .frame(width: bounds.width * 0.4, height: bounds.height * 0.15)
                     VStack {
                         ActivityIndicator()
