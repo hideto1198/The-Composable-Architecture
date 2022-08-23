@@ -61,14 +61,15 @@ struct ProfileView: View {
                 ){
                     ButtonView(text: "サインアウト")
                 }
-                Button(
-                    action: {
-                        viewStore.send(.confirmSignout)
+                NavigationLink(
+                    destination: WithdrawView(store: Store(initialState: WithdrawState(),
+                                                           reducer: withdrawReducer,
+                                                           environment: .live))
+                    .navigationBarHidden(true),
+                    label:  {
+                        ButtonView(text: "退会")
                     }
-                ){
-                    ButtonView(text: "退会する")
-                        .foregroundColor(.red)
-                }
+                )
             }
             .gesture(
                 DragGesture(minimumDistance: 5)
