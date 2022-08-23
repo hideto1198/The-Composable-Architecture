@@ -28,6 +28,11 @@ struct SignUpState: Equatable {
             self.alert = AlertState(title: TextState("エラー"), message: TextState("パスワードが一致しません。"))
             return false
         }
+        
+        if self.password.count < 8 || self.confirmPassword.count < 8 {
+            self.alert = AlertState(title: TextState("エラー"), message: TextState("パスワードが短すぎます"))
+            return false
+        }
         return true
     }
 }
@@ -90,6 +95,7 @@ let signUpReducer: Reducer = Reducer<SignUpState, SignUpAction, SignUpEnvironmen
     //MARK: - 確認メールを送信した後のレスポンス(失敗)を受ける処理
     case let .sendMailResponse(.failure(error)):
         state.isLoading = false
+        debugPrint(error)
         state.alert = AlertState(title: TextState("エラー"), message: TextState("確認メールの送信を失敗しました。時間をおいてお試しください。"))
         return .none
     //MARK: - サインアップボタン押した後のレスポンス(成功)を受ける処理
