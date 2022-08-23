@@ -12,6 +12,7 @@ struct MenuView: View {
     var body: some View {
         HStack {
             Text("\(title)")
+                .foregroundColor(.primary)
             Spacer()
         }
         .frame(width: bounds.width * 0.6, height: bounds.height * 0.05)
