@@ -36,6 +36,14 @@ struct HomeView: View {
             .onAppear {
                 viewStore.send(.onAppear)
             }
+            .gesture(
+                DragGesture(minimumDistance: 5)
+                    .onEnded{ value in
+                        if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x {
+                            viewStore.send(.onMenuTap, animation: .easeIn)
+                        }
+                    }
+            )
         }
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct MakeReservationView: View {
+    @Environment(\.presentationMode) var presentaionMode
     let store: Store<MakeReservationState,MakeReservationAction>
     var body: some View {
         WithViewStore(self.store) { viewStore in
@@ -69,6 +70,16 @@ struct MakeReservationView: View {
                 }
             }
             .alert(self.store.scope(state: \.alert), dismiss: .alertDismissed)
+            .gesture(
+                DragGesture(minimumDistance: 5)
+                    .onEnded{ value in
+                        if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x{
+                            withAnimation(){
+                                self.presentaionMode.wrappedValue.dismiss()
+                            }
+                        }
+                    }
+            )
         }
     }
 }

@@ -9,7 +9,9 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ProfileView: View {
+    @Environment(\.presentationMode) var presentationMode
     let store: Store<ProfileState, ProfileAction>
+    
     var body: some View {
         WithViewStore(self.store) { viewStore in
             VStack {
@@ -61,6 +63,16 @@ struct ProfileView: View {
                 }
                 Spacer()
             }
+            .gesture(
+                DragGesture(minimumDistance: 5)
+                    .onEnded{ value in
+                        if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x{
+                            withAnimation(){
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        }
+                    }
+            )
             NavigationLink(
                 destination: LaunchScreenView(store: Store(initialState: LaunchState(),
                                                            reducer: launchReducer,

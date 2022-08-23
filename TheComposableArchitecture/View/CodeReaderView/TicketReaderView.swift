@@ -9,7 +9,9 @@ import SwiftUI
 import ComposableArchitecture
 
 struct TicketReaderView: View {
+    @Environment(\.presentationMode) var presentationMode
     let store: Store<CodeReadState, CodeReadAction>
+    
     var body: some View {
         WithViewStore(self.store) { viewStore in
             VStack {
@@ -31,6 +33,16 @@ struct TicketReaderView: View {
                         .opacity(viewStore.opacity)
                 }
             }
+            .gesture(
+                DragGesture(minimumDistance: 5)
+                    .onEnded{ value in
+                        if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x{
+                            withAnimation(){
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        }
+                    }
+            )
             .alert(self.store.scope(state: \.alert),
                    dismiss: .alertDismissed)
         }
