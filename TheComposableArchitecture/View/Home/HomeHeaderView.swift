@@ -33,7 +33,7 @@ struct HomeHeaderView: View {
                         Spacer()
                     }
                 }
-                .padding(.horizontal)
+                .padding(.all)
                 Divider()
             }
         }
