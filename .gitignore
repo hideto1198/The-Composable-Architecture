@@ -1,2 +1,5 @@
 TheComposableArchitecture/GoogleService-Info.plist
 .DS_Store
+TheComposableArchitecture/View/Trainer
+TheComposableArchitecture/Store/Trainer
+TheComposableArchitecture/Client/Trainer
