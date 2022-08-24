@@ -54,7 +54,7 @@ struct HomeView: View {
                     .onEnded{ value in
                         if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x  && !viewStore.isMenu {
                             viewStore.send(.onMenuTap, animation: .easeIn)
-                        } else if value.startLocation.x * 1.3 > value.location.x {
+                        } else if value.startLocation.x * 1.3 > value.location.x && viewStore.isMenu {
                             viewStore.send(.onMenuTap, animation: .easeOut)
                         }
                     }
