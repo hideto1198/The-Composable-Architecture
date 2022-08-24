@@ -12,7 +12,7 @@ struct MakeTrainerPathInputView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("画像パス")
+            Text("画像Path")
             ZStack(alignment: .trailing) {
                 TextField("", text: self.$text)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
