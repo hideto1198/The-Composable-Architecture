@@ -51,7 +51,7 @@ struct HomeMenuView: View {
                         destination: TicketReaderView(store: Store(initialState: CodeReadState(),
                                                                    reducer: codeReadReducer,
                                                                    environment: .live))
-                            .navigationBarHidden(true),
+                        .navigationBarHidden(true),
                         label: {
                             MenuView(title: "チケット追加")
                         })
@@ -79,7 +79,6 @@ struct HomeMenuView: View {
         }
         .background(Color("background"))
         .edgesIgnoringSafeArea(.vertical)
-        .offset(x: bounds.width * -0.3)
     }
 }
 

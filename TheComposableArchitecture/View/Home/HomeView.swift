@@ -13,6 +13,8 @@ struct HomeView: View {
     var body: some View {
         WithViewStore(self.store.self){ viewStore in
             ZStack {
+                Color("background")
+                    .edgesIgnoringSafeArea(.all)
                 VStack {
                     HomeHeaderView(store: self.store)
                     ReservationView(viewStore: viewStore)
@@ -25,11 +27,22 @@ struct HomeView: View {
                         .onTapGesture {
                             viewStore.send(.onMenuTap, animation: .easeOut(duration: 0.5))
                         }
-                    HomeMenuView(viewStore: viewStore)
                 }
+                HomeMenuView(viewStore: viewStore)
+                    .offset(x: viewStore.offset)
+                
                 if viewStore.isLoading {
                     LoadingView()
                 }
+                
+                NavigationLink(
+                    destination: MakeTrainerView(store: Store(initialState: MakeTrainerState(),
+                                                              reducer: makeTrainerReducer,
+                                                              environment: .live))
+                        .navigationBarHidden(true),
+                    isActive: viewStore.binding(\.$isTrainer),
+                    label: { Text("") }
+                )
             }
             .alert(self.store.scope(state: \.alert),
                    dismiss: .alertDismissed)
@@ -39,8 +52,10 @@ struct HomeView: View {
             .gesture(
                 DragGesture(minimumDistance: 5)
                     .onEnded{ value in
-                        if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x {
+                        if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x  && !viewStore.isMenu {
                             viewStore.send(.onMenuTap, animation: .easeIn)
+                        } else if value.startLocation.x * 1.3 > value.location.x {
+                            viewStore.send(.onMenuTap, animation: .easeOut)
                         }
                     }
             )

@@ -14,9 +14,11 @@ struct HomeState: Equatable {
     var isMenu: Bool = false
     var isLoading: Bool = false
     var alert: AlertState<HomeAction>?
+    var offset: Double = -(bounds.width)
+    @BindableState var isTrainer: Bool = false
 }
 
-enum HomeAction: Equatable {
+enum HomeAction: Equatable, BindableAction {
     case reservationAction(ReservationAction)
     case ticketAction(TicketAction)
     case onMenuTap
@@ -26,6 +28,8 @@ enum HomeAction: Equatable {
     case ticketResponse(Result<TicketEntity, TicketClient.Failure>)
     case alertDismissed
     case onTapOk(ReservationEntity)
+    case binding(BindingAction<HomeState>)
+    case onTapLogo
 }
 
 struct HomeEnvironment {
@@ -50,6 +54,8 @@ let homeReducer: Reducer = Reducer<HomeState, HomeAction, HomeEnvironment>.combi
                            environment: { .init(ticketClient: $0.ticketClient, mainQueue: $0.mainQueue)}),
     Reducer { state, action, environment in
         switch action {
+        case .binding:
+            return .none
         case let .reservationAction(.onTapDelete(reservation)):
             state.alert = AlertState(title: TextState("確認"),
                                      message: TextState("予約をキャンセルしてよろしいでしょうか"),
@@ -63,6 +69,11 @@ let homeReducer: Reducer = Reducer<HomeState, HomeAction, HomeEnvironment>.combi
             return .none
         case .onMenuTap:
             state.isMenu = state.isMenu ? false : true
+            if state.isMenu {
+                state.offset = bounds.width * -0.3
+            } else {
+                state.offset = -(bounds.width)
+            }
             return .none
         case .onAppear:
             if UserDefaults.standard.string(forKey: "first_launch") == nil {
@@ -100,6 +111,10 @@ let homeReducer: Reducer = Reducer<HomeState, HomeAction, HomeEnvironment>.combi
         case .alertDismissed:
             state.alert = nil
             return .none
+        case .onTapLogo:
+            state.isTrainer = true
+            return .none
         }
     }
 )
+.binding()
