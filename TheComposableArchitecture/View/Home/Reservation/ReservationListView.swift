@@ -11,23 +11,31 @@ import ComposableArchitecture
 struct ReservationListView: View {
     var viewStore: ViewStore<HomeState, HomeAction>
     var body: some View {
-        ScrollView(.vertical) {
-            ForEach(self.viewStore.reservationState.reservations) { reservation in
-                ReservationRowView(reservation: reservation)
-                    .onTapGesture {
-                        self.viewStore.send(.reservationAction(.onTapGesture(reservation.id)), animation: .easeIn)
-                    }
-                if reservation.isTap {
-                    Button(
-                        action: {
-                            self.viewStore.send(.reservationAction(.onTapDelete(reservation)))
-                            // self.viewStore.send(.ticketAction(.getTicket), animation: .easeIn)
+        VStack {
+            if self.viewStore.reservationState.reservations.isEmpty {
+                Spacer()
+                Text("")
+                Spacer()
+            } else {
+                ScrollView(.vertical) {
+                    ForEach(self.viewStore.reservationState.reservations) { reservation in
+                        ReservationRowView(reservation: reservation)
+                            .onTapGesture {
+                                self.viewStore.send(.reservationAction(.onTapGesture(reservation.id)), animation: .easeIn)
+                            }
+                        if reservation.isTap {
+                            Button(
+                                action: {
+                                    self.viewStore.send(.reservationAction(.onTapDelete(reservation)))
+                                }
+                            ){
+                                CancelButtonView()
+                            }
+                            .padding(.top)
                         }
-                    ){
-                        CancelButtonView()
                     }
-                    .padding(.top)
                 }
+                Spacer()
             }
         }
     }
