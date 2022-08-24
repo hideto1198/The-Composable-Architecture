@@ -11,6 +11,7 @@ struct PasswordInputView: View {
     @State var isSecured: Bool = true
     @Binding var password: String
     var title: String = "パスワード"
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("\(title)")
@@ -22,7 +23,6 @@ struct PasswordInputView: View {
                         TextField("", text: self.$password)
                     }
                 }
-                .padding(.leading)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
