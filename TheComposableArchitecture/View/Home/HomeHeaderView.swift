@@ -32,6 +32,15 @@ struct HomeHeaderView: View {
                         Text("BONA FIDE")
                         Spacer()
                     }
+                    HStack {
+                        Spacer()
+                        Image("LOGO")
+                            .resizable()
+                            .frame(width: bounds.width * 0.076, height: bounds.width * 0.076)
+                            .onTapGesture(count: 3,perform: {
+                                viewStore.send(.onTapLogo, animation:.easeInOut)
+                            })
+                    }
                 }
                 .padding(.all)
                 Divider()
