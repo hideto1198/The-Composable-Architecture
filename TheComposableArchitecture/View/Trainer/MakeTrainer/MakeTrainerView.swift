@@ -6,18 +6,46 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct MakeTrainerView: View {
+    let store: Store<MakeTrainerState, MakeTrainerAction>
     var body: some View {
-        VStack {
-            AppHeaderView(title: "トレーナー登録画面")
-            Spacer()
+        WithViewStore(self.store) { viewStore in
+            ZStack {
+                VStack {
+                    AppHeaderView(title: "トレーナー登録画面")
+                    MakeTrainerPasswordInputView(password: viewStore.binding(\.$password))
+                        .padding(.top)
+                    MakeTrainerPathInputView(text: viewStore.binding(\.$path_text))
+                        .padding(.top)
+                    StoreSelectorView(viewStore: viewStore)
+                        .padding(.top)
+                    Spacer()
+                    Button(
+                        action: {
+                            viewStore.send(.onTapLogin)
+                        }
+                    ){
+                        ButtonView(text: "ログイン")
+                    }
+                }
+                if viewStore.isLoading {
+                    LoadingView()
+                }
+            }
+            .alert(
+                self.store.scope(state: \.alert),
+                dismiss: .alertDismissed
+            )
         }
     }
 }
 
 struct MakeTrainerView_Previews: PreviewProvider {
     static var previews: some View {
-        MakeTrainerView()
+        MakeTrainerView(store: Store(initialState: MakeTrainerState(),
+                                     reducer: makeTrainerReducer,
+                                     environment: .live))
     }
 }

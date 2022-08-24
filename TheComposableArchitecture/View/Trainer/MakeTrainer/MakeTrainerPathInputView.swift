@@ -8,13 +8,29 @@
 import SwiftUI
 
 struct MakeTrainerPathInputView: View {
+    @Binding var text: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            Text("画像パス")
+            ZStack(alignment: .trailing) {
+                TextField("", text: self.$text)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .background(Color.white
+                        .opacity(0.2)
+                        .cornerRadius(5)
+                        .frame(height: bounds.height * 0.05))
+            }
+        }
+        .padding(.horizontal, 15)
     }
 }
 
 struct MakeTrainerPathInputView_Previews: PreviewProvider {
     static var previews: some View {
-        MakeTrainerPathInputView()
+        MakeTrainerPathInputView(text: .constant("test_trainer"))
     }
 }
