@@ -23,9 +23,6 @@ struct ProfileContentView: View {
             }
             .padding(.leading)
             Spacer()
-            Image(systemName: "greaterthan")
-                .padding(.trailing)
-                .foregroundColor(.primary)
         }
     }
 }
