@@ -15,13 +15,15 @@ struct HomeState: Equatable {
     var isLoading: Bool = false
     var alert: AlertState<HomeAction>?
     var offset: Double = -(bounds.width)
+    var opacity: Double = 0.0
+    @BindableState var isMakeTrainer: Bool = false
     @BindableState var isTrainer: Bool = false
 }
 
 enum HomeAction: Equatable, BindableAction {
     case reservationAction(ReservationAction)
     case ticketAction(TicketAction)
-    case onMenuTap
+    case onTapMenu
     case onAppear
     case deleteResponse(Result<Bool, DeleteClient.Failure>)
     case getTicket
@@ -67,11 +69,13 @@ let homeReducer: Reducer = Reducer<HomeState, HomeAction, HomeEnvironment>.combi
             return .none
         case .reservationAction, .ticketAction:
             return .none
-        case .onMenuTap:
+        case .onTapMenu:
             state.isMenu = state.isMenu ? false : true
             if state.isMenu {
+                state.opacity = 1.0
                 state.offset = bounds.width * -0.3
             } else {
+                state.opacity = 0.0
                 state.offset = -(bounds.width)
             }
             return .none
@@ -112,7 +116,11 @@ let homeReducer: Reducer = Reducer<HomeState, HomeAction, HomeEnvironment>.combi
             state.alert = nil
             return .none
         case .onTapLogo:
-            state.isTrainer = true
+            if UserDefaults.standard.bool(forKey: "Trainer") != false {
+                state.isTrainer = true
+            } else {
+                state.isMakeTrainer = true
+            }
             return .none
         }
     }
