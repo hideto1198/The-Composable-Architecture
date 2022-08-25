@@ -16,7 +16,7 @@ struct ProfileView: View {
         WithViewStore(self.store) { viewStore in
             VStack {
                 AppHeaderView(title: "基本情報")
-                ScrollView {
+                List {
                     NavigationLink(
                         destination: EditUserNameView(store: self.store)
                             .navigationBarHidden(true),
@@ -25,7 +25,6 @@ struct ProfileView: View {
                                                value: UserDefaults.standard.string(forKey: "user_name")!)
                         }
                     )
-                    Divider()
                     NavigationLink(
                         destination: EditUserNameView(store: self.store)
                             .navigationBarHidden(true),
@@ -34,7 +33,6 @@ struct ProfileView: View {
                                                value: UserDefaults.standard.string(forKey: "user_kana_name")!)
                         }
                     )
-                    Divider()
                     NavigationLink(
                         destination: EditUserBirthdayView(store: self.store)
                             .navigationBarHidden(true),
@@ -43,7 +41,6 @@ struct ProfileView: View {
                                                value: UserDefaults.standard.string(forKey: "birthday")!)
                         }
                     )
-                    Divider()
                     NavigationLink(
                         destination: EditUserSexView(store: self.store)
                             .navigationBarHidden(true),
@@ -53,6 +50,7 @@ struct ProfileView: View {
                         }
                     )
                 }
+                .listStyle(.plain)
                 Spacer()
                 Button(
                     action: {
