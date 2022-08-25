@@ -18,11 +18,10 @@ struct SignInView: View {
                     Image("LOGO")
                         .resizable()
                         .frame(width: bounds.width * 0.4, height: bounds.width * 0.4)
-                    Spacer()
-                        .frame(height: bounds.height * 0.05)
-                    MailInputview(email: viewStore.binding(\.$email))
+                    MailInputView(email: viewStore.binding(\.$email))
                         .padding(.bottom)
-                    PasswordInputView(password: viewStore.binding(\.$password))
+                    PasswordInputView(password: viewStore.binding(get: \.password, send: SignInAction.onTextChanged))
+                    ForgetPasswordView(viewStore: viewStore)
                     Spacer()
                     SignInUpWithAppleButton(buttonType: .signIn,
                                             completion: { result in
@@ -55,7 +54,15 @@ struct SignInView: View {
                                                                   reducer: homeReducer,
                                                                   environment: .live))
                     .navigationBarHidden(true),
-                               isActive: viewStore.binding(\.$isHome), label: { Text("") })
+                               isActive: viewStore.binding(\.$isHome),
+                               label: { Text("") })
+                NavigationLink(destination: RecoveryPasswordView(store: Store(initialState: RecoveryPasswordState(),
+                                                                              reducer: recoveryPasswordReducer,
+                                                                              environment: .live))
+                    .navigationBarHidden(true),
+                               isActive: viewStore.binding(\.$isRecover),
+                               label: { Text("") }
+                )
             }
             .alert(
                 self.store.scope(state: \.alert),
