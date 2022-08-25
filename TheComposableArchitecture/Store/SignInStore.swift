@@ -15,6 +15,7 @@ struct SignInState: Equatable {
     var isLoading: Bool = false
     @BindableState var isHome: Bool = false
     var alert: AlertState<SignInAction>?
+    @BindableState var isRecover: Bool = false
 }
 
 enum SignInAction: BindableAction, Equatable {
@@ -23,6 +24,8 @@ enum SignInAction: BindableAction, Equatable {
     case signInResponse(Result<Bool, SignInClient.Failure>)
     case alertDismissed
     case onTapWithApple(Bool)
+    case onTapRecovery
+    case onTextChanged(String)
 }
 
 struct SignInEnvironment {
@@ -32,6 +35,9 @@ struct SignInEnvironment {
 
 let signInReducer: Reducer = Reducer<SignInState, SignInAction, SignInEnvironment> { state, action, environment in
     switch action {
+    case let .onTextChanged(password):
+        state.password = password.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "　", with: "")
+        return .none
     case .binding:
         return .none
     case .onTapSignIn:
@@ -67,6 +73,9 @@ let signInReducer: Reducer = Reducer<SignInState, SignInAction, SignInEnvironmen
             state.alert = AlertState(title: TextState("エラー"),
                                      message: TextState("サインアップが完了していません。"))
         }
+        return .none
+    case .onTapRecovery:
+        state.isRecover = true
         return .none
     }
 }
