@@ -10,12 +10,16 @@ import SwiftUI
 struct MenuView: View {
     var title: String
     var body: some View {
-        HStack {
-            Text("\(title)")
-                .foregroundColor(.primary)
-            Spacer()
+        VStack {
+            HStack {
+                Text("\(title)")
+                    .foregroundColor(.primary)
+                Spacer()
+            }
+            .frame(height: bounds.height * 0.05)
+            .offset(x: bounds.width * 0.3)
+            Divider()
         }
-        .frame(width: bounds.width * 0.6, height: bounds.height * 0.05)
     }
 }
 
