@@ -33,6 +33,7 @@ struct SignUpState: Equatable {
             self.alert = AlertState(title: TextState("エラー"), message: TextState("パスワードが短すぎます"))
             return false
         }
+        
         return true
     }
 }
@@ -47,6 +48,8 @@ enum SignUpAction: BindableAction, Equatable {
     case onTapWithEmail
     case onTapWithApple
     case onTapClose
+    case onChangePassword(String)
+    case onChangeConfirmPassword(String)
 }
 
 struct SignUpEnvironment {
@@ -63,6 +66,12 @@ struct SignUpEnvironment {
 
 let signUpReducer: Reducer = Reducer<SignUpState, SignUpAction, SignUpEnvironment> { state, action, environment in
     switch action {
+    case let .onChangePassword(password):
+        state.password = password.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "　", with: "")
+        return .none
+    case let .onChangeConfirmPassword(confirmPassword):
+        state.confirmPassword = confirmPassword.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "　", with: "")
+        return .none
     case .binding:
         return .none
     case .onTapSignUp:
