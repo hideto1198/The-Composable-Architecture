@@ -26,11 +26,11 @@ struct SignUpWithEmailView: View {
                 }
             }
             .padding(.trailing)
-            MailInputview(email: viewStore.binding(\.$email))
+            MailInputView(email: viewStore.binding(\.$email))
                 .padding(.bottom)
-            PasswordInputView(password: viewStore.binding(\.$password))
+            PasswordInputView(password: viewStore.binding(get: \.password, send: SignUpAction.onChangePassword))
                 .padding(.bottom)
-            PasswordInputView(password: viewStore.binding(\.$confirmPassword), title: "パスワード(確認用)")
+            PasswordInputView(password: viewStore.binding(get: \.confirmPassword, send: SignUpAction.onChangeConfirmPassword), title: "パスワード(確認用)")
             Spacer()
             Button(
                 action: {
