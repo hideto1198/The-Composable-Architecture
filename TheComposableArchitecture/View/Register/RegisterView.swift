@@ -43,6 +43,7 @@ struct RegisterView: View {
                     ){
                         ButtonView(text: "登録")
                     }
+                    .padding(.bottom)
                 }
                 NavigationLink(
                     destination: HomeView(store: Store(initialState: HomeState(),
