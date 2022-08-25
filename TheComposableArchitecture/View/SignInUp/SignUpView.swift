@@ -17,8 +17,6 @@ struct SignUpView: View {
                     Image("LOGO")
                         .resizable()
                         .frame(width: bounds.width * 0.4, height: bounds.width * 0.4)
-                    Spacer()
-                        .frame(height: bounds.height * 0.05)
                     if viewStore.showButton {
                         SignInUpWithAppleButton(buttonType: .signUp,
                                                 completion: { result in
