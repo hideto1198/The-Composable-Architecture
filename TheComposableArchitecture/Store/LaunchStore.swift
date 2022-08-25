@@ -22,6 +22,7 @@ struct LaunchState: Equatable {
     var opacity: Double = 2.0
     var counter: Double = 0.0
     var isRegist: Bool = false
+    var isTrainer: Bool = false
 }
 
 enum LaunchAction: Equatable {
@@ -66,6 +67,8 @@ let launchReducer: Reducer<LaunchState, LaunchAction, LaunchEnvironment> = .comb
         case let .currentUserResponse(.success(response)):
             if !response {
                 state.isRegist = true
+            } else if UserDefaults.standard.bool(forKey: "Trainer") {
+                state.isTrainer = true
             }
             return .none
         case .currentUserResponse(.failure):
