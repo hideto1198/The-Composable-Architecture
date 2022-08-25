@@ -17,7 +17,7 @@ struct HomeHeaderView: View {
                     HStack {
                         Button(
                             action: {
-                                viewStore.send(.onMenuTap, animation: .easeIn)
+                                viewStore.send(.onTapMenu, animation: .easeIn)
                             }
                         ){
                             Image(systemName: "line.horizontal.3")
