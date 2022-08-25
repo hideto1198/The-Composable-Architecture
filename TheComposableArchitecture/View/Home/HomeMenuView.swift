@@ -15,7 +15,7 @@ struct HomeMenuView: View {
             VStack(alignment: .leading) {
                 Button(
                     action: {
-                        viewStore.send(.onMenuTap, animation: .easeOut)
+                        viewStore.send(.onTapMenu, animation: .easeOut)
                     }
                 ){
                     Image(systemName: "xmark")
@@ -30,55 +30,36 @@ struct HomeMenuView: View {
                                                                          reducer: profileReducer,
                                                                          environment: .live))
                         .navigationBarHidden(true),
-                                   label: { MenuView(title: "基本情報")}
-                    )
-                    .offset(x: bounds.width * 0.3)
-                    Divider()
+                                   label: { MenuView(title: "基本情報") })
                     NavigationLink(
                         destination: MakeReservationView(store:
                                                             Store(initialState: MakeReservationState(),
                                                                   reducer: makeReservationReducer,
-                                                                  environment: .live)
-                                                         
-                                                        )
+                                                                  environment: .live))
                         .navigationBarHidden(true),
-                        label: {
-                            MenuView(title: "予約")
-                        })
-                    .offset(x: bounds.width * 0.3)
-                    Divider()
+                        label: { MenuView(title: "予約")})
                     NavigationLink(
                         destination: TicketReaderView(store: Store(initialState: CodeReadState(),
                                                                    reducer: codeReadReducer,
                                                                    environment: .live))
                         .navigationBarHidden(true),
-                        label: {
-                            MenuView(title: "チケット追加")
-                        })
-                    .offset(x: bounds.width * 0.3)
-                    Divider()
-                    NavigationLink(destination: EmptyView(), label: {
-                        MenuView(title: "お問い合わせ")
-                    })
-                    .offset(x: bounds.width * 0.3)
-                    Divider()
+                        label: { MenuView(title: "チケット追加") })
+                    NavigationLink(destination: EmptyView(), label: { MenuView(title: "お問い合わせ") })
                     NavigationLink(destination: LaunchScreenView(store: Store(initialState: LaunchState(),
                                                                               reducer: launchReducer,
                                                                               environment: LaunchEnvironment(mainQueue: .main, authenticationClient: .live)))
                         .navigationBarHidden(true),
-                                   label: {
-                        MenuView(title: "タイトルへ")
-                    })
-                    .offset(x: bounds.width * 0.3)
+                                   label: { MenuView(title: "タイトルへ") })
                 }
                 Spacer()
             }
             .padding(.leading)
-            .padding(.top, 50)
+            .padding(.top)
             Spacer()
         }
-        .background(Color("background"))
-        .edgesIgnoringSafeArea(.vertical)
+        .background(Color("background").edgesIgnoringSafeArea(.vertical))
+        .opacity(viewStore.opacity)
+        
     }
 }
 
