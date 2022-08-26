@@ -48,17 +48,15 @@ struct TicketView: View {
 
 struct TicketView_Previews: PreviewProvider {
     static var previews: some View {
-        TicketView(store: Store(
-            initialState: TicketState(ticket: TicketEntity(
-                name: "トレーニングプラン",
-                counts: 10,
-                max_counts: 10,
-                sub_name: "トレーニングプラン",
-                sub_counts: 20,
-                sub_max_counts: 20
-            )),
-            reducer: ticketReducer,
-            environment: TicketEnvironment(ticketClient: .live, mainQueue: .main)
+        TicketView(store: Store(initialState: TicketState(ticket: TicketEntity(
+                                                    name: "トレーニングプラン",
+                                                    counts: 10,
+                                                    max_counts: 10,
+                                                    sub_name: "トレーニングプラン",
+                                                    sub_counts: 20,
+                                                    sub_max_counts: 20)),
+                                reducer: ticketReducer,
+                                environment: TicketEnvironment(ticketClient: .live, mainQueue: .main)
         ))
     }
 }

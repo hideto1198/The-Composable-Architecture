@@ -38,16 +38,16 @@ extension ReservationClient {
                     }
                     let dateFormatter: DateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy年MM月dd日 H:m"
-                    let sorted_result: [ReservationEntity] = result.sorted(by: { (ldate, rdate) -> Bool in
-                        let left_date = ldate.date.components(separatedBy: " ")[0]
-                        let right_date = rdate.date.components(separatedBy: " ")[0]
-                        let left_time = ldate.date.components(separatedBy: " ")[1].components(separatedBy: "~")[0]
-                        let right_time = rdate.date.components(separatedBy: " ")[1].components(separatedBy: "~")[0]
-                        let left_date_date = dateFormatter.date(from: "\(left_date) \(left_time)")!
-                        let right_date_date = dateFormatter.date(from: "\(right_date) \(right_time)")!
-                        return left_date_date <= right_date_date
+                    let sortedResult: [ReservationEntity] = result.sorted(by: { (ldate, rdate) -> Bool in
+                        let leftDate = ldate.date.components(separatedBy: " ")[0]
+                        let rightDate = rdate.date.components(separatedBy: " ")[0]
+                        let leftTime = ldate.date.components(separatedBy: " ")[1].components(separatedBy: "~")[0]
+                        let rightTime = rdate.date.components(separatedBy: " ")[1].components(separatedBy: "~")[0]
+                        let leftDateTime = dateFormatter.date(from: "\(leftDate) \(leftTime)")!
+                        let rightDateTime = dateFormatter.date(from: "\(rightDate) \(rightTime)")!
+                        return leftDateTime <= rightDateTime
                     })
-                    result = sorted_result
+                    result = sortedResult
                     return result
                 } else {
                     return []

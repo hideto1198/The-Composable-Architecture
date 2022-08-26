@@ -65,10 +65,8 @@ struct HomeMenuView: View {
 
 struct HomeMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeMenuView(viewStore: ViewStore(
-            Store(initialState: HomeState(),
-                  reducer: homeReducer,
-                  environment: .live)
-        ))
+        HomeMenuView(viewStore: ViewStore(Store(initialState: HomeState(),
+                                                reducer: homeReducer,
+                                                environment: .live)))
     }
 }

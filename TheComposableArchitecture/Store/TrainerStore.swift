@@ -10,10 +10,10 @@ import ComposableArchitecture
 
 struct TrainerEntity: Equatable, Identifiable {
     var id: String = UUID().uuidString
-    var trainer_id: String = ""
-    var trainer_name: String = ""
+    var trainerID: String = ""
+    var trainerName: String = ""
     var token: String = ""
-    var image_path: String = ""
+    var imagePath: String = ""
 }
 
 struct TrainerState: Equatable {

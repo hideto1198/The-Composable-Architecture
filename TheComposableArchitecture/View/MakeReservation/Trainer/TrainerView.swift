@@ -33,7 +33,7 @@ struct TrainerView: View {
                     Text("- profile -")
                         .padding(.top)
                     HStack {
-                        Text("名前：\(trainer.trainer_name)")
+                        Text("名前：\(trainer.trainerName)")
                             .font(.custom("", size: 13))
                         Spacer()
                     }
@@ -66,8 +66,8 @@ struct TrainerView_Previews: PreviewProvider {
         TrainerView(viewStore: ViewStore(Store(initialState: MakeReservationState(),
                                                reducer: makeReservationReducer,
                                                environment: .live)),
-                    trainer: TrainerEntity(trainer_id: "",
-                                           trainer_name: "テスト　トレーナー",
+                    trainer: TrainerEntity(trainerID: "",
+                                           trainerName: "テスト　トレーナー",
                                            token: ""))
     }
 }

@@ -29,7 +29,7 @@ struct ReservationRowView: View {
                 Spacer().frame(height: bounds.height*0.010)
                 HStack{
                     Text("トレーナー　: 　　　 ")
-                    Text(self.reservation.trainer_name)
+                    Text(self.reservation.trainerName)
                 }
                 Spacer().frame(height: bounds.height*0.010)
                 HStack{
@@ -47,14 +47,11 @@ struct ReservationRowView: View {
 
 struct ReservationRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ReservationRowView(
-            reservation: ReservationEntity(
-                date: "2022年7月7日",
-                place: "二の宮店",
-                menu: "パーソナルトレーニング",
-                trainer_name: "テスト　トレーナー",
-                isTap: false
-            )
-        )
+        ReservationRowView(reservation: ReservationEntity(
+                                            date: "2022年7月7日",
+                                            place: "二の宮店",
+                                            menu: "パーソナルトレーニング",
+                                            trainer_name: "テスト　トレーナー",
+                                            isTap: false))
     }
 }

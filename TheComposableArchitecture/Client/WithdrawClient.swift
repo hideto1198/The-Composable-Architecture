@@ -28,9 +28,9 @@ extension WithdrawClient {
             let userID: String = Auth.auth().currentUser!.uid
             let response = try await functions.httpsCallable("delete_user").call(["userID": userID])
             try Auth.auth().signOut()
-            UserDefaults.standard.removeObject(forKey: "first_launch")
-            UserDefaults.standard.removeObject(forKey: "user_name")
-            UserDefaults.standard.removeObject(forKey: "user_kana_name")
+            UserDefaults.standard.removeObject(forKey: "firstLaunch")
+            UserDefaults.standard.removeObject(forKey: "userName")
+            UserDefaults.standard.removeObject(forKey: "userKanaName")
             UserDefaults.standard.removeObject(forKey: "sex")
             UserDefaults.standard.removeObject(forKey: "birthday")
             return true

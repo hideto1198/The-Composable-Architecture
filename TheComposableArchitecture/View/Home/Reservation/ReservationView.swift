@@ -26,11 +26,8 @@ struct ReservationView: View {
 
 struct ReservationView_Previews: PreviewProvider {
     static var previews: some View {
-        ReservationView(viewStore: ViewStore(
-            Store(initialState: HomeState(),
-                  reducer: homeReducer,
-                  environment: .live)
-        )
-        )
+        ReservationView(viewStore: ViewStore(Store(initialState: HomeState(),
+                                                   reducer: homeReducer,
+                                                   environment: .live)))
     }
 }

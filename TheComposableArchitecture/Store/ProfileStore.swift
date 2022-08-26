@@ -9,17 +9,17 @@ import Foundation
 import ComposableArchitecture
 
 struct ProfileEntity: Equatable {
-    var user_name: String = ""
-    var user_kana_name: String = ""
+    var userName: String = ""
+    var userKanaName: String = ""
     var birthday: String = ""
     var sex: String = ""
 }
 struct ProfileState: Equatable {
     var profile: ProfileEntity = ProfileEntity()
-    @BindableState var firstName1: String = "\(UserDefaults.standard.string(forKey: "user_name")?.components(separatedBy: " ")[0] ?? " ")" // 姓
-    @BindableState var firstName2: String = "\(UserDefaults.standard.string(forKey: "user_kana_name")?.components(separatedBy: " ")[0] ?? " ")"  // セイ
-    @BindableState var lastName1: String = "\(UserDefaults.standard.string(forKey: "user_name")?.components(separatedBy: " ")[1] ?? " ")"   // 名
-    @BindableState var lastName2: String = "\(UserDefaults.standard.string(forKey: "user_kana_name")?.components(separatedBy: " ")[1] ?? " ")"   // メイ
+    @BindableState var firstName1: String = "\(UserDefaults.standard.string(forKey: "userName")?.components(separatedBy: " ")[0] ?? " ")" // 姓
+    @BindableState var firstName2: String = "\(UserDefaults.standard.string(forKey: "userKanaName")?.components(separatedBy: " ")[0] ?? " ")"  // セイ
+    @BindableState var lastName1: String = "\(UserDefaults.standard.string(forKey: "userName")?.components(separatedBy: " ")[1] ?? " ")"   // 名
+    @BindableState var lastName2: String = "\(UserDefaults.standard.string(forKey: "userKanaName")?.components(separatedBy: " ")[1] ?? " ")"   // メイ
     @BindableState var sexSelector: Int = 0
     @BindableState var date: Date = Date()
     var alert: AlertState<ProfileAction>?
@@ -66,8 +66,8 @@ let profileReducer: Reducer = Reducer<ProfileState, ProfileAction, ProfileEnviro
         return .none
     case .onAppear:
         state.profile = ProfileEntity(
-            user_name: UserDefaults.standard.string(forKey: "user_name") ?? "",
-            user_kana_name: UserDefaults.standard.string(forKey: "user_kana_name") ?? "",
+            userName: UserDefaults.standard.string(forKey: "userName") ?? "",
+            userKanaName: UserDefaults.standard.string(forKey: "userKanaName") ?? "",
             birthday: UserDefaults.standard.string(forKey: "birthday") ?? "",
             sex: UserDefaults.standard.string(forKey: "sex") ?? ""
         )
@@ -80,12 +80,12 @@ let profileReducer: Reducer = Reducer<ProfileState, ProfileAction, ProfileEnviro
             return dateFormatter
         }
         let request: [String: String] = [
-            "FIRSTNAME_1": state.firstName1,
-            "FIRSTNAME_2": state.firstName2,
-            "LASTNAME_1": state.lastName1,
-            "LASTNAME_2": state.lastName2,
-            "SEX": state.sexSelector == 1 ? "男" : state.sexSelector == 2 ? "女" : "-",
-            "BIRTHDAY": dateFormatter.string(from: state.date)
+            "firstName1": state.firstName1,
+            "firstName2": state.firstName2,
+            "lastName1": state.lastName1,
+            "lastName2": state.lastName2,
+            "sex": state.sexSelector == 1 ? "男" : state.sexSelector == 2 ? "女" : "-",
+            "birthday": dateFormatter.string(from: state.date)
         ]
         return environment.profileClient.fetch(request)
             .receive(on: environment.mainQueue)

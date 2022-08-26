@@ -11,15 +11,15 @@ import ComposableArchitecture
 
 struct MakeReservationEntity: Equatable, Identifiable {
     var id: String = UUID().uuidString
-    var menu_name: String
-    var place_name: String
+    var menuName: String
+    var placeName: String
     var year: String
     var month: String
     var day: String
-    var trainer_name: String = ""
-    var time_from: String
-    var time_to: String
-    var display_time: String
+    var trainerName: String = ""
+    var timeFrom: String
+    var timeTo: String
+    var displayTime: String
 }
 
 struct MakeReservationState: Equatable {
@@ -32,7 +32,7 @@ struct MakeReservationState: Equatable {
     var showTrainer: Bool = false
     var showCalendar: Bool = false
     var showReservationDate: Bool = false
-    var reservation_date: String = "選択してください"
+    var reservationDate: String = "選択してください"
     var showTimeSchedule: Bool = false
     var reservationTime: String = "選択してください"
     var showReservationTime: Bool = false
@@ -44,8 +44,8 @@ struct MakeReservationState: Equatable {
     var year: String = ""
     var month: String = ""
     var day: String = ""
-    var time_from: String = ""
-    var time_to: String = ""
+    var timeFrom: String = ""
+    var timeTo: String = ""
     var displayTime: String = ""
     @BindableState var isSheet: Bool = false
     var alert: AlertState<MakeReservationAction>?
@@ -57,7 +57,7 @@ struct MakeReservationState: Equatable {
         self.showTrainer = false
         self.showCalendar = false
         self.showReservationDate = false
-        self.reservation_date = "選択してください"
+        self.reservationDate = "選択してください"
         self.showTimeSchedule = false
         self.showReservationTime = false
         self.reservationTime = "選択してください"
@@ -126,7 +126,7 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
                 state.showCalendar = false
                 state.showReservationDate = true
                 state.showTrainer = true
-                state.reservation_date = "\(state.calendarState.year)年\(state.calendarState.month)月\(date.date)日"
+                state.reservationDate = "\(state.calendarState.year)年\(state.calendarState.month)月\(date.date)日"
                 state.year = "\(state.calendarState.year)"
                 state.month = "\(state.calendarState.month)"
                 state.day = date.date
@@ -144,7 +144,7 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         // MARK: - トレーナーを選択したときの処理
         case let .trainerAction(.onTapTrainer(trainer)):
             state.showTimeSchedule = false
-            state.trainer = trainer.trainer_name
+            state.trainer = trainer.trainerName
             state.showTrainer = false
             state.showReservationTime = true
             state.reservationTime = "選択してください"
@@ -158,18 +158,18 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         // MARK: - 時間を選択したときの処理
         case let .timescheduleAction(.onTapTime(time)):
             guard time != "22:30" else { return .none }
-            let next_time: String = next_time_value(time: time)
-            let display_time: String = next_time_value(time: next_time)
-            if state.timescheduleState.times[time]!.state == 1 && state.timescheduleState.times[next_time]!.state == 1 {
-                state.reservationTime = "\(time)〜\(display_time)"
-                state.time_from = time
-                state.time_to = next_time
-                state.displayTime = display_time
+            let nextTime: String = next_time_value(time: time)
+            let displayTime: String = next_time_value(time: nextTime)
+            if state.timescheduleState.times[time]!.state == 1 && state.timescheduleState.times[nextTime]!.state == 1 {
+                state.reservationTime = "\(time)〜\(displayTime)"
+                state.timeFrom = time
+                state.timeTo = nextTime
+                state.displayTime = displayTime
                 state.showTimeSchedule = false
                 state.showAddButton = true
             } else {
-                state.time_from = ""
-                state.time_to = ""
+                state.timeFrom = ""
+                state.timeTo = ""
                 state.displayTime = ""
                 state.showAddButton = false
             }
@@ -215,15 +215,15 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
                 state.alert = AlertState(title: TextState("エラー"), message: TextState("これ以上追加できません。"))
                 return .none
             } else {
-                state.reservations.append(MakeReservationEntity(menu_name: state.menuSelector == 0 ? "パーソナルトレーニング" : "",
-                                                                place_name: state.placeSelector == 1 ? "板垣店" : "二の宮店",
+                state.reservations.append(MakeReservationEntity(menuName: state.menuSelector == 0 ? "パーソナルトレーニング" : "",
+                                                                placeName: state.placeSelector == 1 ? "板垣店" : "二の宮店",
                                                                 year: state.year,
                                                                 month: state.month,
                                                                 day: state.day,
-                                                                trainer_name: state.trainer,
-                                                                time_from: state.time_from,
-                                                                time_to: state.time_to,
-                                                                display_time: state.displayTime))
+                                                                trainerName: state.trainer,
+                                                                timeFrom: state.timeFrom,
+                                                                timeTo: state.timeTo,
+                                                                displayTime: state.displayTime))
                 state.resetState()
                 state.placeSelector = 0
                 return .none
@@ -232,12 +232,12 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         case .onTapCheckButton:
             let dateFormatter: DateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy年MM月dd日 H:m"
-            let sorted_reservations: [MakeReservationEntity] = state.reservations.sorted(by: { (ldate, rdate) -> Bool in
-                let left_date: Date = dateFormatter.date(from: "\(ldate.year)年\(ldate.month)月\(ldate.day)日 \(ldate.time_from)")!
-                let right_date: Date = dateFormatter.date(from: "\(rdate.year)年\(rdate.month)月\(rdate.day)日 \(rdate.time_from)")!
-                return left_date < right_date
+            let sortedReservations: [MakeReservationEntity] = state.reservations.sorted(by: { (ldate, rdate) -> Bool in
+                let leftDate: Date = dateFormatter.date(from: "\(ldate.year)年\(ldate.month)月\(ldate.day)日 \(ldate.timeFrom)")!
+                let rightDate: Date = dateFormatter.date(from: "\(rdate.year)年\(rdate.month)月\(rdate.day)日 \(rdate.timeFrom)")!
+                return leftDate < rightDate
             })
-            state.reservations = sorted_reservations
+            state.reservations = sortedReservations
             state.isSheet = true
             return .none
         case let .onDelete(offsets):

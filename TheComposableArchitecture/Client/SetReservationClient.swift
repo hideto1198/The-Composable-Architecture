@@ -24,16 +24,16 @@ extension SetReservationClient {
             var request: [String: [[String: Any]]] = ["data": []]
             for reservation in reservations {
                 request["data"]!.append([
-                    "ID": "\(reservation.year)/\(reservation.month)/\(reservation.day)/\(reservation.time_from)/\(reservation.display_time)",
+                    "ID": "\(reservation.year)/\(reservation.month)/\(reservation.day)/\(reservation.timeFrom)/\(reservation.displayTime)",
                     "year": "\(reservation.year)",
                     "month": "\(reservation.month)",
                     "day": "\(reservation.day)",
-                    "time1": "\(reservation.time_from)",
-                    "time2": "\(reservation.time_to)",
-                    "show_time": "\(reservation.display_time)",
-                    "place": "\(reservation.place_name)",
-                    "menu": "\(reservation.menu_name)",
-                    "trainer": "\(reservation.trainer_name)",
+                    "time1": "\(reservation.timeFrom)",
+                    "time2": "\(reservation.timeTo)",
+                    "show_time": "\(reservation.displayTime)",
+                    "place": "\(reservation.placeName)",
+                    "menu": "\(reservation.menuName)",
+                    "trainer": "\(reservation.trainerName)",
                     "userID": userID,
                     "token": ""
                 ])
