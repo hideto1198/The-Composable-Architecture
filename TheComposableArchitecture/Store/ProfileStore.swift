@@ -16,10 +16,10 @@ struct ProfileEntity: Equatable {
 }
 struct ProfileState: Equatable {
     var profile: ProfileEntity = ProfileEntity()
-    @BindableState var firstName1: String = "\(UserDefaults.standard.string(forKey: "userName")?.components(separatedBy: " ")[0] ?? " ")" // 姓
-    @BindableState var firstName2: String = "\(UserDefaults.standard.string(forKey: "userKanaName")?.components(separatedBy: " ")[0] ?? " ")"  // セイ
-    @BindableState var lastName1: String = "\(UserDefaults.standard.string(forKey: "userName")?.components(separatedBy: " ")[1] ?? " ")"   // 名
-    @BindableState var lastName2: String = "\(UserDefaults.standard.string(forKey: "userKanaName")?.components(separatedBy: " ")[1] ?? " ")"   // メイ
+    @BindableState var firstName1: String = "\(UserDefaults.standard.string(forKey: "userName")?.components(separatedBy: "　")[0] ?? "　")" // 姓
+    @BindableState var firstName2: String = "\(UserDefaults.standard.string(forKey: "userKanaName")?.components(separatedBy: "　")[0] ?? "　")"  // セイ
+    @BindableState var lastName1: String = "\(UserDefaults.standard.string(forKey: "userName")?.components(separatedBy: "　")[1] ?? "　")"   // 名
+    @BindableState var lastName2: String = "\(UserDefaults.standard.string(forKey: "userKanaName")?.components(separatedBy: "　")[1] ?? "　")"   // メイ
     @BindableState var sexSelector: Int = 0
     @BindableState var date: Date = Date()
     var alert: AlertState<ProfileAction>?

@@ -22,8 +22,8 @@ extension ProfileClient {
             let userID: String = Auth.auth().currentUser!.uid
             var request: [String: String] = _request
             request["userID"] = userID
-            UserDefaults.standard.set("\(request["firstName1"]!) \(request["lastName1"]!)", forKey: "userName")
-            UserDefaults.standard.set("\(request["firstName2"]!) \(request["lastName2"]!)", forKey: "userKanaName")
+            UserDefaults.standard.set("\(request["firstName1"]!)　\(request["lastName1"]!)", forKey: "userName")
+            UserDefaults.standard.set("\(request["firstName2"]!)　\(request["lastName2"]!)", forKey: "userKanaName")
             UserDefaults.standard.set("\(request["birthday"]!)", forKey: "birthday")
             UserDefaults.standard.set("\(request["sex"]!)", forKey: "sex")
             let response = try await functions.httpsCallable("set_user_profile").call(request)
