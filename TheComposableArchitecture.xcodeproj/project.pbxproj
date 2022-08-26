@@ -134,6 +134,8 @@
 		86C23F7D28A647DA00303924 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F7C28A647DA00303924 /* SignUpView.swift */; };
 		86C23F7F28A6489500303924 /* SignUpStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F7E28A6489500303924 /* SignUpStore.swift */; };
 		86C23F8128A64D1A00303924 /* SignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F8028A64D1A00303924 /* SignInClient.swift */; };
+		86C4E3EF28B82D6700A31726 /* TrainerHomeCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4E3EE28B82D6700A31726 /* TrainerHomeCalendarView.swift */; };
+		86C4E3F228B82D9100A31726 /* TrainerHomeCalendarTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4E3F128B82D9100A31726 /* TrainerHomeCalendarTileView.swift */; };
 		86EA523B2893D0A800939659 /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523A2893D0A800939659 /* HomeStore.swift */; };
 		86EA523D2893FAFA00939659 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523C2893FAFA00939659 /* HomeHeaderView.swift */; };
 		86EA523F2894013900939659 /* HomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523E2894013900939659 /* HomeMenuView.swift */; };
@@ -269,6 +271,8 @@
 		86C23F7C28A647DA00303924 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		86C23F7E28A6489500303924 /* SignUpStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStore.swift; sourceTree = "<group>"; };
 		86C23F8028A64D1A00303924 /* SignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInClient.swift; sourceTree = "<group>"; };
+		86C4E3EE28B82D6700A31726 /* TrainerHomeCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerHomeCalendarView.swift; sourceTree = "<group>"; };
+		86C4E3F128B82D9100A31726 /* TrainerHomeCalendarTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerHomeCalendarTileView.swift; sourceTree = "<group>"; };
 		86EA523A2893D0A800939659 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
 		86EA523C2893FAFA00939659 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		86EA523E2894013900939659 /* HomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuView.swift; sourceTree = "<group>"; };
@@ -616,6 +620,7 @@
 		86BB02AB28B771BB00435C32 /* TrainerHome */ = {
 			isa = PBXGroup;
 			children = (
+				86C4E3F028B82D7300A31726 /* TrainerHomeCalendar */,
 				86BB029028B63E8700435C32 /* TrainerHomeView.swift */,
 				86BB02AC28B771DE00435C32 /* TrainerHomeHeaderView.swift */,
 				86BB02B028B77BB700435C32 /* TrainerHomeMenuView.swift */,
@@ -694,6 +699,15 @@
 				86BB02A328B6DA3B00435C32 /* RecoveryPasswordView.swift */,
 			);
 			path = SignInUp;
+			sourceTree = "<group>";
+		};
+		86C4E3F028B82D7300A31726 /* TrainerHomeCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				86C4E3EE28B82D6700A31726 /* TrainerHomeCalendarView.swift */,
+				86C4E3F128B82D9100A31726 /* TrainerHomeCalendarTileView.swift */,
+			);
+			path = TrainerHomeCalendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -941,6 +955,7 @@
 				86BB02A628B6DA8500435C32 /* RecoveryPasswordStore.swift in Sources */,
 				86BB02BC28B781C200435C32 /* TicketPublishView.swift in Sources */,
 				8655503128A67CBA00924528 /* RegisterStore.swift in Sources */,
+				86C4E3EF28B82D6700A31726 /* TrainerHomeCalendarView.swift in Sources */,
 				86BB02AD28B771DE00435C32 /* TrainerHomeHeaderView.swift in Sources */,
 				8609BAF428992DB50055130A /* LaunchStore.swift in Sources */,
 				86BB026028B36DFA00435C32 /* CodeReadClient.swift in Sources */,
@@ -950,6 +965,7 @@
 				86BB02C228B781EA00435C32 /* PlanSetView.swift in Sources */,
 				863F7A6F289000EB0065B8E8 /* ActivityIndicator.swift in Sources */,
 				863F7A62288FD9000065B8E8 /* ReservationClient.swift in Sources */,
+				86C4E3F228B82D9100A31726 /* TrainerHomeCalendarTileView.swift in Sources */,
 				86BB02C528B7824900435C32 /* ChangeStoreView.swift in Sources */,
 				86BB01F128AA686000435C32 /* SignInUpWithAppleButton.swift in Sources */,
 				8609BAFC289A95CF0055130A /* MakeReservationView.swift in Sources */,
