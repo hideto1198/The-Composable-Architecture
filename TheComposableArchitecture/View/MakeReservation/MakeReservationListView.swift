@@ -63,7 +63,7 @@ struct MakeReservationListView_Previews: PreviewProvider {
                                                                                                                                    trainerName: "テスト　トレーナー",
                                                                                                                                    timeFrom: "19:00",
                                                                                                                                    timeTo: "19:30",
-                                                                                                                                   displayime: "20:00")]),
+                                                                                                                                   displayTime: "20:00")]),
                                                            reducer: makeReservationReducer,
                                                            environment: .live))
     }
