@@ -11,20 +11,20 @@ import FirebaseAuth
 import FirebaseFunctions
 
 struct CodeReadClient {
-    var fetch: (_ qr_data: String) -> Effect<Bool, Failure>
+    var fetch: (_ qrData: String) -> Effect<Bool, Failure>
     struct Failure: Error, Equatable {}
 }
 
 extension CodeReadClient {
-    static let live = CodeReadClient(fetch: { qr_data in
+    static let live = CodeReadClient(fetch: { qrData in
         Effect.task {
             let functions = Functions.functions()
             let userID: String = Auth.auth().currentUser!.uid
             var request: [String: Any] = [
                 "userID": userID,
-                "plan_counts": qr_data.components(separatedBy: ",")[0],
-                "plan_max_counts": qr_data.components(separatedBy: ",")[1],
-                "plan_name": qr_data.components(separatedBy: ",")[2]
+                "plan_counts": qrData.components(separatedBy: ",")[0],
+                "plan_max_counts": qrData.components(separatedBy: ",")[1],
+                "plan_name": qrData.components(separatedBy: ",")[2]
             ]
             let response = try await functions.httpsCallable("set_ticket").call(request)
             return true
