@@ -51,10 +51,8 @@ struct HomeHeaderView: View {
 
 struct HomeHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeHeaderView(store:
-                        Store(initialState: HomeState(),
-                              reducer: homeReducer,
-                              environment: .live)
-        )
+        HomeHeaderView(store:Store(initialState: HomeState(),
+                                   reducer: homeReducer,
+                                   environment: .live))
     }
 }

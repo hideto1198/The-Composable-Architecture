@@ -22,7 +22,7 @@ struct ProfileView: View {
                             .navigationBarHidden(true),
                         label: {
                             ProfileContentView(title: "名前",
-                                               value: UserDefaults.standard.string(forKey: "user_name")!)
+                                               value: UserDefaults.standard.string(forKey: "userName")!)
                         }
                     )
                     NavigationLink(
@@ -30,7 +30,7 @@ struct ProfileView: View {
                             .navigationBarHidden(true),
                         label: {
                             ProfileContentView(title: "カナ",
-                                               value: UserDefaults.standard.string(forKey: "user_kana_name")!)
+                                               value: UserDefaults.standard.string(forKey: "userKanaName")!)
                         }
                     )
                     NavigationLink(

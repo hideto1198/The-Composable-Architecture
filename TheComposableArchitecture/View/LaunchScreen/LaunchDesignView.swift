@@ -58,12 +58,9 @@ struct LaunchDesignView: View {
 
  struct LaunchDesignView_Previews: PreviewProvider {
      static var previews: some View {
-         LaunchDesignView(
-             viewStore: ViewStore(Store(initialState: LaunchState(),
-                          reducer: launchReducer,
-                                        environment: .init(mainQueue: .main, authenticationClient: .live)
-                         ))
-         )
+         LaunchDesignView(viewStore: ViewStore(Store(initialState: LaunchState(),
+                                        reducer: launchReducer,
+                                        environment: .init(mainQueue: .main, authenticationClient: .live))))
      }
  }
  

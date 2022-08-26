@@ -21,10 +21,10 @@ struct MakeReservationListView: View {
                         ForEach(viewStore.reservations) { reservation in
                             HStack {
                                 VStack(alignment: .leading) {
-                                    Text("メニュー　： \(reservation.menu_name)")
-                                    Text("日時　　　： \(reservation.year)年\(reservation.month)月\(reservation.day)日 \(reservation.time_from)〜\(reservation.display_time)")
-                                    Text("トレーナー： \(reservation.trainer_name)")
-                                    Text("場所　　　： \(reservation.place_name)")
+                                    Text("メニュー　： \(reservation.menuName)")
+                                    Text("日時　　　： \(reservation.year)年\(reservation.month)月\(reservation.day)日 \(reservation.timeFrom)〜\(reservation.displayTime)")
+                                    Text("トレーナー： \(reservation.trainerName)")
+                                    Text("場所　　　： \(reservation.placeName)")
                                 }
                                 .font(.custom("", size: 15))
                                 Spacer()
@@ -55,15 +55,15 @@ struct MakeReservationListView: View {
 
 struct MakeReservationListView_Previews: PreviewProvider {
     static var previews: some View {
-        MakeReservationListView(store: Store(initialState: MakeReservationState(reservations: [MakeReservationEntity(menu_name: "パーソナルトレーニング",
-                                                                                                                                   place_name: "板垣店",
+        MakeReservationListView(store: Store(initialState: MakeReservationState(reservations: [MakeReservationEntity(menuName: "パーソナルトレーニング",
+                                                                                                                                   placeName: "板垣店",
                                                                                                                                    year: "2022",
                                                                                                                                    month: "8",
                                                                                                                                    day: "19",
-                                                                                                                                   trainer_name: "テスト　トレーナー",
-                                                                                                                                   time_from: "19:00",
-                                                                                                                                   time_to: "19:30",
-                                                                                                                                   display_time: "20:00")]),
+                                                                                                                                   trainerName: "テスト　トレーナー",
+                                                                                                                                   timeFrom: "19:00",
+                                                                                                                                   timeTo: "19:30",
+                                                                                                                                   displayime: "20:00")]),
                                                            reducer: makeReservationReducer,
                                                            environment: .live))
     }

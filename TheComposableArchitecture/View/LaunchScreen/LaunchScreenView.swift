@@ -69,10 +69,8 @@ struct LaunchScreenView: View {
 
 struct LaunchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchScreenView(
-            store: Store(initialState: LaunchState(),
+        LaunchScreenView(store: Store(initialState: LaunchState(),
                          reducer: launchReducer,
-                         environment: .init(mainQueue: .main, authenticationClient: .live)
-        ))
+                         environment: .init(mainQueue: .main, authenticationClient: .live)))
     }
 }
