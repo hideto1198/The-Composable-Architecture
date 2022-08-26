@@ -22,7 +22,6 @@ struct HomeMenuView: View {
                         .resizable()
                         .frame(width: bounds.width * 0.06, height: bounds.width * 0.06)
                         .foregroundColor(.primary)
-                        .padding(.top)
                 }
                 .offset(x: bounds.width * 0.3)
                 Group {
@@ -54,7 +53,6 @@ struct HomeMenuView: View {
                 Spacer()
             }
             .padding(.leading)
-            .padding(.top)
             Spacer()
         }
         .background(Color("background").edgesIgnoringSafeArea(.vertical))
