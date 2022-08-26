@@ -41,12 +41,12 @@ extension DeleteClient {
                 "day": "\(day)",
                 "time1": "\(time1)",
                 "time2": "\(time2)",
-                "showTime": "\(showTime)",
+                "show_time": "\(showTime)",
                 "userID": userID,
                 "details": [
                     "place": "\(reservation.place)",
                     "menu": "\(reservation.menu)",
-                    "trainer": "\(reservation.trainer_name)"
+                    "trainer": "\(reservation.trainerName)"
                 ]
             ]
             let data = try await functions.httpsCallable("delete_reservation").call(["delete_reservation_data": request])
