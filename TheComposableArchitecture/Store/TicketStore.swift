@@ -12,10 +12,10 @@ import ComposableArchitecture
 struct TicketEntity: Equatable {
     var name: String = ""
     var counts: Int = 0
-    var max_counts: Int = 0
-    var sub_name: String = ""
-    var sub_counts: Int = 0
-    var sub_max_counts: Int = 0
+    var maxCounts: Int = 0
+    var subName: String = ""
+    var subCounts: Int = 0
+    var subMaxCounts: Int = 0
 }
 
 struct TicketState: Equatable {

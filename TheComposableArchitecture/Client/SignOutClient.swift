@@ -18,7 +18,7 @@ extension SignOutClient {
     static let live = SignOutClient(fetch: {
         Effect.task {
             try Auth.auth().signOut()
-            UserDefaults.standard.removeObject(forKey: "first_launch")
+            UserDefaults.standard.removeObject(forKey: "firstLaunch")
             return true
         }
         .mapError{ _ in Failure() }

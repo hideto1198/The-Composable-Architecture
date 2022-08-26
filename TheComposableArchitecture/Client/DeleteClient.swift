@@ -32,16 +32,16 @@ extension DeleteClient {
             let month:String = date.components(separatedBy: "年")[1].components(separatedBy: "月")[0]
             let day:String = date.components(separatedBy: "年")[1].components(separatedBy: "月")[1].components(separatedBy: "日")[0]
             let time = reservation.date.components(separatedBy: " ")[1]
-            let show_time:String = time.components(separatedBy: "~")[1]
+            let showTime:String = time.components(separatedBy: "~")[1]
             let time1:String = time.components(separatedBy: "~")[0]
-            let time2:String = times[times.firstIndex(of: show_time)!-1]
+            let time2:String = times[times.firstIndex(of: showTime)!-1]
             let request: [String: Any] = [
                 "year": "\(year)",
                 "month": "\(month)",
                 "day": "\(day)",
                 "time1": "\(time1)",
                 "time2": "\(time2)",
-                "show_time": "\(show_time)",
+                "showTime": "\(showTime)",
                 "userID": userID,
                 "details": [
                     "place": "\(reservation.place)",

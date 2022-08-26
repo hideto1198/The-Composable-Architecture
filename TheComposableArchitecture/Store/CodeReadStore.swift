@@ -9,12 +9,12 @@ import Foundation
 import ComposableArchitecture
 
 struct QRCodeEntity: Equatable {
-    var plan_counts: Int = 0
-    var plan_max_counts: Int = 0
-    var plan_name: String = ""
+    var planCounts: Int = 0
+    var planMaxCounts: Int = 0
+    var planName: String = ""
 }
 struct CodeReadState: Equatable {
-    var qr_data: QRCodeEntity = QRCodeEntity()
+    var qrData: QRCodeEntity = QRCodeEntity()
     var opacity: Double = 0.0
     var alert: AlertState<CodeReadAction>?
 }

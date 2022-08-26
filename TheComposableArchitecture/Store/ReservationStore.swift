@@ -14,7 +14,7 @@ struct ReservationEntity: Equatable, Identifiable {
     var date: String = ""
     var place: String = ""
     var menu: String = ""
-    var trainer_name: String = ""
+    var trainerName: String = ""
     var isTap: Bool = false
 }
 
@@ -66,7 +66,7 @@ let reservationReducer: Reducer = Reducer<ReservationState, ReservationAction, R
         return .none
     case .reset:
         state.reservations.removeAll()
-        UserDefaults.standard.removeObject(forKey: "first_launch")
+        UserDefaults.standard.removeObject(forKey: "firstLaunch")
         return .none
     case let .onTapDelete(reservation):
         return .none
