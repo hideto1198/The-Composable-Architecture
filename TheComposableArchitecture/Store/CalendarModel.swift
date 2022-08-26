@@ -2,7 +2,7 @@ import Foundation
 
 class CalendarModel {
     // MARK: - 日付計算
-    fileprivate func calculationDate(year: Int, month: Int) -> [[DateEntity]] {
+    func calculationDate(year: Int, month: Int) -> [[DateEntity]] {
         var dates: [[DateEntity]] = [[DateEntity]](repeating: [DateEntity](repeating: DateEntity(), count: 7), count: 6)
         var results: [[DateEntity]] = [[DateEntity]]()
         var space: Int = calculationWeek(year: year, month: month, day: 1)
@@ -21,6 +21,9 @@ class CalendarModel {
                         date = 0
                     }else{
                         dates[i][n].date = "\(date)"
+                        if checkToday(year: year, month: month, date: date) {
+                            dates[i][n].isToday = true
+                        }
                         date += 1
                     }
                 } else {
@@ -36,6 +39,22 @@ class CalendarModel {
             results.append(dates[i])
         }
         return results
+    }
+    // MARK: - 今日かどうか判別する
+    private func checkToday(year: Int, month: Int, date: Int) -> Bool {
+        let today: Date = Date()
+        var dateFormatter: DateFormatter {
+            let dateFormatter: DateFormatter = DateFormatter()
+            dateFormatter.calendar = Calendar(identifier: .gregorian)
+            dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy/MM/dd", options: 0, locale: Locale(identifier: "ja_JP"))
+            return dateFormatter
+        }
+        
+        if dateFormatter.string(from: today) == dateFormatter.string(from: dateFormatter.date(from: "\(String(year))/\(month)/\(date)")!) {
+            return true
+        } else {
+            return false
+        }
     }
     
     // MARK: - 曜日計算
