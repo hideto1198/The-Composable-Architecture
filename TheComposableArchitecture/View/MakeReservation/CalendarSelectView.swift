@@ -20,7 +20,7 @@ struct CalendarSelectView: View {
                     viewStore.send(.onTapDate, animation: .easeInOut)
                 }
             ){
-                Text("\(viewStore.reservation_date)")
+                Text("\(viewStore.reservationDate)")
             }
         }
     }
