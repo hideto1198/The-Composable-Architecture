@@ -26,12 +26,12 @@ extension TicketClient {
             if let data = data.data {
                 let datas: NSDictionary = (data as! NSDictionary)["data"] as! NSDictionary
                 result = TicketEntity(
-                    name: datas["planName"] as! String,
-                    counts: datas["planCounts"] as! Int,
-                    max_counts: datas["maxPlanCounts"] as! Int,
-                    sub_name: datas["subPlanName"] as! String,
-                    sub_counts: datas["subPlanCounts"] as! Int,
-                    sub_max_counts: datas["subPlanMaxCounts"] as! Int
+                    name: datas["plan_name"] as! String,
+                    counts: datas["plan_counts"] as! Int,
+                    maxCounts: datas["max_plan_counts"] as! Int,
+                    subName: datas["sub_plan_name"] as! String,
+                    subCounts: datas["sub_plan_counts"] as! Int,
+                    subMaxCounts: datas["sub_plan_max_counts"] as! Int
                 )
                 return result
             }else{
