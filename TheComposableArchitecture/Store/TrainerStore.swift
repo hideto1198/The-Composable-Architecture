@@ -22,7 +22,7 @@ struct TrainerState: Equatable {
 }
 
 enum TrainerAction: Equatable {
-    case getTrainer
+    case getTrainer([String: String])
     case trainerResponse(Result<[TrainerEntity], TrainerClient.Failure>)
     case onTapTrainer(TrainerEntity)
 }
@@ -36,9 +36,9 @@ let trainerReducer: Reducer = Reducer<TrainerState, TrainerAction, TrainerEnviro
     switch action {
     case let .onTapTrainer(trainer):
         return .none
-    case .getTrainer:
+    case let .getTrainer(request):
         state.isLoading = true
-        return environment.trainerClient.fetch()
+        return environment.trainerClient.fetch(request)
             .receive(on: environment.mainQueue)
             .catchToEffect(TrainerAction.trainerResponse)
     case let .trainerResponse(.success(response)):
