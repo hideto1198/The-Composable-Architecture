@@ -42,7 +42,7 @@ struct HomeHeaderView: View {
                             })
                     }
                 }
-                .padding(.all)
+                .padding(.horizontal)
                 Divider()
             }
         }
