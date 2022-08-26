@@ -40,7 +40,6 @@
 		863F7A7128900F700065B8E8 /* CancelButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F7A7028900F700065B8E8 /* CancelButtonView.swift */; };
 		8655500128A6575000924528 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8655500028A6575000924528 /* FirebaseAnalytics */; };
 		8655500328A6575000924528 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8655500228A6575000924528 /* FirebaseAnalyticsSwift */; };
-		8655500528A6575000924528 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 8655500428A6575000924528 /* FirebaseAppCheck */; };
 		8655500728A6575000924528 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8655500628A6575000924528 /* FirebaseAuth */; };
 		8655500928A6575000924528 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 8655500828A6575000924528 /* FirebaseAuthCombine-Community */; };
 		8655500B28A6575000924528 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8655500A28A6575000924528 /* FirebaseCrashlytics */; };
@@ -107,7 +106,6 @@
 		86BB02A228B6D85600435C32 /* ForgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02A128B6D85600435C32 /* ForgetPasswordView.swift */; };
 		86BB02A428B6DA3B00435C32 /* RecoveryPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02A328B6DA3B00435C32 /* RecoveryPasswordView.swift */; };
 		86BB02A628B6DA8500435C32 /* RecoveryPasswordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02A528B6DA8500435C32 /* RecoveryPasswordStore.swift */; };
-		86BB02A828B6DE6400435C32 /* SendResetPasswordClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02A728B6DE6400435C32 /* SendResetPasswordClient.swift */; };
 		86BB02AA28B76C1200435C32 /* SetTrainerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02A928B76C1200435C32 /* SetTrainerClient.swift */; };
 		86BB02AD28B771DE00435C32 /* TrainerHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02AC28B771DE00435C32 /* TrainerHomeHeaderView.swift */; };
 		86BB02AF28B771FF00435C32 /* TrainerHomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02AE28B771FF00435C32 /* TrainerHomeStore.swift */; };
@@ -136,6 +134,12 @@
 		86C23F8128A64D1A00303924 /* SignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C23F8028A64D1A00303924 /* SignInClient.swift */; };
 		86C4E3EF28B82D6700A31726 /* TrainerHomeCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4E3EE28B82D6700A31726 /* TrainerHomeCalendarView.swift */; };
 		86C4E3F228B82D9100A31726 /* TrainerHomeCalendarTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4E3F128B82D9100A31726 /* TrainerHomeCalendarTileView.swift */; };
+		86C9C3E628B8BD4E009523FC /* SendResetPasswordClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9C3E528B8BD4E009523FC /* SendResetPasswordClient.swift */; };
+		86C9C3E828B8BE49009523FC /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9C3E728B8BE48009523FC /* CalendarModel.swift */; };
+		86C9C3EA28B8BFA6009523FC /* TrainerCalendarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9C3E928B8BFA6009523FC /* TrainerCalendarStore.swift */; };
+		86C9C3EC28B8D26F009523FC /* GetGymDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9C3EB28B8D26F009523FC /* GetGymDataClient.swift */; };
+		86C9C3EE28B8EA03009523FC /* TrainerCalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9C3ED28B8EA03009523FC /* TrainerCalendarHeaderView.swift */; };
+		86C9C3F028B8EE95009523FC /* GetTrainerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9C3EF28B8EE95009523FC /* GetTrainerClient.swift */; };
 		86EA523B2893D0A800939659 /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523A2893D0A800939659 /* HomeStore.swift */; };
 		86EA523D2893FAFA00939659 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523C2893FAFA00939659 /* HomeHeaderView.swift */; };
 		86EA523F2894013900939659 /* HomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523E2894013900939659 /* HomeMenuView.swift */; };
@@ -244,7 +248,6 @@
 		86BB02A128B6D85600435C32 /* ForgetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordView.swift; sourceTree = "<group>"; };
 		86BB02A328B6DA3B00435C32 /* RecoveryPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPasswordView.swift; sourceTree = "<group>"; };
 		86BB02A528B6DA8500435C32 /* RecoveryPasswordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPasswordStore.swift; sourceTree = "<group>"; };
-		86BB02A728B6DE6400435C32 /* SendResetPasswordClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendResetPasswordClient.swift; sourceTree = "<group>"; };
 		86BB02A928B76C1200435C32 /* SetTrainerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTrainerClient.swift; sourceTree = "<group>"; };
 		86BB02AC28B771DE00435C32 /* TrainerHomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerHomeHeaderView.swift; sourceTree = "<group>"; };
 		86BB02AE28B771FF00435C32 /* TrainerHomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerHomeStore.swift; sourceTree = "<group>"; };
@@ -273,6 +276,12 @@
 		86C23F8028A64D1A00303924 /* SignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInClient.swift; sourceTree = "<group>"; };
 		86C4E3EE28B82D6700A31726 /* TrainerHomeCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerHomeCalendarView.swift; sourceTree = "<group>"; };
 		86C4E3F128B82D9100A31726 /* TrainerHomeCalendarTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerHomeCalendarTileView.swift; sourceTree = "<group>"; };
+		86C9C3E528B8BD4E009523FC /* SendResetPasswordClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendResetPasswordClient.swift; sourceTree = "<group>"; };
+		86C9C3E728B8BE48009523FC /* CalendarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
+		86C9C3E928B8BFA6009523FC /* TrainerCalendarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerCalendarStore.swift; sourceTree = "<group>"; };
+		86C9C3EB28B8D26F009523FC /* GetGymDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGymDataClient.swift; sourceTree = "<group>"; };
+		86C9C3ED28B8EA03009523FC /* TrainerCalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerCalendarHeaderView.swift; sourceTree = "<group>"; };
+		86C9C3EF28B8EE95009523FC /* GetTrainerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTrainerClient.swift; sourceTree = "<group>"; };
 		86EA523A2893D0A800939659 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
 		86EA523C2893FAFA00939659 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		86EA523E2894013900939659 /* HomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuView.swift; sourceTree = "<group>"; };
@@ -285,7 +294,6 @@
 			files = (
 				8655501D28A6575000924528 /* FirebaseMessaging in Frameworks */,
 				8655502728A6575000924528 /* FirebaseStorageCombine-Community in Frameworks */,
-				8655500528A6575000924528 /* FirebaseAppCheck in Frameworks */,
 				8655502328A6575000924528 /* FirebaseRemoteConfigSwift in Frameworks */,
 				8655500928A6575000924528 /* FirebaseAuthCombine-Community in Frameworks */,
 				8655500728A6575000924528 /* FirebaseAuth in Frameworks */,
@@ -451,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				86BB029928B6448600435C32 /* Trainer */,
+				86C9C3E728B8BE48009523FC /* CalendarModel.swift */,
 				86BA3791289D41C100D83C18 /* CalendarStore.swift */,
 				86BB025D28B359D200435C32 /* CodeReadStore.swift */,
 				86EA523A2893D0A800939659 /* HomeStore.swift */,
@@ -461,7 +470,6 @@
 				8655503028A67CBA00924528 /* RegisterStore.swift */,
 				86C23F7828A6410300303924 /* SignInStore.swift */,
 				86C23F7E28A6489500303924 /* SignUpStore.swift */,
-				86BB02A728B6DE6400435C32 /* SendResetPasswordClient.swift */,
 				86290FA128913F6200D1B16B /* TicketStore.swift */,
 				8614204828A24FCA0041F6B3 /* TrainerStore.swift */,
 				86C23F6328A39FEC00303924 /* TimescheduleStore.swift */,
@@ -500,10 +508,11 @@
 				86BB025F28B36DFA00435C32 /* CodeReadClient.swift */,
 				86BB020A28AE618500435C32 /* DeleteClient.swift */,
 				863F7A61288FD9000065B8E8 /* ReservationClient.swift */,
+				8655503928A687E300924528 /* RegisterClient.swift */,
 				86C23F8028A64D1A00303924 /* SignInClient.swift */,
 				8655502828A670BF00924528 /* SendMailClient.swift */,
 				8655502A28A677E800924528 /* SignUpClient.swift */,
-				8655503928A687E300924528 /* RegisterClient.swift */,
+				86C9C3E528B8BD4E009523FC /* SendResetPasswordClient.swift */,
 				86BB01F528AA832700435C32 /* SignUpWithAppleClient.swift */,
 				86BB026C28B3B4D000435C32 /* SignOutClient.swift */,
 				86BB020828AE5A2C00435C32 /* SetReservationClient.swift */,
@@ -604,6 +613,7 @@
 			children = (
 				86BB029A28B6449800435C32 /* MakeTrainerStore.swift */,
 				86BB02AE28B771FF00435C32 /* TrainerHomeStore.swift */,
+				86C9C3E928B8BFA6009523FC /* TrainerCalendarStore.swift */,
 			);
 			path = Trainer;
 			sourceTree = "<group>";
@@ -613,6 +623,8 @@
 			children = (
 				86BB029F28B64A9F00435C32 /* MakeTrainerClient.swift */,
 				86BB02A928B76C1200435C32 /* SetTrainerClient.swift */,
+				86C9C3EB28B8D26F009523FC /* GetGymDataClient.swift */,
+				86C9C3EF28B8EE95009523FC /* GetTrainerClient.swift */,
 			);
 			path = Trainer;
 			sourceTree = "<group>";
@@ -706,6 +718,7 @@
 			children = (
 				86C4E3EE28B82D6700A31726 /* TrainerHomeCalendarView.swift */,
 				86C4E3F128B82D9100A31726 /* TrainerHomeCalendarTileView.swift */,
+				86C9C3ED28B8EA03009523FC /* TrainerCalendarHeaderView.swift */,
 			);
 			path = TrainerHomeCalendar;
 			sourceTree = "<group>";
@@ -730,7 +743,6 @@
 				863F7A64288FE5110065B8E8 /* ComposableArchitecture */,
 				8655500028A6575000924528 /* FirebaseAnalytics */,
 				8655500228A6575000924528 /* FirebaseAnalyticsSwift */,
-				8655500428A6575000924528 /* FirebaseAppCheck */,
 				8655500628A6575000924528 /* FirebaseAuth */,
 				8655500828A6575000924528 /* FirebaseAuthCombine-Community */,
 				8655500A28A6575000924528 /* FirebaseCrashlytics */,
@@ -894,6 +906,7 @@
 				86BB02A028B64A9F00435C32 /* MakeTrainerClient.swift in Sources */,
 				8614205028A267310041F6B3 /* TrainerView.swift in Sources */,
 				86C23F7228A5C07200303924 /* SignInView.swift in Sources */,
+				86C9C3EC28B8D26F009523FC /* GetGymDataClient.swift in Sources */,
 				86C23F7928A6410300303924 /* SignInStore.swift in Sources */,
 				86C23F6E28A3C9F100303924 /* ButtonView.swift in Sources */,
 				86BB029B28B6449800435C32 /* MakeTrainerStore.swift in Sources */,
@@ -925,6 +938,7 @@
 				86C23F6828A3B55200303924 /* TimescheduleView.swift in Sources */,
 				86C23F7F28A6489500303924 /* SignUpStore.swift in Sources */,
 				86BA3792289D41C100D83C18 /* CalendarStore.swift in Sources */,
+				86C9C3E628B8BD4E009523FC /* SendResetPasswordClient.swift in Sources */,
 				86BB029128B63E8700435C32 /* TrainerHomeView.swift in Sources */,
 				863F7A6B288FFEA20065B8E8 /* ReservationRowView.swift in Sources */,
 				86C23F7D28A647DA00303924 /* SignUpView.swift in Sources */,
@@ -936,10 +950,12 @@
 				86C23F6C28A3C80F00303924 /* CalendarSelectView.swift in Sources */,
 				86BB027228B47F4E00435C32 /* WithdrawStore.swift in Sources */,
 				8609BAF228992D4A0055130A /* LaunchScreenView.swift in Sources */,
+				86C9C3F028B8EE95009523FC /* GetTrainerClient.swift in Sources */,
 				8614204728A2471B0041F6B3 /* TrainerSelectView.swift in Sources */,
 				86BB02B128B77BB700435C32 /* TrainerHomeMenuView.swift in Sources */,
 				86C23F7728A5C1FC00303924 /* PasswordInputView.swift in Sources */,
 				863F7A5F288FD8390065B8E8 /* ReservationStore.swift in Sources */,
+				86C9C3EA28B8BFA6009523FC /* TrainerCalendarStore.swift in Sources */,
 				8609BAFA289A93F30055130A /* AppHeaderView.swift in Sources */,
 				86BA378E289D3B0000D83C18 /* MenuSelectView.swift in Sources */,
 				863F7A6D288FFFAF0065B8E8 /* ReservationListView.swift in Sources */,
@@ -956,10 +972,12 @@
 				86BB02BC28B781C200435C32 /* TicketPublishView.swift in Sources */,
 				8655503128A67CBA00924528 /* RegisterStore.swift in Sources */,
 				86C4E3EF28B82D6700A31726 /* TrainerHomeCalendarView.swift in Sources */,
+				86C9C3EE28B8EA03009523FC /* TrainerCalendarHeaderView.swift in Sources */,
 				86BB02AD28B771DE00435C32 /* TrainerHomeHeaderView.swift in Sources */,
 				8609BAF428992DB50055130A /* LaunchStore.swift in Sources */,
 				86BB026028B36DFA00435C32 /* CodeReadClient.swift in Sources */,
 				86BB025A28B3030500435C32 /* CodeReadView.swift in Sources */,
+				86C9C3E828B8BE49009523FC /* CalendarModel.swift in Sources */,
 				863F79F7288FD5710065B8E8 /* TheComposableArchitectureApp.swift in Sources */,
 				86BB02C028B781E200435C32 /* CustomerSearchView.swift in Sources */,
 				86BB02C228B781EA00435C32 /* PlanSetView.swift in Sources */,
@@ -969,7 +987,6 @@
 				86BB02C528B7824900435C32 /* ChangeStoreView.swift in Sources */,
 				86BB01F128AA686000435C32 /* SignInUpWithAppleButton.swift in Sources */,
 				8609BAFC289A95CF0055130A /* MakeReservationView.swift in Sources */,
-				86BB02A828B6DE6400435C32 /* SendResetPasswordClient.swift in Sources */,
 				86BB020D28AFA4EC00435C32 /* LoadingView.swift in Sources */,
 				86BB021028B28B3E00435C32 /* ProfileView.swift in Sources */,
 				86BB01FE28AD0C7A00435C32 /* MakeReservationListView.swift in Sources */,
@@ -1359,11 +1376,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 86554FFF28A6575000924528 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
-		};
-		8655500428A6575000924528 /* FirebaseAppCheck */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 86554FFF28A6575000924528 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAppCheck;
 		};
 		8655500628A6575000924528 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
