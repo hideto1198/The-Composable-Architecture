@@ -31,7 +31,7 @@ extension ReservationClient {
                             date: date as! String,
                             place: details["place"] as! String,
                             menu: details["menu"] as! String,
-                            trainer_name: details["trainer"] as! String,
+                            trainerName: details["trainer"] as! String,
                             isTap: false
                         )
                         result.append(reservation)

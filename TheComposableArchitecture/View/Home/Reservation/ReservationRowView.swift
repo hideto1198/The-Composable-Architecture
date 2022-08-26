@@ -51,7 +51,7 @@ struct ReservationRowView_Previews: PreviewProvider {
                                             date: "2022年7月7日",
                                             place: "二の宮店",
                                             menu: "パーソナルトレーニング",
-                                            trainer_name: "テスト　トレーナー",
+                                            trainerName: "テスト　トレーナー",
                                             isTap: false))
     }
 }
