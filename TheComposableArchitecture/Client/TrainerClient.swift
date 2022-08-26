@@ -11,25 +11,25 @@ import Combine
 import Foundation
 
 struct TrainerClient {
-    var fetch: () -> Effect<[TrainerEntity], Failure>
+    var fetch: (_ request: [String: String]) -> Effect<[TrainerEntity], Failure>
     struct Failure: Error, Equatable {}
 }
 
 extension TrainerClient {
-    static let live = TrainerClient(fetch: {
+    static let live = TrainerClient(fetch: { request in
         Effect.task {
             let functions = Functions.functions()
-            let data = try await functions.httpsCallable("get_trainers").call()
+            let data = try await functions.httpsCallable("get_trainers").call(request)
             var result: [TrainerEntity] = []
             if let data = data.data {
                 let datas: NSDictionary = (data as! NSDictionary)["data"] as! NSDictionary
                 for trainer_id in datas.allKeys {
                     let details: NSDictionary = datas[trainer_id]! as! NSDictionary
                     let trainer: TrainerEntity = TrainerEntity(
-                        trainer_id: trainer_id as! String,
-                        trainer_name: details["trainer_name"] as! String,
+                        trainerID: trainer_id as! String,
+                        trainerName: details["name"] as! String,
                         token: details["token"] as! String,
-                        image_path: details["image_path"] as! String
+                        imagePath: details["path_name"] as! String
                     )
                     
                     result.append(trainer)
