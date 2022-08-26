@@ -23,12 +23,13 @@ struct AppHeaderView: View {
                         Image(systemName: "arrow.left")
                             .foregroundColor(Color.primary)
                     }
-                    .padding([.leading,.vertical])
+                    .padding(.horizontal)
                     Spacer()
                 }
                 HStack {
                     Spacer()
                     Text("\(title)")
+                        .padding(.vertical)
                     Spacer()
                 }
             }
