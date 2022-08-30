@@ -24,6 +24,7 @@ class CalendarModel {
                         if checkToday(year: year, month: month, date: date) {
                             dates[i][n].isToday = true
                         }
+                        dates[i][n].state = "99"
                         date += 1
                     }
                 } else {
@@ -33,7 +34,7 @@ class CalendarModel {
             space = 0
         }
 
-        maxIndex = dates[4].firstIndex(of: DateEntity(date: "\(maxDate)")) != nil ? 5 : 6
+        maxIndex = dates[4].firstIndex(of: DateEntity(date: "\(maxDate)", state: "99")) != nil ? 5 : 6
 
         for i in 0 ..< maxIndex {
             results.append(dates[i])
