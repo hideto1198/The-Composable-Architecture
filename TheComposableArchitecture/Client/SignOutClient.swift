@@ -19,6 +19,7 @@ extension SignOutClient {
         Effect.task {
             try Auth.auth().signOut()
             UserDefaults.standard.removeObject(forKey: "firstLaunch")
+            UserDefaults.standard.removeObject(forKey: "Trainer")
             return true
         }
         .mapError{ _ in Failure() }
