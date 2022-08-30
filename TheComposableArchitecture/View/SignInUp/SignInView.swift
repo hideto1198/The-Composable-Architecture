@@ -22,6 +22,13 @@ struct SignInView: View {
                         .padding(.bottom)
                     PasswordInputView(password: viewStore.binding(get: \.password, send: SignInAction.onTextChanged))
                     ForgetPasswordView(viewStore: viewStore)
+                    Button(
+                        action: {
+                            viewStore.send(.onTapSignIn)
+                        }
+                    ){
+                        ButtonView(text: "サインイン")
+                    }
                     Spacer()
                     SignInUpWithAppleButton(buttonType: .signIn,
                                             completion: { result in
@@ -35,14 +42,7 @@ struct SignInView: View {
                                                 }
                                             })
                         .frame(width: bounds.width * 0.8, height: bounds.height * 0.06)
-                    Button(
-                        action: {
-                            viewStore.send(.onTapSignIn)
-                        }
-                    ){
-                        ButtonView(text: "サインイン")
-                    }
-                    .padding(.bottom)
+                        .padding(.bottom)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color("app_color").edgesIgnoringSafeArea(.all))
