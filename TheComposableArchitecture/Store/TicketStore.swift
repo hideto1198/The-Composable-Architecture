@@ -26,6 +26,7 @@ struct TicketState: Equatable {
 enum TicketAction: Equatable {
     case getTicket
     case ticketResponse(Result<TicketEntity, TicketClient.Failure>)
+    case onDisappear
 }
 
 struct TicketEnvironment {
@@ -35,11 +36,14 @@ struct TicketEnvironment {
 
 let ticketReducer: Reducer = Reducer<TicketState, TicketAction, TicketEnvironment> { state, action, environment in
     
+    enum TicketId {}
+    
     switch action {
     case .getTicket:
         return environment.ticketClient.fetch()
             .receive(on: environment.mainQueue)
             .catchToEffect(TicketAction.ticketResponse)
+            .cancellable(id: TicketId.self)
         
     case let .ticketResponse(.success(response)):
         state.ticket = response
@@ -47,7 +51,9 @@ let ticketReducer: Reducer = Reducer<TicketState, TicketAction, TicketEnvironmen
         
     case .ticketResponse(.failure):
         return .none
-
+    
+    case .onDisappear:
+        return .cancel(id: TicketId.self)
     }
         
 }
