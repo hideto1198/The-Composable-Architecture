@@ -68,6 +68,14 @@ struct ProfileView: View {
                         ButtonView(text: "退会")
                     }
                 )
+                NavigationLink(
+                    destination: LaunchScreenView(store: Store(initialState: LaunchState(),
+                                                               reducer: launchReducer,
+                                                               environment: LaunchEnvironment(mainQueue: .main, authenticationClient: .live)))
+                    .navigationBarHidden(true),
+                    isActive: viewStore.binding(\.$isLaunch),
+                    label: { Text("") }
+                )
             }
             .gesture(
                 DragGesture(minimumDistance: 5)
@@ -78,14 +86,6 @@ struct ProfileView: View {
                             }
                         }
                     }
-            )
-            NavigationLink(
-                destination: LaunchScreenView(store: Store(initialState: LaunchState(),
-                                                           reducer: launchReducer,
-                                                           environment: LaunchEnvironment(mainQueue: .main, authenticationClient: .live)))
-                .navigationBarHidden(true),
-                isActive: viewStore.binding(\.$isLaunch),
-                label: { Text("") }
             )
             .alert(
                 self.store.scope(state: \.alert),
