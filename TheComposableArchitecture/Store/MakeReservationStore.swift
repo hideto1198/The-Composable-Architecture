@@ -50,7 +50,7 @@ struct MakeReservationState: Equatable {
     @BindableState var isSheet: Bool = false
     var alert: AlertState<MakeReservationAction>?
     var isLoading: Bool = false
-    
+    @BindableState var trainerTabSelector: Int = 0
     fileprivate mutating func resetState(){
         self.trainer = "選択してください"
         self.showTrainerSelector = false
