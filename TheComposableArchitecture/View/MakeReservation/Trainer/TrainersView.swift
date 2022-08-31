@@ -10,17 +10,17 @@ import ComposableArchitecture
 
 struct TrainersView: View {
     let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
+    
     var body: some View {
         if !viewStore.trainerState.isLoading {
-            ScrollView(.horizontal){
-                HStack {
-                    ForEach(viewStore.trainerState.trainers) { trainer in
-                        TrainerView(viewStore:viewStore, trainer: trainer)
-                            .padding([.bottom, .horizontal])
-                    }
+            TabView(selection: viewStore.binding(\.$trainerTabSelector)) {
+                ForEach(viewStore.trainerState.trainers.indices, id: \.self) { i in
+                    TrainerView(viewStore:viewStore, trainer: viewStore.trainerState.trainers[i])
+                        .tag(i)
                 }
-                .padding(.top)
             }
+            .tabViewStyle(PageTabViewStyle())
+            .frame(height: bounds.height * 0.35)
         }else{
             VStack {
                 Spacer()
