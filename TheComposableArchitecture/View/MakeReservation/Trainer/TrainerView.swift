@@ -15,7 +15,7 @@ struct TrainerView: View {
         ZStack {
             Color("background")
                 .cornerRadius(15)
-                .shadow(color: Color.gray.opacity(0.8), radius: 3, x: 2, y:6)
+                .shadow(color: Color.gray.opacity(0.8), radius: 3, x: 2, y: 6)
             RoundedRectangle(cornerRadius: 15)
                 .stroke(Color("app_color"))
             HStack {
