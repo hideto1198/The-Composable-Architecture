@@ -10,7 +10,7 @@ import ComposableArchitecture
 import FirebaseFunctions
 
 struct GetGymDetailsClient {
-    var fetch: (_ request: [String: String]) -> Effect<[GymDetailEntity], Failure>
+    var fetch: (_ request: [String: String]) -> Effect<[String: [GymDetailEntity]], Failure>
     struct Failure: Error, Equatable {}
 }
 
@@ -29,7 +29,7 @@ extension GetGymDetailsClient {
                                               placeName: _data[1].contains("@") ? _data[1].description.components(separatedBy: "@")[1] : "板垣店",
                                               times: _data[0].components(separatedBy: "~")))
             }
-            return result
+            return [request["day"]!: result]
         }
         .mapError{ _ in Failure() }
         .eraseToEffect()
