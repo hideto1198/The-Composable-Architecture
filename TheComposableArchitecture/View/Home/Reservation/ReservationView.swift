@@ -18,8 +18,11 @@ struct ReservationView: View {
                 ActivityIndicator()
             }
         }
-        .onAppear{
+        .onAppear {
             self.viewStore.send(.reservationAction(.getReservation), animation: .easeIn)
+        }
+        .onDisappear {
+            self.viewStore.send(.reservationAction(.onDisappear))
         }
     }
 }

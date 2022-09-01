@@ -35,7 +35,6 @@ struct TicketEnvironment {
 }
 
 let ticketReducer: Reducer = Reducer<TicketState, TicketAction, TicketEnvironment> { state, action, environment in
-    
     enum TicketId {}
     
     switch action {
@@ -44,7 +43,6 @@ let ticketReducer: Reducer = Reducer<TicketState, TicketAction, TicketEnvironmen
             .receive(on: environment.mainQueue)
             .catchToEffect(TicketAction.ticketResponse)
             .cancellable(id: TicketId.self)
-        
     case let .ticketResponse(.success(response)):
         state.ticket = response
         return .none
@@ -55,7 +53,6 @@ let ticketReducer: Reducer = Reducer<TicketState, TicketAction, TicketEnvironmen
     case .onDisappear:
         return .cancel(id: TicketId.self)
     }
-        
 }
 
 

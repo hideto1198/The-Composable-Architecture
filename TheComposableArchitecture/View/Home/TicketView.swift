@@ -38,7 +38,7 @@ struct TicketView: View {
                 }
                 .font(.custom("", size: 13))
             }
-            .padding(.horizontal)
+            .padding([.horizontal, .bottom])
             .onAppear {
                 viewStore.send(.getTicket, animation: .easeIn)
             }

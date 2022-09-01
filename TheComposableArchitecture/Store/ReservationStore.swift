@@ -29,6 +29,7 @@ enum ReservationAction: Equatable {
     case onTapGesture(String)
     case reset
     case onTapDelete(ReservationEntity)
+    case onDisappear
     
 }
 
@@ -39,13 +40,15 @@ struct ReservationEnvironment {
 }
 
 let reservationReducer: Reducer = Reducer<ReservationState, ReservationAction, ReservationEnvironment>{ state, action, environment in
+    enum ReservationId {}
+    
     switch action {
     case .getReservation:
         state.isLoading = true
         return environment.reservationClient.fetch()
             .receive(on: environment.mainQueue)
             .catchToEffect(ReservationAction.reservationResponse)
-        
+            .cancellable(id: ReservationId.self)
     case let .reservationResponse(.success(response)):
         state.isLoading = false
         state.reservations = response
@@ -70,5 +73,7 @@ let reservationReducer: Reducer = Reducer<ReservationState, ReservationAction, R
         return .none
     case let .onTapDelete(reservation):
         return .none
+    case .onDisappear:
+        return .cancel(id: ReservationId.self)
     }
 }
