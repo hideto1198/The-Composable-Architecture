@@ -6,15 +6,45 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct CustomerSearchView: View {
+    let store: Store<CustomerSearchState, CustomerSearchAction>
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WithViewStore(self.store) { viewStore in
+            ZStack {
+                VStack {
+                    AppHeaderView(title: "顧客検索")
+                    SearchBarView(viewStore: viewStore)
+                    List(viewStore.users.filter {
+                        if viewStore.searchText.isEmpty {
+                            return true
+                        }
+                        return "\($0.firstName1)　\($0.lastName1)".contains(viewStore.searchText)
+                    }) { user in
+                        NavigationLink(destination: Text("hello")) {
+                            Text("\(user.firstName1)　\(user.lastName1)")
+                        }
+                    }
+                    .listStyle(.plain)
+                    Spacer()
+                }
+                if viewStore.isLoading {
+                    ActivityIndicator()
+                }
+            }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
+        }
     }
 }
 
 struct CustomerSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomerSearchView()
+        CustomerSearchView(store: Store(initialState: CustomerSearchState(),
+                                        reducer: customerSearchReducer,
+                                        environment: .live))
     }
 }
