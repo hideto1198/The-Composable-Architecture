@@ -87,7 +87,11 @@ struct TrainerHomeCalendarView: View {
             }
         }
         .onAppear {
+            viewStore.send(.onAppear)
             viewStore.send(.trainerCalenadarAction(.onAppear))
+        }
+        .onDisappear {
+            viewStore.send(.trainerCalenadarAction(.onDisappear))
         }
     }
 }

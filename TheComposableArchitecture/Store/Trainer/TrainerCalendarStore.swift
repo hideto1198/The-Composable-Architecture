@@ -47,7 +47,6 @@ struct TrainerCalendarState: Equatable {
                 gymDates.append(dates[i][n].date)
             }
         }
-        debugPrint(gymDates)
     }
 }
 
@@ -56,6 +55,7 @@ enum TrainerCalendarAction: Equatable {
         return true
     }
     case onAppear
+    case onDisappear
     case onTapNext(String)
     case onTapPrevious(String)
     case onTapTile
@@ -80,6 +80,7 @@ let trainerCalendarReducer: Reducer = Reducer<TrainerCalendarState, TrainerCalen
         return environment.getGymDataClient.fetch(state.year, state.month, state.dates, nil)
             .receive(on: environment.mainQueue)
             .catchToEffect(TrainerCalendarAction.getGymDataResponse)
+            .cancellable(id: GetGymClientId.self)
     case let .onTapNext(targetName):
         if state.month == 12 {
             state.month = 1
@@ -123,5 +124,7 @@ let trainerCalendarReducer: Reducer = Reducer<TrainerCalendarState, TrainerCalen
         return .none
     case .getGymDataResponse(.failure):
         return .none
+    case .onDisappear:
+        return .cancel(id: GetGymClientId.self)
     }
 }
