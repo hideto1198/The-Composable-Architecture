@@ -30,11 +30,12 @@ struct GymDetailEntity: Equatable, Identifiable {
 struct GymDetailState: Equatable {
     var details: [GymDetailEntity] = []
     var isLoading: Bool = false
+    var currentDate: String = ""
 }
 
 enum GymDetailAction: Equatable {
     case getGymDetails([String: String])
-    case getGymDetailsResponse(Result<[GymDetailEntity], GetGymDetailsClient.Failure>)
+    case getGymDetailsResponse(Result<[String: [GymDetailEntity]], GetGymDetailsClient.Failure>)
 }
 
 struct GymDetailEnvironment {
@@ -50,7 +51,6 @@ let gymDetailReducer: Reducer = Reducer<GymDetailState, GymDetailAction, GymDeta
     enum GymDetailId {}
     switch action {
     case let .getGymDetails(request):
-        debugPrint(request)
         state.isLoading = true
         state.details = []
         return environment.getGymDetailsClient.fetch(request)
@@ -58,7 +58,9 @@ let gymDetailReducer: Reducer = Reducer<GymDetailState, GymDetailAction, GymDeta
             .catchToEffect(GymDetailAction.getGymDetailsResponse)
     case let .getGymDetailsResponse(.success(response)):
         state.isLoading = false
-        state.details = response
+        if response.keys.first! == state.currentDate {
+            state.details = response.values.first!
+        }
         return .none
         
     case .getGymDetailsResponse(.failure):
