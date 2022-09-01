@@ -119,6 +119,7 @@ let profileReducer: Reducer = Reducer<ProfileState, ProfileAction, ProfileEnviro
     case .signOutResponse(.failure):
         return .none
     case .navigateHome:
+        state.alert = nil
         state.isLaunch = true
         return .none
     }
