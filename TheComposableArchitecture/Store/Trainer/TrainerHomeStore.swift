@@ -34,6 +34,7 @@ enum TrainerHomeAction: Equatable, BindableAction {
     case onChangeTrainer(String)
     case gymDetailAction(GymDetailAction)
     case onTapCalendarTile(String)
+    case onChangeDate(Int)
 }
 
 struct TrainerHomeEnvironment {
@@ -101,6 +102,11 @@ let trainerHomeReducer: Reducer = Reducer<TrainerHomeState, TrainerHomeAction, T
             state.date = date
             state.showDetails.toggle()
             state.dateSelector = state.trainerCalendarState.gymDates.firstIndex(of: date)!
+            state.gymDetailState.currentDate = date
+            return .none
+        // MARK: - スライドで日付を変更した時の処理
+        case let .onChangeDate(index):
+            state.gymDetailState.currentDate = state.trainerCalendarState.gymDates[index]
             return .none
         }
     }
