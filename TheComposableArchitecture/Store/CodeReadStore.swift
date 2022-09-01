@@ -63,8 +63,8 @@ private func qrResponseCheck(response: String) -> Bool {
     guard !response.isEmpty else { return false }
     
     guard response.components(separatedBy: ",").count == 4 else { return false }
-    guard (Int(response.components(separatedBy: ",")[0])) != nil else { return false }
     guard (Int(response.components(separatedBy: ",")[1])) != nil else { return false }
+    guard (Int(response.components(separatedBy: ",")[2])) != nil else { return false }
     
     if !response.contains("BONAFIDE") {
         result = false
