@@ -98,13 +98,3 @@ class CalendarModel {
         }
     }
 }
-
-/*
-let calendarModel: CalendarModel = CalendarModel()
-let dates: [[DateEntity]] = calendarModel.calculationDate(year: 2022, month: 8)
-for i in dates.indices {
-    for n in dates[i].indices {
-        print(dates[i][n])
-    }
-}
-*/
