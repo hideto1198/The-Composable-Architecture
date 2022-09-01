@@ -27,11 +27,15 @@ struct TrainerHomeMenuView: View {
                 }
                 .offset(x: bounds.width * 0.3)
                 Group {
-                    NavigationLink(destination: CustomerSearchView(),
+                    NavigationLink(destination: CustomerSearchView(store: Store(initialState: CustomerSearchState(),
+                                                                                reducer: customerSearchReducer,
+                                                                                environment: .live))
+                        .navigationBarHidden(true),
                                    label: { MenuView(title: "顧客検索") })
-                    NavigationLink(destination: GymCalendarView(),
-                                   label: { MenuView(title: "ジムカレンダー") })
-                    NavigationLink(destination: TicketPublishView(),
+                    NavigationLink(destination: TicketPublishView(store: Store(initialState: TicketPublishState(),
+                                                                               reducer: ticketPublishReducer,
+                                                                               environment: .live))
+                        .navigationBarHidden(true),
                                    label: { MenuView(title: "チケット発行") })
                     NavigationLink(destination: SendNotificationView(),
                                    label: { MenuView(title: "通知送信") })
