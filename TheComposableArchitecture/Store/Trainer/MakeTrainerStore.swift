@@ -9,12 +9,12 @@ import Foundation
 import ComposableArchitecture
 
 struct MakeTrainerState: Equatable {
+    @BindableState var isTrainer: Bool = false
     @BindableState var password: String = ""
     @BindableState var path_text: String = ""
     @BindableState var storeSelector: Int = 0
     var isLoading: Bool = false
     var alert: AlertState<MakeTrainerAction>?
-    @BindableState var isTrainer: Bool = false
 }
 
 enum MakeTrainerAction: Equatable, BindableAction {
