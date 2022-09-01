@@ -27,6 +27,7 @@ struct TrainerCalendarState: Equatable {
         self.year = Int(dateFormatter.string(from: today).prefix(4))!
         self.month = Int(dateFormatter.string(from: today).suffix(2))!
         dates = calendarModel.calculationDate(year: self.year, month: self.month)
+        gymDates.removeAll()
         for i in dates.indices {
             for n in dates[i].indices {
                 guard dates[i][n].date != "" else { continue }
@@ -39,6 +40,7 @@ struct TrainerCalendarState: Equatable {
     mutating func updateCalendar() {
         let calendarModel: CalendarModel = CalendarModel()
         dates = calendarModel.calculationDate(year: self.year, month: self.month)
+        gymDates.removeAll()
         for i in dates.indices {
             for n in dates[i].indices {
                 guard dates[i][n].date != "" else { continue }
