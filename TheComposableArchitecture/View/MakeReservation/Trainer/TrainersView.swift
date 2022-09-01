@@ -11,6 +11,12 @@ import ComposableArchitecture
 struct TrainersView: View {
     let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
     
+    init(viewStore: ViewStore<MakeReservationState, MakeReservationAction>) {
+        self.viewStore = viewStore
+        UIPageControl.appearance().currentPageIndicatorTintColor = UIColor(Color.primary)
+        UIPageControl.appearance().pageIndicatorTintColor = UIColor(Color.primary.opacity(0.2))
+    }
+    
     var body: some View {
         if !viewStore.trainerState.isLoading {
             TabView(selection: viewStore.binding(\.$trainerTabSelector)) {
@@ -20,6 +26,7 @@ struct TrainersView: View {
                 }
             }
             .tabViewStyle(PageTabViewStyle())
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .automatic))
             .frame(height: bounds.height * 0.35)
         }else{
             VStack {
