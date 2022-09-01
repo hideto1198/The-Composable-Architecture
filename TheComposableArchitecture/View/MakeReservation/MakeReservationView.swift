@@ -10,7 +10,9 @@ import ComposableArchitecture
 
 struct MakeReservationView: View {
     @Environment(\.presentationMode) var presentaionMode
+    @Environment(\.scenePhase) var scenePhase
     let store: Store<MakeReservationState,MakeReservationAction>
+    
     var body: some View {
         WithViewStore(self.store) { viewStore in
             ZStack {
@@ -83,6 +85,14 @@ struct MakeReservationView: View {
                             }
                         }
                 )
+                .onChange(of: scenePhase) { phase in
+                    switch phase {
+                    case .active:
+                        viewStore.send(.ticketAction(.getTicket))
+                    default:
+                        return
+                    }
+                }
             }
         }
     }

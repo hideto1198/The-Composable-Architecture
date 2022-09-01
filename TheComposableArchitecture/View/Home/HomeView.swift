@@ -9,7 +9,9 @@ import SwiftUI
 import ComposableArchitecture
 
 struct HomeView: View {
+    @Environment(\.scenePhase) var scenePhase
     let store: Store<HomeState, HomeAction>
+    
     var body: some View {
         WithViewStore(self.store.self){ viewStore in
             ZStack {
@@ -67,6 +69,16 @@ struct HomeView: View {
                         }
                     }
             )
+            .onChange(of: scenePhase) { phase in
+                switch phase {
+                case .active:
+                    viewStore.send(.reservationAction(.getReservation), animation: .easeIn)
+                    viewStore.send(.ticketAction(.getTicket), animation: .easeIn)
+                    return
+                default:
+                    return
+                }
+            }
         }
     }
 }

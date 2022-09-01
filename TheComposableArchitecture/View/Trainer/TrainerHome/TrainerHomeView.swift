@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct TrainerHomeView: View {
+    @Environment(\.scenePhase) var scenePhase
     let store: Store<TrainerHomeState, TrainerHomeAction>
     
     var body: some View {
@@ -58,6 +59,16 @@ struct TrainerHomeView: View {
                         }
                     }
             )
+            .onChange(of: scenePhase) { phase in
+                switch phase {
+                case .active:
+                    viewStore.send(.onAppear)
+                    viewStore.send(.trainerCalenadarAction(.onAppear))
+                    return
+                default:
+                    return
+                }
+            }
         }
     }
 }
