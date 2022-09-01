@@ -45,6 +45,7 @@ let withdrawReducer: Reducer = Reducer<WithdrawState, WithdrawAction, WithdrawEn
                                  secondaryButton: .destructive(TextState("はい"), action: .send(.onWithdraw)))
         return .none
     case .onWithdraw:
+        state.alert = nil
         state.isLoading = true
         return environment.withdrawCleint.fetch()
             .receive(on: environment.mainQueue)
@@ -54,7 +55,6 @@ let withdrawReducer: Reducer = Reducer<WithdrawState, WithdrawAction, WithdrawEn
         state.alert = AlertState(title: TextState("確認"), message: TextState("退会しました"), dismissButton: .default(TextState("はい"), action: .send(.navigateLaunch)))
         return .none
     case let .withdrawResponse(.failure(error)):
-        debugPrint("error: \(error)")
         state.isLoading = false
         return .none
     case .navigateLaunch:
