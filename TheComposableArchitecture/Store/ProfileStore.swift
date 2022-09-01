@@ -15,17 +15,17 @@ struct ProfileEntity: Equatable {
     var sex: String = ""
 }
 struct ProfileState: Equatable {
-    var profile: ProfileEntity = ProfileEntity()
+    @BindableState var isLaunch: Bool = false
     @BindableState var firstName1: String = "\(UserDefaults.standard.string(forKey: "userName")?.components(separatedBy: "　")[0] ?? "　")" // 姓
     @BindableState var firstName2: String = "\(UserDefaults.standard.string(forKey: "userKanaName")?.components(separatedBy: "　")[0] ?? "　")"  // セイ
     @BindableState var lastName1: String = "\(UserDefaults.standard.string(forKey: "userName")?.components(separatedBy: "　")[1] ?? "　")"   // 名
     @BindableState var lastName2: String = "\(UserDefaults.standard.string(forKey: "userKanaName")?.components(separatedBy: "　")[1] ?? "　")"   // メイ
     @BindableState var sexSelector: Int = 0
     @BindableState var date: Date = Date()
+    var profile: ProfileEntity = ProfileEntity()
     var alert: AlertState<ProfileAction>?
-    @BindableState var isLaunch: Bool = false
     
-    init(){
+    init() {
         self.sexSelector = UserDefaults.standard.string(forKey: "sex") == "男" ? 1 : UserDefaults.standard.string(forKey: "sex") == "女" ? 2 : 0
         var dateFormatter: DateFormatter {
             let dateFormatter: DateFormatter = DateFormatter()
