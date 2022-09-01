@@ -22,9 +22,9 @@ extension CodeReadClient {
             let userID: String = Auth.auth().currentUser!.uid
             var request: [String: Any] = [
                 "userID": userID,
-                "plan_counts": qrData.components(separatedBy: ",")[0],
-                "plan_max_counts": qrData.components(separatedBy: ",")[1],
-                "plan_name": qrData.components(separatedBy: ",")[2]
+                "plan_counts": qrData.components(separatedBy: ",")[1],
+                "plan_max_counts": qrData.components(separatedBy: ",")[2],
+                "plan_name": qrData.components(separatedBy: ",")[0]
             ]
             let response = try await functions.httpsCallable("set_ticket").call(request)
             return true
