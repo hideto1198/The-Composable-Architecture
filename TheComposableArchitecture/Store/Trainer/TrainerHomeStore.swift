@@ -10,17 +10,17 @@ import ComposableArchitecture
 
 struct TrainerHomeState: Equatable {
     @BindableState var isHome: Bool = false
+    @BindableState var trainerSelector: Int = 0
+    @BindableState var dateSelector: Int = 0
+    var trainerCalendarState: TrainerCalendarState = TrainerCalendarState()
+    var gymDetailState: GymDetailState = GymDetailState()
     var offset: Double = -(bounds.width)
     var opacity: Double = 0.0
     var isMenu: Bool = false
-    var trainerCalendarState: TrainerCalendarState = TrainerCalendarState()
     var showFilter: Bool = false
     var trainers: [String] = []
-    @BindableState var trainerSelector: Int = 0
-    var gymDetailState: GymDetailState = GymDetailState()
     var showDetails: Bool = false
     var date: String = ""
-    @BindableState var dateSelector: Int = 0
 }
 
 enum TrainerHomeAction: Equatable, BindableAction {
@@ -56,6 +56,7 @@ let trainerHomeReducer: Reducer = Reducer<TrainerHomeState, TrainerHomeAction, T
         switch action {
         case .binding:
             return .none
+        // MARK: - メニューボタンをタップしたとき
         case .onTapMenu:
             state.isMenu = state.isMenu ? false : true
             if state.isMenu {
@@ -91,6 +92,7 @@ let trainerHomeReducer: Reducer = Reducer<TrainerHomeState, TrainerHomeAction, T
             return .none
         case .gymDetailAction:
             return .none
+        // MARK: - カレンダーの日付を選択したとき
         case let .onTapCalendarTile(date):
             guard date != "" && date != "99" else {
                 state.showDetails = false
