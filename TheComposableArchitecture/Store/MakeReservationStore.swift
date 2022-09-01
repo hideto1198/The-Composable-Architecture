@@ -23,6 +23,12 @@ struct MakeReservationEntity: Equatable, Identifiable {
 }
 
 struct MakeReservationState: Equatable {
+    @BindableState var isSheet: Bool = false
+    @BindableState var trainerTabSelector: Int = 0
+    var calendarState: CalendarState = CalendarState()
+    var trainerState: TrainerState = TrainerState()
+    var timescheduleState: TimescheduleState = TimescheduleState()
+    var ticketState: TicketState = TicketState()
     var reservations: [MakeReservationEntity] = []
     var menuSelector: Int = 0
     var placeSelector: Int = 0
@@ -37,21 +43,16 @@ struct MakeReservationState: Equatable {
     var reservationTime: String = "選択してください"
     var showReservationTime: Bool = false
     var showAddButton: Bool = false
-    var calendarState: CalendarState = CalendarState()
-    var trainerState: TrainerState = TrainerState()
-    var timescheduleState: TimescheduleState = TimescheduleState()
-    var ticketState: TicketState = TicketState()
     var year: String = ""
     var month: String = ""
     var day: String = ""
     var timeFrom: String = ""
     var timeTo: String = ""
     var displayTime: String = ""
-    @BindableState var isSheet: Bool = false
-    var alert: AlertState<MakeReservationAction>?
     var isLoading: Bool = false
-    @BindableState var trainerTabSelector: Int = 0
-    fileprivate mutating func resetState(){
+    var alert: AlertState<MakeReservationAction>?
+    
+    fileprivate mutating func resetState() {
         self.trainer = "選択してください"
         self.showTrainerSelector = false
         self.showTrainer = false
