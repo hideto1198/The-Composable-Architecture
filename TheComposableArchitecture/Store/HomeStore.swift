@@ -9,15 +9,15 @@ import Foundation
 import ComposableArchitecture
 
 struct HomeState: Equatable {
+    @BindableState var isMakeTrainer: Bool = false
+    @BindableState var isTrainer: Bool = false
     var reservationState: ReservationState = ReservationState()
     var ticketState: TicketState = TicketState()
     var isMenu: Bool = false
     var isLoading: Bool = false
-    var alert: AlertState<HomeAction>?
     var offset: Double = -(bounds.width)
     var opacity: Double = 0.0
-    @BindableState var isMakeTrainer: Bool = false
-    @BindableState var isTrainer: Bool = false
+    var alert: AlertState<HomeAction>?
 }
 
 enum HomeAction: Equatable, BindableAction {
