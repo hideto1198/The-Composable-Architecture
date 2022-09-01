@@ -26,6 +26,7 @@
 		863D01F428BD767800B264E9 /* GymDetailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863D01F328BD767800B264E9 /* GymDetailStore.swift */; };
 		863D01F728BD7AFE00B264E9 /* TrainerCalendarDetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863D01F628BD7AFE00B264E9 /* TrainerCalendarDetailRowView.swift */; };
 		863D01F928BE0F9700B264E9 /* GetGymDetailsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863D01F828BE0F9700B264E9 /* GetGymDetailsClient.swift */; };
+		863D021728BF952500B264E9 /* TrainerCalendarDetailDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863D021628BF952500B264E9 /* TrainerCalendarDetailDaysView.swift */; };
 		863F79F7288FD5710065B8E8 /* TheComposableArchitectureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F79F6288FD5710065B8E8 /* TheComposableArchitectureApp.swift */; };
 		863F79F9288FD5710065B8E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863F79F8288FD5710065B8E8 /* ContentView.swift */; };
 		863F79FB288FD5710065B8E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 863F79FA288FD5710065B8E8 /* Assets.xcassets */; };
@@ -186,6 +187,7 @@
 		863D01F328BD767800B264E9 /* GymDetailStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymDetailStore.swift; sourceTree = "<group>"; };
 		863D01F628BD7AFE00B264E9 /* TrainerCalendarDetailRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerCalendarDetailRowView.swift; sourceTree = "<group>"; };
 		863D01F828BE0F9700B264E9 /* GetGymDetailsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGymDetailsClient.swift; sourceTree = "<group>"; };
+		863D021628BF952500B264E9 /* TrainerCalendarDetailDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerCalendarDetailDaysView.swift; sourceTree = "<group>"; };
 		863F79F3288FD5710065B8E8 /* TheComposableArchitecture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheComposableArchitecture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		863F79F6288FD5710065B8E8 /* TheComposableArchitectureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheComposableArchitectureApp.swift; sourceTree = "<group>"; };
 		863F79F8288FD5710065B8E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 			children = (
 				863D01F128BD765400B264E9 /* TrainerCalendarDetailDayView.swift */,
 				863D01F628BD7AFE00B264E9 /* TrainerCalendarDetailRowView.swift */,
+				863D021628BF952500B264E9 /* TrainerCalendarDetailDaysView.swift */,
 			);
 			path = CalendarDetail;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 			files = (
 				86BB021228B28B5200435C32 /* ProfileStore.swift in Sources */,
 				863F7A7128900F700065B8E8 /* CancelButtonView.swift in Sources */,
+				863D021728BF952500B264E9 /* TrainerCalendarDetailDaysView.swift in Sources */,
 				86BB027028B47F2900435C32 /* WithdrawView.swift in Sources */,
 				863D01F928BE0F9700B264E9 /* GetGymDetailsClient.swift in Sources */,
 				863D01F428BD767800B264E9 /* GymDetailStore.swift in Sources */,
