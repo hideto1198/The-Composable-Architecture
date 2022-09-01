@@ -10,12 +10,12 @@ import Foundation
 import ComposableArchitecture
 
 struct SignInState: Equatable {
+    @BindableState var isRecover: Bool = false
+    @BindableState var isHome: Bool = false
     @BindableState var email: String = ""
     @BindableState var password: String = ""
     var isLoading: Bool = false
-    @BindableState var isHome: Bool = false
     var alert: AlertState<SignInAction>?
-    @BindableState var isRecover: Bool = false
 }
 
 enum SignInAction: BindableAction, Equatable {
