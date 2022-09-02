@@ -57,9 +57,9 @@ let gymDetailReducer: Reducer = Reducer<GymDetailState, GymDetailAction, GymDeta
             .receive(on: environment.mainQueue)
             .catchToEffect(GymDetailAction.getGymDetailsResponse)
     case let .getGymDetailsResponse(.success(response)):
-        state.isLoading = false
         if response.keys.first! == state.currentDate {
             state.details = response.values.first!
+            state.isLoading = false
         }
         return .none
         
