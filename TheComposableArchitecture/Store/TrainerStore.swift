@@ -14,6 +14,7 @@ struct TrainerEntity: Equatable, Identifiable {
     var trainerName: String = ""
     var token: String = ""
     var imagePath: String = ""
+    var store: String = ""
 }
 
 struct TrainerState: Equatable {
