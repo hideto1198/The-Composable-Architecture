@@ -39,7 +39,10 @@ struct TrainerHomeMenuView: View {
                                    label: { MenuView(title: "チケット発行") })
                     NavigationLink(destination: SendNotificationView(),
                                    label: { MenuView(title: "通知送信") })
-                    NavigationLink(destination: ChangeStoreView(),
+                    NavigationLink(destination: StoreChangeView(store: Store(initialState: StoreChangeState(),
+                                                                             reducer: storeChangeReducer,
+                                                                             environment: .live))
+                        .navigationBarHidden(true),
                                    label: { MenuView(title: "店舗変更") })
                     NavigationLink(destination: PlanSetView(),
                                    label: { MenuView(title: "予定セット") })
