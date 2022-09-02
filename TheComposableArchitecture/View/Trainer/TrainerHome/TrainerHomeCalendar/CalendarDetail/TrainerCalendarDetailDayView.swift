@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct TrainerCalendarDetailDayView: View {
+    @Environment(\.scenePhase) var scenePhase
     let viewStore: ViewStore<TrainerHomeState, TrainerHomeAction>
     let date: String
     
@@ -46,6 +47,18 @@ struct TrainerCalendarDetailDayView: View {
                                                             "month": "\(viewStore.trainerCalendarState.month)",
                                                             "day": date,
                                                             "target": viewStore.trainers[viewStore.trainerSelector]])))
+        }
+        .onChange(of: scenePhase) { phase in
+            switch phase {
+            case .active:
+                viewStore.send(.gymDetailAction(.getGymDetails(["year": "\(String(viewStore.trainerCalendarState.year))",
+                                                                "month": "\(viewStore.trainerCalendarState.month)",
+                                                                "day": date,
+                                                                "target": viewStore.trainers[viewStore.trainerSelector]])))
+                return
+            default:
+                return
+            }
         }
     }
 }
