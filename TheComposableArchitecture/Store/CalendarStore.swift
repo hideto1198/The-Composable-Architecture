@@ -17,6 +17,11 @@ struct DateEntity: Equatable, Hashable {
 struct CalendarState: Equatable {
     var year: Int = 0
     var month: Int = 0
+    var date: String? = nil
+    var reservationDate: String {
+        guard let date = date else { return "選択してください" }
+        return "\(self.year)年\(self.month)月\(date)日"
+    }
     var dates: [[DateEntity]] = [[]]
     
     // MARK: - 初期カレンダー作成
