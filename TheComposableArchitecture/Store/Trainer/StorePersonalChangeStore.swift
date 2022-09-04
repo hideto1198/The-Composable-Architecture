@@ -80,6 +80,7 @@ let storePersonalChangeReducer: Reducer = Reducer<StorePersonalChangeState, Stor
     case .onTapSave:
         return .none
     case .onDisappear:
+        state.trainerSelector = nil
         return .cancel(id: StorePersonalChangeId.self)
     case .onChangeTimeFrom:
         if state.timeFromSelector > state.timeToSelector {

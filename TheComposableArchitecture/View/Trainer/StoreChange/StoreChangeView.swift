@@ -27,8 +27,14 @@ struct StoreChangeView: View {
                 
                 if viewStore.viewSelector == 0 {
                     StoreDefaultChangeView(store: self.store.scope(state: \.storeDefaultChangeState, action: StoreChangeAction.storeDefaultChangeAction))
+                        .onDisappear {
+                            viewStore.send(.storeDefaultChangeAction(.onDisappear))
+                        }
                 } else {
                     StorePersonalChangeView(store: self.store.scope(state: \.storePersonalChangeState, action: StoreChangeAction.storePersonalChangeAction))
+                        .onDisappear {
+                            viewStore.send(.storePersonalChangeAction(.onDisappear))
+                        }
                 }
                 
                 Spacer()

@@ -72,6 +72,7 @@ let storeDefaultChangeReducer: Reducer = Reducer<StoreDefaultChangeState, StoreD
     case .onTapSave:
         return .none
     case .onDisappear:
+        state.trainerSelector = nil
         return .cancel(id: StoreDefaultChangeId.self)
     }
 }
