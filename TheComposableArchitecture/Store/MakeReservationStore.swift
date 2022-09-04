@@ -131,10 +131,11 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
                 state.year = "\(state.calendarState.year)"
                 state.month = "\(state.calendarState.month)"
                 state.day = date.date
+                state.calendarState.date = date.date
                 let request = [
-                    "year": state.year,
-                    "month": state.month,
-                    "day": state.day,
+                    "year": "\(state.calendarState.year)",
+                    "month": "\(state.calendarState.month)",
+                    "day": state.calendarState.date!,
                     "place": state.placeSelector == 1 ? "板垣店" : "二の宮店"
                 ]
                 return Effect(value: .trainerAction(.getTrainer(request)))
