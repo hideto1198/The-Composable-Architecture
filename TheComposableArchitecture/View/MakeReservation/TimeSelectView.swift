@@ -9,18 +9,20 @@ import SwiftUI
 import ComposableArchitecture
 
 struct TimeSelectView: View {
-    let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
+    let store: Store<TimescheduleState, TimescheduleAction>
     
     var body: some View {
-        HStack {
-            Text("時間")
-            Spacer()
-            Button(
-                action: {
-                    viewStore.send(.onTapTime, animation: .easeInOut)
+        WithViewStore(self.store) { viewStore in
+            HStack {
+                Text("時間")
+                Spacer()
+                Button(
+                    action: {
+                        viewStore.send(.onTapReservationTime, animation: .easeInOut)
+                    }
+                ){
+                    Text("\(viewStore.reservationTime)")
                 }
-            ){
-                Text("\(viewStore.reservationTime == "" ? "選択してください" : "\(viewStore.reservationTime)")")
             }
         }
     }
@@ -28,8 +30,8 @@ struct TimeSelectView: View {
 
 struct TimeSelectView_Previews: PreviewProvider {
     static var previews: some View {
-        TimeSelectView(viewStore: ViewStore(Store(initialState: MakeReservationState(),
-                                                  reducer: makeReservationReducer,
-                                                  environment: .live)))
+        TimeSelectView(store: Store(initialState: TimescheduleState(),
+                                                  reducer: timescheduleReducer,
+                                                  environment: .live))
     }
 }
