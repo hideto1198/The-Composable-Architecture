@@ -9,7 +9,6 @@ import SwiftUI
 import ComposableArchitecture
 
 struct TrainerHomeView: View {
-    @Environment(\.scenePhase) var scenePhase
     let store: Store<TrainerHomeState, TrainerHomeAction>
     
     var body: some View {
@@ -17,8 +16,20 @@ struct TrainerHomeView: View {
             ZStack {
                 VStack {
                     TrainerHomeHeaderView(store: self.store)
-                    TrainerHomeCalendarView(viewStore: viewStore)
-                    Spacer()
+                    TabView {
+                        TrainerHomeCalendarView(viewStore: viewStore)
+                        .tabItem {
+                            Image(systemName: "calendar")
+                            Text("カレンダー")
+                        }
+                        TrainerReservationView(store: Store(initialState: TrainerReservationState(),
+                                                            reducer: trainerReservationReducer,
+                                                            environment: .live))
+                        .tabItem {
+                            Image(systemName: "tray")
+                            Text("予定")
+                        }
+                    }
                 }
                 if viewStore.showDetails {
                     Color.gray
@@ -56,19 +67,16 @@ struct TrainerHomeView: View {
                             viewStore.send(.onTapMenu, animation: .easeIn)
                         } else if value.startLocation.x * 1.3 > value.location.x && viewStore.isMenu {
                             viewStore.send(.onTapMenu, animation: .easeOut)
+                        } else {
+                            debugPrint(value)
+                            if (value.startLocation.x - value.location.x ) > 100 {
+                                viewStore.send(.trainerCalenadarAction(.onTapNext(viewStore.trainers[viewStore.trainerSelector])))
+                            } else if (value.startLocation.x - value.location.x) < -100 {
+                                viewStore.send(.trainerCalenadarAction(.onTapPrevious(viewStore.trainers[viewStore.trainerSelector])))
+                            }
                         }
                     }
             )
-            .onChange(of: scenePhase) { phase in
-                switch phase {
-                case .active:
-                    viewStore.send(.onAppear)
-                    viewStore.send(.trainerCalenadarAction(.onAppear))
-                    return
-                default:
-                    return
-                }
-            }
         }
     }
 }
