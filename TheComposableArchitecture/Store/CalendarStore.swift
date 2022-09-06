@@ -9,6 +9,7 @@ import Foundation
 import ComposableArchitecture
 
 struct DateEntity: Equatable, Hashable {
+    var id: String = UUID().uuidString
     var date: String = ""
     var state: String = ""
     var isToday: Bool = false
