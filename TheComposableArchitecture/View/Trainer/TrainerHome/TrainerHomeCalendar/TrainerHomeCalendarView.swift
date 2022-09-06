@@ -75,17 +75,10 @@ struct TrainerHomeCalendarView: View {
                         }
                     }
                 }
-                .gesture(DragGesture(minimumDistance: 5)
-                    .onEnded { value in
-                        if value.startLocation.x > value.location.x {
-                            viewStore.send(.trainerCalenadarAction(.onTapNext(viewStore.trainers[viewStore.trainerSelector])))
-                        } else {
-                            viewStore.send(.trainerCalenadarAction(.onTapPrevious(viewStore.trainers[viewStore.trainerSelector])))
-                        }
-                    })
-                Spacer()
             }
+            Spacer()
         }
+        .background(Color("background").edgesIgnoringSafeArea(.all))
         .onAppear {
             viewStore.send(.onAppear)
             viewStore.send(.trainerCalenadarAction(.onAppear))
