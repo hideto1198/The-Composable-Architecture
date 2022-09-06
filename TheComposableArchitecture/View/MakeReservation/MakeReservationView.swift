@@ -48,15 +48,15 @@ struct MakeReservationView: View {
                                     }
                                 }
                                 if viewStore.showReservationTime {
-                                    TimeSelectView(viewStore: viewStore)
+                                    TimeSelectView(store: self.store.scope(state: \.timescheduleState, action: MakeReservationAction.timescheduleAction))
                                         .padding([.horizontal, .top])
                                     
                                 }
-                                if viewStore.showTimeSchedule {
+                                if viewStore.timescheduleState.showTimeSchedule {
                                     TimescheduleView(viewStore: viewStore)
                                         .padding(.horizontal)
                                 }
-                                if viewStore.showAddButton {
+                                if viewStore.timescheduleState.showAddButton {
                                     Button(
                                         action: {
                                             viewStore.send(.onTapAddButton, animation: .easeInOut)
