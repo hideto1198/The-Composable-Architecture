@@ -32,10 +32,10 @@ struct StoreChangeEnvironment {
 let storeChangeReducer: Reducer = Reducer<StoreChangeState, StoreChangeAction, StoreChangeEnvironment>.combine(
     storeDefaultChangeReducer.pullback(state: \StoreChangeState.storeDefaultChangeState,
                                        action: /StoreChangeAction.storeDefaultChangeAction,
-                                       environment: { _ in StoreDefaultChangeEnvironment(getTrainerStoreClient: .live, mainQueue: .main)}),
+                                       environment: { _ in StoreDefaultChangeEnvironment(getTrainerStoreClient: .live, setStoreClient: .live, mainQueue: .main)}),
     storePersonalChangeReducer.pullback(state: \StoreChangeState.storePersonalChangeState,
                                         action: /StoreChangeAction.storePersonalChangeAction,
-                                        environment: { _ in StorePersonalChangeEnvironment(getTrainerStoreClient: .live, mainQueue: .main)}),
+                                        environment: { _ in StorePersonalChangeEnvironment(getTrainerStoreClient: .live, setStorePersonalClient: .live, mainQueue: .main)}),
     Reducer { state, action, environment in
         switch action {
         case .binding:
