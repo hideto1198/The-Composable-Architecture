@@ -6,15 +6,102 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct PlanSetView: View {
+    @Environment(\.presentationMode) var presentaionMode
+    @Environment(\.scenePhase) var scenePhase
+    let store: Store<TrainerMakeReservationState,TrainerMakeReservationAction>
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        WithViewStore(self.store) { viewStore in
+            ZStack {
+                Color("background")
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    AppHeaderView(title: "予約セット")
+                    ZStack {
+                        ScrollView{
+                            VStack(alignment: .leading) {
+                                Group {
+                                    TrainerMenuSelectView(viewStore: viewStore)
+                                        .padding(.top)
+                                    TrainerPlaceSelectView(viewStore: viewStore)
+                                        .onTapGesture {
+                                            viewStore.send(.ticketAction(.getTicket))
+                                        }
+                                }
+                                .padding(.leading)
+                                if viewStore.showReservationDate {
+                                    TrainerCalendarSelectView(viewStore: viewStore)
+                                        .padding([.horizontal, .top])
+                                }
+                                if viewStore.showCalendar {
+                                    TrainerCalendarView(viewStore: viewStore)
+                                }
+                                if viewStore.showTrainerSelector {
+                                    TrainerTrainerSelectView(viewStore: viewStore)
+                                        .padding([.horizontal, .top])
+                                    if viewStore.showTrainer {
+                                        TrainerTrainersView(viewStore: viewStore)
+                                            .padding(.horizontal)
+                                    }
+                                }
+                                if viewStore.showReservationTime {
+                                    TrainerTimeSelectView(store: self.store.scope(state: \.trainerTimescheduleState, action: TrainerMakeReservationAction.trainerTimescheduleAction))
+                                        .padding([.horizontal, .top])
+                                    
+                                }
+                                if viewStore.trainerTimescheduleState.showTimeSchedule {
+                                    TrainerTimescheduleView(viewStore: viewStore)
+                                        .padding(.horizontal)
+                                }
+                                if viewStore.trainerTimescheduleState.showAddButton {
+                                    Button(
+                                        action: {
+                                            viewStore.send(.onTapAddButton, animation: .easeInOut)
+                                        }
+                                    ){
+                                        ButtonView(text: "追加")
+                                    }
+                                }
+                            }
+                            Spacer()
+                        }
+                        TrainerMakeReservationCheckButtonView(viewStore: viewStore)
+                    }
+                    .sheet(isPresented: viewStore.binding(\.$isSheet)) {
+                        TrainerMakeReservationListView(store: self.store)
+                    }
+                }
+                .alert(self.store.scope(state: \.alert), dismiss: .alertDismissed)
+                .gesture(
+                    DragGesture(minimumDistance: 5)
+                        .onEnded{ value in
+                            if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x{
+                                withAnimation(){
+                                    self.presentaionMode.wrappedValue.dismiss()
+                                }
+                            }
+                        }
+                )
+                .onChange(of: scenePhase) { phase in
+                    switch phase {
+                    case .active:
+                        viewStore.send(.ticketAction(.getTicket))
+                    default:
+                        return
+                    }
+                }
+            }
+        }
     }
 }
 
 struct PlanSetView_Previews: PreviewProvider {
     static var previews: some View {
-        PlanSetView()
+        PlanSetView(store: Store(initialState: TrainerMakeReservationState(),
+                                 reducer: trainerMakeReservationReducer,
+                                 environment: .live))
     }
 }
