@@ -15,9 +15,12 @@ struct StoreDateSelectView: View {
             Text("日付選択")
             DatePicker("", selection: viewStore.binding(\.$dateSelector), displayedComponents: .date)
                 .labelsHidden()
+                .onChange(of: viewStore.dateSelector) { _ in
+                    viewStore.send(.storePersonalCurrentAction(.getStoreCurrent(viewStore.dateSelector)))
+                }
             Spacer()
         }
-        .padding([.horizontal, .top])
+        .padding(.top)
     }
 }
 
