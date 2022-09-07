@@ -10,6 +10,7 @@ import ComposableArchitecture
 
 struct MakeReservationCheckButtonView: View {
     let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
+    
     var body: some View {
         VStack {
             Spacer()

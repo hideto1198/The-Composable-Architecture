@@ -10,6 +10,7 @@ import ComposableArchitecture
 
 struct MakeReservationListView: View {
     let store: Store<MakeReservationState, MakeReservationAction>
+    
     var body: some View {
         WithViewStore(self.store) { viewStore in
             ZStack {
