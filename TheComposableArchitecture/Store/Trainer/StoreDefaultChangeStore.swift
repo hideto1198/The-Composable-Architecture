@@ -23,13 +23,17 @@ enum StoreDefaultChangeAction: Equatable {
     case onTapLeft
     case onTapSave
     case onDisappear
+    case onSave
+    case setStoreResponse(Result<Bool, SetStoreClient.Failure>)
 }
 
 struct StoreDefaultChangeEnvironment {
     var getTrainerStoreClient: GetTrainerStoreClient
+    var setStoreClient: SetStoreClient
     var mainQueue: AnySchedulerOf<DispatchQueue>
     static let live = Self(
         getTrainerStoreClient: GetTrainerStoreClient.live,
+        setStoreClient: SetStoreClient.live,
         mainQueue: .main
     )
 }
@@ -74,5 +78,24 @@ let storeDefaultChangeReducer: Reducer = Reducer<StoreDefaultChangeState, StoreD
     case .onDisappear:
         state.trainerSelector = nil
         return .cancel(id: StoreDefaultChangeId.self)
+    case .onSave:
+        var request: [String: [String: String]] = [:]
+        state.isLoading = true
+        for trainer in state.itagakiTrainers {
+            request[trainer.trainerID] = [
+                "place": "板垣店"
+            ]
+        }
+        for trainer in state.ninomiyaTrainers {
+            request[trainer.trainerID] = [
+                "place": "二の宮店"
+            ]
+        }
+        return environment.setStoreClient.fetch(request)
+            .receive(on: environment.mainQueue)
+            .catchToEffect(StoreDefaultChangeAction.setStoreResponse)
+    case .setStoreResponse(_):
+        state.isLoading = false
+        return .none
     }
 }
