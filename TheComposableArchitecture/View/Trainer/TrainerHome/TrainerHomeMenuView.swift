@@ -44,7 +44,10 @@ struct TrainerHomeMenuView: View {
                                                                              environment: .live))
                         .navigationBarHidden(true),
                                    label: { MenuView(title: "店舗変更") })
-                    NavigationLink(destination: PlanSetView(),
+                    NavigationLink(destination: PlanSetView(store: Store(initialState: TrainerMakeReservationState(),
+                                                                         reducer: trainerMakeReservationReducer,
+                                                                         environment: .live))
+                        .navigationBarHidden(true),
                                    label: { MenuView(title: "予定セット") })
                 }
                 Spacer()

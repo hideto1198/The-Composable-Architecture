@@ -10,6 +10,7 @@ import ComposableArchitecture
 
 struct TrainerSelectView: View {
     let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
+    
     var body: some View {
         HStack {
             Text("トレーナー")
