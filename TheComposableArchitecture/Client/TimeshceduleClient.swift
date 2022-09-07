@@ -23,20 +23,16 @@ extension TimescheduleClient {
             let userID: String = Auth.auth().currentUser!.uid
             let data = try await functions.httpsCallable("get_reservation_data").call(["userID": userID])
             var result: Dictionary<String, TimescheduleEntity> = [:]
-            if let data = data.data {
-                let datas: NSDictionary = (data as! NSDictionary)["data"] as! NSDictionary
-                for time in datas.allKeys {
-                    let details: NSDictionary = datas[time]! as! NSDictionary
-                    let timeschedule: TimescheduleEntity = TimescheduleEntity(
-                        time: time as! String,
-                        state: details["state"] as! Int
-                    )
-                    result[time as! String] = timeschedule
-                }
-                return result
-            } else {
-                return [:]
+            let datas: NSDictionary = (data.data as! NSDictionary)["data"] as! NSDictionary
+            for time in datas.allKeys {
+                let details: NSDictionary = datas[time]! as! NSDictionary
+                let timeschedule: TimescheduleEntity = TimescheduleEntity(
+                    time: time as! String,
+                    state: details["state"] as! Int
+                )
+                result[time as! String] = timeschedule
             }
+            return result
         }
         .mapError{ _ in Failure() }
         .eraseToEffect()

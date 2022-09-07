@@ -21,23 +21,19 @@ extension TrainerClient {
             let functions = Functions.functions()
             let data = try await functions.httpsCallable("get_trainers").call(request)
             var result: [TrainerEntity] = []
-            if let data = data.data {
-                let datas: NSDictionary = (data as! NSDictionary)["data"] as! NSDictionary
-                for trainer_id in datas.allKeys {
-                    let details: NSDictionary = datas[trainer_id]! as! NSDictionary
-                    let trainer: TrainerEntity = TrainerEntity(
-                        trainerID: trainer_id as! String,
-                        trainerName: details["name"] as! String,
-                        token: details["token"] as! String,
-                        imagePath: details["path_name"] as! String
-                    )
-                    
-                    result.append(trainer)
-                }
-                return result
-            } else {
-                return []
+            let datas: NSDictionary = (data.data as! NSDictionary)["data"] as! NSDictionary
+            for trainer_id in datas.allKeys {
+                let details: NSDictionary = datas[trainer_id]! as! NSDictionary
+                let trainer: TrainerEntity = TrainerEntity(
+                    trainerID: trainer_id as! String,
+                    trainerName: details["name"] as! String,
+                    token: details["token"] as! String,
+                    imagePath: details["path_name"] as! String
+                )
+                
+                result.append(trainer)
             }
+            return result
         }
         .mapError{ _ in Failure() }
         .eraseToEffect()
