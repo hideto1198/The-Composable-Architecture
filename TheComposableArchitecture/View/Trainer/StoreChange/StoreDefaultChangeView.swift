@@ -12,70 +12,77 @@ struct StoreDefaultChangeView: View {
     let store: Store<StoreDefaultChangeState, StoreDefaultChangeAction>
     var body: some View {
         WithViewStore(self.store) { viewStore in
-            VStack {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("二の宮")
-                        List {
-                            ForEach(viewStore.ninomiyaTrainers.indices, id: \.self) { i in
-                                Text("\(viewStore.ninomiyaTrainers[i].trainerName)")
-                                    .listRowBackground(viewStore.trainerSelector != nil ? viewStore.trainerSelector!.trainerName == viewStore.ninomiyaTrainers[i].trainerName ? Color.blue.opacity(0.4) : Color("primary_white") : Color("primary_white"))
-                                    .onTapGesture {
-                                        viewStore.send(.onTapTrainer(viewStore.ninomiyaTrainers[i]))
-                                    }
+            ZStack {
+                VStack {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("二の宮")
+                            List {
+                                ForEach(viewStore.ninomiyaTrainers.indices, id: \.self) { i in
+                                    Text("\(viewStore.ninomiyaTrainers[i].trainerName)")
+                                        .listRowBackground(viewStore.trainerSelector != nil ? viewStore.trainerSelector!.trainerName == viewStore.ninomiyaTrainers[i].trainerName ? Color.blue.opacity(0.4) : Color("primary_white") : Color("primary_white"))
+                                        .onTapGesture {
+                                            viewStore.send(.onTapTrainer(viewStore.ninomiyaTrainers[i]))
+                                        }
+                                }
+                            }
+                        }
+                        VStack(alignment: .leading) {
+                            Text("板垣店")
+                            List {
+                                ForEach(viewStore.itagakiTrainers.indices, id: \.self) { i in
+                                    Text("\(viewStore.itagakiTrainers[i].trainerName)")
+                                        .listRowBackground(viewStore.trainerSelector != nil ? viewStore.trainerSelector!.trainerName == viewStore.itagakiTrainers[i].trainerName ? Color.blue.opacity(0.4) : Color("primary_white") : Color("primary_white"))
+                                        .onTapGesture {
+                                            viewStore.send(.onTapTrainer(viewStore.itagakiTrainers[i]))
+                                        }
+                                }
                             }
                         }
                     }
-                    VStack(alignment: .leading) {
-                        Text("板垣店")
-                        List {
-                            ForEach(viewStore.itagakiTrainers.indices, id: \.self) { i in
-                                Text("\(viewStore.itagakiTrainers[i].trainerName)")
-                                    .listRowBackground(viewStore.trainerSelector != nil ? viewStore.trainerSelector!.trainerName == viewStore.itagakiTrainers[i].trainerName ? Color.blue.opacity(0.4) : Color("primary_white") : Color("primary_white"))
-                                    .onTapGesture {
-                                        viewStore.send(.onTapTrainer(viewStore.itagakiTrainers[i]))
-                                    }
+                    .padding(.vertical)
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(
+                            action: {
+                                viewStore.send(.onTapLeft)
                             }
+                        ) {
+                            Image(systemName: "arrow.left")
+                                .foregroundColor(.primary)
                         }
+                        Spacer()
+                        Button(
+                            action: {
+                                viewStore.send(.onTapRight)
+                            }
+                        ) {
+                            Image(systemName: "arrow.right")
+                                .foregroundColor(.primary)
+                        }
+                        Spacer()
                     }
-                }
-                .padding(.vertical)
-                Spacer()
-                HStack {
-                    Spacer()
+                    .padding(.bottom)
                     Button(
                         action: {
-                            viewStore.send(.onTapLeft)
+                            viewStore.send(.onSave)
                         }
                     ) {
-                        Image(systemName: "arrow.left")
-                            .foregroundColor(.primary)
+                        ButtonView(text: "保存")
                     }
-                    Spacer()
-                    Button(
-                        action: {
-                            viewStore.send(.onTapRight)
-                        }
-                    ) {
-                        Image(systemName: "arrow.right")
-                            .foregroundColor(.primary)
-                    }
-                    Spacer()
+                    .padding(.bottom)
                 }
-                .padding(.bottom)
-                Button(
-                    action: {}
-                ) {
-                    ButtonView(text: "保存")
+                .padding(.horizontal)
+                .onAppear {
+                    viewStore.send(.getTrainerStore)
                 }
-                .padding(.bottom)
-            }
-            .padding(.horizontal)
-            .onAppear {
-                viewStore.send(.getTrainerStore)
-            }
-            .onDisappear {
-                viewStore.send(.onDisappear)
+                .onDisappear {
+                    viewStore.send(.onDisappear)
+                }
+                if viewStore.isLoading {
+                    ActivityIndicator()
+                }
             }
         }
     }
