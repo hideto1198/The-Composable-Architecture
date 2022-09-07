@@ -11,6 +11,7 @@ import ComposableArchitecture
 struct TrainerView: View {
     let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
     var trainer: TrainerEntity
+    
     var body: some View {
         ZStack {
             Color("background")
