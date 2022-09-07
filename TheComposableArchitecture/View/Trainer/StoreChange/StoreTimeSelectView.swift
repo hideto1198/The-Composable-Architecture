@@ -44,7 +44,7 @@ struct StoreTimeSelectView: View {
             }
             Spacer()
         }
-        .padding([.horizontal, .top])
+        .padding( .top)
     }
 }
 
