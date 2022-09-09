@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct InputReasonView: View {
-    let viewStore: ViewStore<InputReasonState, InputReasonAction>
+    let viewStore: ViewStore<TrainerMakeReservationState, TrainerMakeReservationAction>
     let items: [String] = ["体験","パーソナルトレーニング","ペアトレーニング","休み","その他"]
     
     var body: some View {
@@ -24,7 +24,7 @@ struct InputReasonView: View {
                         Text("項目")
                             .foregroundColor(Color.primary)
                             .padding(.horizontal)
-                        Picker(selection: viewStore.binding(\.$itemSelector), label: Text("")) {
+                        Picker(selection: viewStore.binding(\.inputReasonState.$itemSelector), label: Text("")) {
                             ForEach(items.indices, id: \.self) { i in
                                 Text("\(items[i])")
                                     .tag(i)
@@ -33,7 +33,7 @@ struct InputReasonView: View {
                     }
                     Text("備考を入力")
                         .font(.custom("", size: 15))
-                    TextField("", text: viewStore.binding(\.$note))
+                    TextField("", text: viewStore.binding(\.inputReasonState.$note))
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.horizontal)
                 }
@@ -42,24 +42,35 @@ struct InputReasonView: View {
                 HStack {
                     Spacer()
                     Button(
-                        action: {}
+                        action: {
+                            viewStore.send(.inputReasonAction(.onTapDecision(viewStore.trainerTimescheduleState.selectedTime)))
+                        }
                     ){
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke()
-                        Text("確定")
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke()
+                            Text("確定")
+                        }
+                        .frame(width: bounds.width * 0.3, height: bounds.height * 0.05)
                     }
                     .padding(.trailing)
                     Button(
-                        action: {}
+                        action: {
+                            viewStore.send(.inputReasonAction(.onTapCancel), animation: .linear)
+                        }
                     ){
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke()
-                        Text("キャンセル")
-                            .foregroundColor(.red)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke()
+                            Text("キャンセル")
+                                .foregroundColor(.red)
+                        }
+                        .frame(width: bounds.width * 0.3, height: bounds.height * 0.05)
                     }
                     .padding(.leading)
                     Spacer()
                 }
+                .padding(.bottom)
             }
         }
         .frame(width: bounds.width * 0.85, height: bounds.height * 0.3)
@@ -68,8 +79,8 @@ struct InputReasonView: View {
 
 struct InputReasonView_Previews: PreviewProvider {
     static var previews: some View {
-        InputReasonView(viewStore: ViewStore(Store(initialState: InputReasonState(),
-                                                   reducer: inputReasonReducer,
+        InputReasonView(viewStore: ViewStore(Store(initialState: TrainerMakeReservationState(),
+                                                   reducer: trainerMakeReservationReducer,
                                                    environment: .live)))
     }
 }
