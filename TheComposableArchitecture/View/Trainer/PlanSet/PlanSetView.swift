@@ -56,7 +56,7 @@ struct PlanSetView: View {
                                     TrainerTimescheduleView(viewStore: viewStore)
                                         .padding(.horizontal)
                                 }
-                                if viewStore.trainerTimescheduleState.showAddButton {
+                                if !viewStore.inputReasonState.reasons.isEmpty {
                                     Button(
                                         action: {
                                             viewStore.send(.onTapAddButton, animation: .easeInOut)
@@ -74,26 +74,30 @@ struct PlanSetView: View {
                         TrainerMakeReservationListView(store: self.store)
                     }
                 }
-                .alert(self.store.scope(state: \.alert), dismiss: .alertDismissed)
-                .gesture(
-                    DragGesture(minimumDistance: 5)
-                        .onEnded{ value in
-                            if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x{
-                                withAnimation(){
-                                    self.presentaionMode.wrappedValue.dismiss()
-                                }
-                            }
-                        }
-                )
-                .onChange(of: scenePhase) { phase in
-                    switch phase {
-                    case .active:
-                        viewStore.send(.ticketAction(.getTicket))
-                    default:
-                        return
-                    }
+                if viewStore.trainerTimescheduleState.showSetPlan {
+                    InputReasonView(viewStore: viewStore)
                 }
             }
+            .alert(self.store.scope(state: \.alert), dismiss: .alertDismissed)
+            .gesture(
+                DragGesture(minimumDistance: 5)
+                    .onEnded{ value in
+                        if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x{
+                            withAnimation(){
+                                self.presentaionMode.wrappedValue.dismiss()
+                            }
+                        }
+                    }
+            )
+            .onChange(of: scenePhase) { phase in
+                switch phase {
+                case .active:
+                    viewStore.send(.ticketAction(.getTicket))
+                default:
+                    return
+                }
+            }
+
         }
     }
 }
