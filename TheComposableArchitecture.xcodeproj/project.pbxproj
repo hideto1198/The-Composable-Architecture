@@ -154,7 +154,6 @@
 		86BB02AD28B771DE00435C32 /* TrainerHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02AC28B771DE00435C32 /* TrainerHomeHeaderView.swift */; };
 		86BB02AF28B771FF00435C32 /* TrainerHomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02AE28B771FF00435C32 /* TrainerHomeStore.swift */; };
 		86BB02B128B77BB700435C32 /* TrainerHomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02B028B77BB700435C32 /* TrainerHomeMenuView.swift */; };
-		86BB02BA28B781B300435C32 /* GymCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02B928B781B300435C32 /* GymCalendarView.swift */; };
 		86BB02BC28B781C200435C32 /* TicketPublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02BB28B781C200435C32 /* TicketPublishView.swift */; };
 		86BB02BE28B781D400435C32 /* SendNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02BD28B781D400435C32 /* SendNotificationView.swift */; };
 		86BB02C028B781E200435C32 /* CustomerSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB02BF28B781E200435C32 /* CustomerSearchView.swift */; };
@@ -340,7 +339,6 @@
 		86BB02AC28B771DE00435C32 /* TrainerHomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerHomeHeaderView.swift; sourceTree = "<group>"; };
 		86BB02AE28B771FF00435C32 /* TrainerHomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerHomeStore.swift; sourceTree = "<group>"; };
 		86BB02B028B77BB700435C32 /* TrainerHomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerHomeMenuView.swift; sourceTree = "<group>"; };
-		86BB02B928B781B300435C32 /* GymCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymCalendarView.swift; sourceTree = "<group>"; };
 		86BB02BB28B781C200435C32 /* TicketPublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketPublishView.swift; sourceTree = "<group>"; };
 		86BB02BD28B781D400435C32 /* SendNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNotificationView.swift; sourceTree = "<group>"; };
 		86BB02BF28B781E200435C32 /* CustomerSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSearchView.swift; sourceTree = "<group>"; };
@@ -716,7 +714,6 @@
 				86BB02B728B7816B00435C32 /* CustomerSearch */,
 				86BB02B628B7815900435C32 /* SendNotification */,
 				86BB02B528B7814200435C32 /* TicketPublish */,
-				86BB02B428B7812D00435C32 /* GymCalendar */,
 				86BB02AB28B771BB00435C32 /* TrainerHome */,
 				86BB029428B6428700435C32 /* MakeTrainer */,
 			);
@@ -783,14 +780,6 @@
 				86BB02B028B77BB700435C32 /* TrainerHomeMenuView.swift */,
 			);
 			path = TrainerHome;
-			sourceTree = "<group>";
-		};
-		86BB02B428B7812D00435C32 /* GymCalendar */ = {
-			isa = PBXGroup;
-			children = (
-				86BB02B928B781B300435C32 /* GymCalendarView.swift */,
-			);
-			path = GymCalendar;
 			sourceTree = "<group>";
 		};
 		86BB02B528B7814200435C32 /* TicketPublish */ = {
@@ -1152,7 +1141,6 @@
 				863D022F28C1FBB600B264E9 /* GetTrainerStoreClient.swift in Sources */,
 				86BA378E289D3B0000D83C18 /* MenuSelectView.swift in Sources */,
 				863F7A6D288FFFAF0065B8E8 /* ReservationListView.swift in Sources */,
-				86BB02BA28B781B300435C32 /* GymCalendarView.swift in Sources */,
 				86C23F6428A39FEC00303924 /* TimescheduleStore.swift in Sources */,
 				86290FA62891486B00D1B16B /* TicketView.swift in Sources */,
 				868E8C6C28959A9B0071A920 /* MenuView.swift in Sources */,
