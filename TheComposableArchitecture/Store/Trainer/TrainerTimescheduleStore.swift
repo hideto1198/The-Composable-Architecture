@@ -16,6 +16,8 @@ struct TrainerTimescheduleEntity: Equatable, Identifiable {
 }
 
 struct TrainerTimescheduleState: Equatable {
+    @BindableState var timeFromSelector: Int = 0
+    @BindableState var timeToSelector: Int = 0
     var times: Dictionary<String, TimescheduleEntity> = [:]
     var isLoading: Bool = false
     var timeFrom: String? = nil
@@ -23,13 +25,17 @@ struct TrainerTimescheduleState: Equatable {
     var showTimeSchedule: Bool = false
     var showAddButton: Bool = false
     var showSetPlan: Bool = false
+    var selectedTime: [String] = []
 }
 
-enum TrainerTimescheduleAction: Equatable {
+enum TrainerTimescheduleAction: Equatable, BindableAction {
+    case binding(BindingAction<TrainerTimescheduleState>)
     case getTimeschedule
     case timescheduleResponse(Result<Dictionary<String, TimescheduleEntity>, TimescheduleClient.Failure>)
     case onTapTime(String)
     case onTapReservationTime
+    case allSelect
+    case allCancel
 }
 
 struct TrainerTimescheduleEnvironment {
@@ -43,8 +49,9 @@ struct TrainerTimescheduleEnvironment {
 
 let trainerTimescheduleReducer: Reducer = Reducer<TrainerTimescheduleState, TrainerTimescheduleAction, TrainerTimescheduleEnvironment> { state, action, environment in
     switch action {
+    case .binding:
+        return .none
     case let .onTapTime(time):
-        guard time != "22:30" else { return .none }
         state.timeFrom = time
         if state.times[state.timeFrom!]!.state != 1 {
             state.timeFrom = nil
@@ -53,6 +60,7 @@ let trainerTimescheduleReducer: Reducer = Reducer<TrainerTimescheduleState, Trai
         }
         state.times[state.timeFrom!]!.isTap = true
         state.showSetPlan = true
+        state.selectedTime = [time]
         return .none
         
     case .onTapReservationTime:
@@ -73,9 +81,24 @@ let trainerTimescheduleReducer: Reducer = Reducer<TrainerTimescheduleState, Trai
     case .timescheduleResponse(.failure):
         state.isLoading = false
         return .none
+    case .allSelect:
+        for key in state.times.keys {
+            if state.times[key]!.state == 1 {
+                state.times[key]?.isTap = true
+                state.selectedTime.append(key)
+            }
+        }
+        state.showSetPlan = true
+        return .none
+    case .allCancel:
+        for key in state.times.keys {
+            state.times[key]?.isTap = false
+        }
+        state.selectedTime.removeAll()
+        return .none
     }
 }
-
+.binding()
 fileprivate func nextTimeValue(time: String) -> String {
     let times: [String] = [
         "9:00","9:30","10:00","10:30","11:00","11:30",
