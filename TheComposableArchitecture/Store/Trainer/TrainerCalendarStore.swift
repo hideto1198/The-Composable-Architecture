@@ -61,6 +61,7 @@ enum TrainerCalendarAction: Equatable {
     case onTapTile
     case getGymDataResponse(Result<[String: Any], GetGymDataClient.Failure>)
     case getGymData(String)
+    case onLongTap(GymDetailEntity)
 }
 
 struct TrainerCalendarEnvironment {
@@ -126,5 +127,7 @@ let trainerCalendarReducer: Reducer = Reducer<TrainerCalendarState, TrainerCalen
         return .none
     case .onDisappear:
         return .cancel(id: GetGymClientId.self)
+    case .onLongTap(_):
+        return .none
     }
 }
