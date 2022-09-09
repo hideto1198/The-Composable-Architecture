@@ -226,7 +226,9 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         case let .setReservationResponse(.success(result)):
             state.isLoading = false
             state.reservations.removeAll()
-            state.alert = AlertState(title: TextState("確認"), message: TextState("予約が完了しました"), dismissButton: .default(TextState("OK"), action: .send(.onConfirmAlertDismissed)))
+            state.alert = AlertState(title: TextState("確認"),
+                                     message: TextState("予約が完了しました"),
+                                     dismissButton: .default(TextState("OK"), action: .send(.onConfirmAlertDismissed)))
             return .none
             
         case .setReservationResponse(.failure):
