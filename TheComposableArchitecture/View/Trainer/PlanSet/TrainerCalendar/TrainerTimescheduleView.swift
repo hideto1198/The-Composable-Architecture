@@ -20,7 +20,7 @@ struct TrainerTimescheduleView: View {
     
     var body: some View {
         if !viewStore.trainerTimescheduleState.isLoading {
-            ZStack {
+            VStack {
                 HStack {
                     Spacer()
                     VStack(alignment: .leading) {
@@ -40,9 +40,61 @@ struct TrainerTimescheduleView: View {
                     }
                     Spacer()
                 }
-                if viewStore.trainerTimescheduleState.showSetPlan {
-                    // InputReasonView(viewStore: viewStore)
+                HStack {
+                    Picker(selection: viewStore.binding(\.trainerTimescheduleState.$timeFromSelector), label: Text("")) {
+                        ForEach(times.flatMap({$0}).indices, id: \.self) { i in
+                            Text(times.flatMap({$0})[i])
+                                .tag(i)
+                        }
+                    }
+                    Text("〜")
+                    Picker(selection: viewStore.binding(\.trainerTimescheduleState.$timeToSelector), label: Text("")) {
+                        ForEach(times.flatMap({$0}).indices, id: \.self) { i in
+                            Text(times.flatMap({$0})[i])
+                                .tag(i)
+                        }
+                    }
+                    Button(
+                        action: {}
+                    ) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.gray, lineWidth: 0.5)
+                            Text("選択")
+                        }
+                        .frame(width: bounds.width * 0.3, height: bounds.height * 0.03)
+                    }
                 }
+                HStack {
+                    Spacer()
+                    Button(
+                        action: {
+                            viewStore.send(.trainerTimescheduleAction(.allSelect))
+                        }
+                    ) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.gray, lineWidth: 0.5)
+                            Text("全選択")
+                        }
+                        .frame(width: bounds.width * 0.3, height: bounds.height * 0.03)
+                    }
+                    Spacer()
+                    Button(
+                        action: {
+                            viewStore.send(.trainerTimescheduleAction(.allCancel))
+                        }
+                    ) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .stroke(Color.gray, lineWidth: 0.5)
+                            Text("全解除")
+                        }
+                        .frame(width: bounds.width * 0.3, height: bounds.height * 0.03)
+                    }
+                    Spacer()
+                }
+                .padding(.bottom)
             }
         } else {
             HStack {
