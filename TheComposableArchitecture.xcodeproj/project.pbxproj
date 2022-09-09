@@ -18,6 +18,7 @@
 		8614204B28A251740041F6B3 /* TrainerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614204A28A251740041F6B3 /* TrainerClient.swift */; };
 		8614204E28A267280041F6B3 /* TrainersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614204D28A267280041F6B3 /* TrainersView.swift */; };
 		8614205028A267310041F6B3 /* TrainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614204F28A267310041F6B3 /* TrainerView.swift */; };
+		8614D10D28CB2E2900A84B6E /* SetTrainerReservationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8614D10C28CB2E2900A84B6E /* SetTrainerReservationClient.swift */; };
 		86290FA028913F4300D1B16B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290F9F28913F4300D1B16B /* HomeView.swift */; };
 		86290FA228913F6200D1B16B /* TicketStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290FA128913F6200D1B16B /* TicketStore.swift */; };
 		86290FA42891415700D1B16B /* TicketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86290FA32891415700D1B16B /* TicketClient.swift */; };
@@ -217,6 +218,7 @@
 		8614204A28A251740041F6B3 /* TrainerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerClient.swift; sourceTree = "<group>"; };
 		8614204D28A267280041F6B3 /* TrainersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainersView.swift; sourceTree = "<group>"; };
 		8614204F28A267310041F6B3 /* TrainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainerView.swift; sourceTree = "<group>"; };
+		8614D10C28CB2E2900A84B6E /* SetTrainerReservationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTrainerReservationClient.swift; sourceTree = "<group>"; };
 		86290F9F28913F4300D1B16B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		86290FA128913F6200D1B16B /* TicketStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketStore.swift; sourceTree = "<group>"; };
 		86290FA32891415700D1B16B /* TicketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketClient.swift; sourceTree = "<group>"; };
@@ -766,6 +768,7 @@
 				867C958228C8063C005C6A95 /* GetStoreCurrentClient.swift */,
 				867C958628C8939B005C6A95 /* SetStorePersonalClient.swift */,
 				867C958828C8A19D005C6A95 /* SetStoreClient.swift */,
+				8614D10C28CB2E2900A84B6E /* SetTrainerReservationClient.swift */,
 			);
 			path = Trainer;
 			sourceTree = "<group>";
@@ -1093,6 +1096,7 @@
 				86BB026428B38E6900435C32 /* InputProfileTextField.swift in Sources */,
 				8655502B28A677E800924528 /* SignUpClient.swift in Sources */,
 				867C959528C8AD1C005C6A95 /* TrainerCalendarView.swift in Sources */,
+				8614D10D28CB2E2900A84B6E /* SetTrainerReservationClient.swift in Sources */,
 				86BA3790289D3E4700D83C18 /* CalendarTileView.swift in Sources */,
 				867C959728C8AED2005C6A95 /* TrainerTrainerSelectView.swift in Sources */,
 				86BB020028AD0CA300435C32 /* MakeReservationCheckButtonView.swift in Sources */,
@@ -1365,6 +1369,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TheComposableArchitecture/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "チケットを追加するためにQRコードを読み取ります。カメラの使用を許可してください";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1400,6 +1405,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TheComposableArchitecture/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "チケットを追加するためにQRコードを読み取ります。カメラの使用を許可してください";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
