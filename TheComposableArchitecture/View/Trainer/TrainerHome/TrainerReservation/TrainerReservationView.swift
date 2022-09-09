@@ -48,7 +48,6 @@ struct TrainerReservationView: View {
                     return
                 }
             }
-            
         }
     }
 }
