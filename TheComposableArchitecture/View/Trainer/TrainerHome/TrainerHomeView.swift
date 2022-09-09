@@ -38,7 +38,7 @@ struct TrainerHomeView: View {
                         .onTapGesture {
                             viewStore.send(.onTapCalendarTile("99"), animation: .easeOut)
                         }
-                    TrainerCalendarDetailDaysView(viewStore: viewStore)
+                    TrainerCalendarDetailDaysView(store: self.store)
                 }
                 if viewStore.isMenu {
                     Color.gray
