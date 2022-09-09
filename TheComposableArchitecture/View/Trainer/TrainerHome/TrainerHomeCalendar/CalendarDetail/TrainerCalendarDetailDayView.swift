@@ -10,54 +10,59 @@ import ComposableArchitecture
 
 struct TrainerCalendarDetailDayView: View {
     @Environment(\.scenePhase) var scenePhase
-    let viewStore: ViewStore<TrainerHomeState, TrainerHomeAction>
+    let store: Store<TrainerHomeState, TrainerHomeAction>
     let date: String
     
     var body: some View {
-        ZStack {
-            Color("primary_white")
-                .cornerRadius(10)
-            VStack {
-                Text("\(String(viewStore.trainerCalendarState.year))年\(viewStore.trainerCalendarState.month)月\(date)日")
-                    .bold()
-                    .padding(.vertical)
-                if #available(iOS 15.0, *) {
-                    List {
-                        ForEach(viewStore.gymDetailState.details) { detail in
-                            TrainerCalendarDetailRowView(detail: detail)
+        WithViewStore(self.store) { viewStore in
+            ZStack {
+                Color("primary_white")
+                    .cornerRadius(10)
+                VStack {
+                    Text("\(String(viewStore.trainerCalendarState.year))年\(viewStore.trainerCalendarState.month)月\(date)日")
+                        .bold()
+                        .padding(.vertical)
+                    if #available(iOS 15.0, *) {
+                        List {
+                            ForEach(viewStore.gymDetailState.details) { detail in
+                                TrainerCalendarDetailRowView(detail: detail)
+                                    .onLongPressGesture {
+                                        viewStore.send(.trainerCalenadarAction(.onLongTap(detail)))
+                                    }
+                            }
                         }
+                        .listStyle(.plain)
+                        .refreshable {
+                            viewStore.send(.gymDetailAction(.getGymDetails(["year": "\(String(viewStore.trainerCalendarState.year))",
+                                                                            "month": "\(viewStore.trainerCalendarState.month)",
+                                                                            "day": date,
+                                                                            "target": viewStore.trainers[viewStore.trainerSelector]])))
+                        }
+                        .padding(.bottom)
                     }
-                    .listStyle(.plain)
-                    .refreshable {
-                        viewStore.send(.gymDetailAction(.getGymDetails(["year": "\(String(viewStore.trainerCalendarState.year))",
-                                                                        "month": "\(viewStore.trainerCalendarState.month)",
-                                                                        "day": date,
-                                                                        "target": viewStore.trainers[viewStore.trainerSelector]])))
-                    }
-                    .padding(.bottom)
+                }
+                if viewStore.gymDetailState.isLoading {
+                    ActivityIndicator()
                 }
             }
-            if viewStore.gymDetailState.isLoading {
-                ActivityIndicator()
-            }
-        }
-        .frame(width: bounds.width * 0.9, height: bounds.height * 0.75)
-        .onAppear {
-            viewStore.send(.gymDetailAction(.getGymDetails(["year": "\(String(viewStore.trainerCalendarState.year))",
-                                                            "month": "\(viewStore.trainerCalendarState.month)",
-                                                            "day": date,
-                                                            "target": viewStore.trainers[viewStore.trainerSelector]])))
-        }
-        .onChange(of: scenePhase) { phase in
-            switch phase {
-            case .active:
+            .frame(width: bounds.width * 0.9, height: bounds.height * 0.75)
+            .onAppear {
                 viewStore.send(.gymDetailAction(.getGymDetails(["year": "\(String(viewStore.trainerCalendarState.year))",
                                                                 "month": "\(viewStore.trainerCalendarState.month)",
                                                                 "day": date,
                                                                 "target": viewStore.trainers[viewStore.trainerSelector]])))
-                return
-            default:
-                return
+            }
+            .onChange(of: scenePhase) { phase in
+                switch phase {
+                case .active:
+                    viewStore.send(.gymDetailAction(.getGymDetails(["year": "\(String(viewStore.trainerCalendarState.year))",
+                                                                    "month": "\(viewStore.trainerCalendarState.month)",
+                                                                    "day": date,
+                                                                    "target": viewStore.trainers[viewStore.trainerSelector]])))
+                    return
+                default:
+                    return
+                }
             }
         }
     }
@@ -65,9 +70,9 @@ struct TrainerCalendarDetailDayView: View {
 
 struct TrainerCalendarDetailDay_Previews: PreviewProvider {
     static var previews: some View {
-        TrainerCalendarDetailDayView(viewStore: ViewStore(Store(initialState: TrainerHomeState(),
+        TrainerCalendarDetailDayView(store: Store(initialState: TrainerHomeState(),
                                                             reducer: trainerHomeReducer,
-                                                                environment: .live)),
+                                                                environment: .live),
                                      date: "1")
     }
 }
