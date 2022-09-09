@@ -12,7 +12,7 @@ struct TrainerCalendarDetailRowView: View {
     
     var body: some View {
         Group {
-            if detail.userName != detail.trainerName && detail.userName != "トレーナー同士" {
+            if detail.userName != detail.trainerName && detail.userName != "トレーナー　同士" {
                 VStack(alignment: .leading) {
                     Text("\(detail.trainerName)")
                         .font(.custom("", size: 13))
@@ -41,7 +41,7 @@ struct TrainerCalendarDetailRowView: View {
                 }
             } else {
                 VStack(alignment: .leading) {
-                    Text("\(detail.trainerName)\(detail.userName == "トレーナー同士" ? "　(トレーナー同士)" : "")")
+                    Text("\(detail.trainerName)\(detail.userName == "トレーナー　同士" ? "　(トレーナー同士)" : "")")
                         .font(.custom("", size: 13))
                         .padding(.bottom, 2)
                     HStack {
