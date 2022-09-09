@@ -68,11 +68,12 @@ struct TrainerHomeView: View {
                         } else if value.startLocation.x * 1.3 > value.location.x && viewStore.isMenu {
                             viewStore.send(.onTapMenu, animation: .easeOut)
                         } else {
-                            debugPrint(value)
-                            if (value.startLocation.x - value.location.x ) > 100 {
-                                viewStore.send(.trainerCalenadarAction(.onTapNext(viewStore.trainers[viewStore.trainerSelector])))
-                            } else if (value.startLocation.x - value.location.x) < -100 {
-                                viewStore.send(.trainerCalenadarAction(.onTapPrevious(viewStore.trainers[viewStore.trainerSelector])))
+                            if !viewStore.showDetails {
+                                if (value.startLocation.x - value.location.x ) > 100 {
+                                    viewStore.send(.trainerCalenadarAction(.onTapNext(viewStore.trainers[viewStore.trainerSelector])))
+                                } else if (value.startLocation.x - value.location.x) < -100 {
+                                    viewStore.send(.trainerCalenadarAction(.onTapPrevious(viewStore.trainers[viewStore.trainerSelector])))
+                                }
                             }
                         }
                     }
