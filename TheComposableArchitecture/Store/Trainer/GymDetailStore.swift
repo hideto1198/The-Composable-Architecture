@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import ComposableArchitecture
 
 struct GymDetailEntity: Equatable, Identifiable {
@@ -36,6 +37,7 @@ struct GymDetailState: Equatable {
 enum GymDetailAction: Equatable {
     case getGymDetails([String: String])
     case getGymDetailsResponse(Result<[String: [GymDetailEntity]], GetGymDetailsClient.Failure>)
+    case cancelPlan(GymDetailEntity)
 }
 
 struct GymDetailEnvironment {
@@ -48,6 +50,7 @@ struct GymDetailEnvironment {
 }
 
 let gymDetailReducer: Reducer = Reducer<GymDetailState, GymDetailAction, GymDetailEnvironment> { state, action, environment in
+    let timer: Timer?
     enum GymDetailId {}
     switch action {
     case let .getGymDetails(request):
@@ -66,6 +69,17 @@ let gymDetailReducer: Reducer = Reducer<GymDetailState, GymDetailAction, GymDeta
     case .getGymDetailsResponse(.failure):
         state.isLoading = false
         return .none
-    
+    // MARK: - 予定をキャンセルする
+    case let .cancelPlan(detail):
+        /*
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { time in
+            withAnimation() {
+                if state.details.filter{ $0.id == detail.id }.first!.opacity > 0.2 {
+                    
+                }
+            }
+        })
+         */
+        return .none
     }
 }
