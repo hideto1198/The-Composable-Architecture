@@ -21,6 +21,8 @@ struct TrainerHomeState: Equatable {
     var trainers: [String] = []
     var showDetails: Bool = false
     var date: String = ""
+    var alert: AlertState<TrainerHomeAction>?
+    
 }
 
 enum TrainerHomeAction: Equatable, BindableAction {
@@ -35,6 +37,8 @@ enum TrainerHomeAction: Equatable, BindableAction {
     case gymDetailAction(GymDetailAction)
     case onTapCalendarTile(String)
     case onChangeDate(Int)
+    case onTapYes
+    case onDismiss
 }
 
 struct TrainerHomeEnvironment {
@@ -71,6 +75,16 @@ let trainerHomeReducer: Reducer = Reducer<TrainerHomeState, TrainerHomeAction, T
         case .onTapLogo:
             state.isHome = true
             return .none
+            // MARK: - 予約を長押しした時の処理
+        case let .trainerCalenadarAction(.onLongTap(detail)):
+            if !(detail.userName == "トレーナー　同士" || detail.userName == UserDefaults.standard.string(forKey: "userName")!) {
+                return .none
+            }
+            state.alert = AlertState(title: TextState("確認"),
+                                     message: TextState("この予定を削除しますか？"),
+                                     primaryButton: .cancel(TextState("キャンセル")),
+                                     secondaryButton: .destructive(TextState("はい"), action: .send(.onTapYes)))
+            return Effect(value: .gymDetailAction(.cancelPlan(detail)))
         case .trainerCalenadarAction:
             return .none
         case .onTapFilter:
@@ -107,6 +121,12 @@ let trainerHomeReducer: Reducer = Reducer<TrainerHomeState, TrainerHomeAction, T
         // MARK: - スライドで日付を変更した時の処理
         case let .onChangeDate(index):
             state.gymDetailState.currentDate = state.trainerCalendarState.gymDates[index]
+            return .none
+        case .onTapYes:
+            state.alert = nil
+            return .none
+        case .onDismiss:
+            state.alert = nil
             return .none
         }
     }
