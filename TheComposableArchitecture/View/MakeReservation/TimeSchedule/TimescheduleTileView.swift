@@ -24,6 +24,7 @@ struct TimescheduleTileView: View {
             .foregroundColor(Color.primary)
         }
         .frame(width: bounds.width * 0.13, height: bounds.height * 0.1)
+        .background(time.isTap ? Color("app_color") : Color.clear)
     }
     
     private func convert_state(state: Int) -> String {
