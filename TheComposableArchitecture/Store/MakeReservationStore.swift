@@ -30,8 +30,8 @@ struct MakeReservationState: Equatable {
     var timescheduleState: TimescheduleState = TimescheduleState()
     var ticketState: TicketState = TicketState()
     var reservations: [MakeReservationEntity] = []
-    var menuSelector: Int = 0
-    var placeSelector: Int = 0
+    @BindableState var menuSelector: Int = 0
+    @BindableState var placeSelector: Int = 0
     var trainerSelector: Int = 0
     var trainer: String = "選択してください"
     var showTrainerSelector: Bool = false
@@ -59,8 +59,7 @@ enum MakeReservationAction: BindableAction, Equatable {
     case trainerAction(TrainerAction)
     case timescheduleAction(TimescheduleAction)
     case ticketAction(TicketAction)
-    case onSelectMenu(Int)
-    case onSelectPlace(Int)
+    case onSelectPlace
     case onTapTrainer
     case onTapDate
     case onTapAddButton
@@ -147,13 +146,10 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         
         case .ticketAction:
             return .none
-        case let .onSelectMenu(index):
-            state.menuSelector = index
-            return .none
         
         // MARK: - 場所を選択したときの処理
-        case let .onSelectPlace(index):
-            if index == 0 {
+        case .onSelectPlace:
+            if state.placeSelector == 0 {
                 state.resetState()
                 state.timescheduleState.showTimeSchedule = false
                 state.timescheduleState.showAddButton = false
@@ -164,7 +160,6 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
                 state.showCalendar = true
                 state.showReservationDate = true
             }
-            state.placeSelector = index
             return .none
             
         case .onTapTrainer:
