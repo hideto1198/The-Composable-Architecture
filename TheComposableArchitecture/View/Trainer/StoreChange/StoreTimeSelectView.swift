@@ -21,26 +21,50 @@ struct StoreTimeSelectView: View {
     var body: some View {
         HStack {
             Text("時間帯選択")
-            Picker(selection: viewStore.binding(\.$timeFromSelector), label: Text("")) {
-                ForEach(times.indices, id: \.self) { i in
-                    Text("\(times[i])")
-                        .tag(i)
+            if #available(iOS 15, *) {
+                Picker(selection: viewStore.binding(\.$timeFromSelector), label: Text("")) {
+                    ForEach(times.indices, id: \.self) { i in
+                        Text("\(times[i])")
+                            .tag(i)
+                    }
                 }
-            }
-            .labelsHidden()
-            .onChange(of: viewStore.timeFromSelector) { _ in
-                viewStore.send(.onChangeTimeFrom)
-            }
-            Text("~")
-            Picker(selection: viewStore.binding(\.$timeToSelector), label: Text("")) {
-                ForEach(times.indices, id: \.self) { i in
-                    Text("\(times[i])")
-                        .tag(i)
+                .labelsHidden()
+                .onChange(of: viewStore.timeFromSelector) { _ in
+                    viewStore.send(.onChangeTimeFrom)
                 }
-            }
-            .labelsHidden()
-            .onChange(of: viewStore.timeToSelector) { _ in
-                viewStore.send(.onChangeTimeTo)
+                Text("~")
+                Picker(selection: viewStore.binding(\.$timeToSelector), label: Text("")) {
+                    ForEach(times.indices, id: \.self) { i in
+                        Text("\(times[i])")
+                            .tag(i)
+                    }
+                }
+                .labelsHidden()
+                .onChange(of: viewStore.timeToSelector) { _ in
+                    viewStore.send(.onChangeTimeTo)
+                }
+            } else {
+                Picker(selection: viewStore.binding(\.$timeFromSelector), label: Text("\(times[viewStore.timeFromSelector])")) {
+                    ForEach(times.indices, id: \.self) { i in
+                        Text("\(times[i])")
+                            .tag(i)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+                .onChange(of: viewStore.timeFromSelector) { _ in
+                    viewStore.send(.onChangeTimeFrom)
+                }
+                Text("~")
+                Picker(selection: viewStore.binding(\.$timeToSelector), label: Text("\(times[viewStore.timeToSelector])")) {
+                    ForEach(times.indices, id: \.self) { i in
+                        Text("\(times[i])")
+                            .tag(i)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+                .onChange(of: viewStore.timeToSelector) { _ in
+                    viewStore.send(.onChangeTimeTo)
+                }
             }
             Spacer()
         }

@@ -23,14 +23,25 @@ struct InputReasonView: View {
                     HStack {
                         Text("項目")
                             .foregroundColor(Color.primary)
-                            .padding(.horizontal)
-                        Picker(selection: viewStore.binding(\.inputReasonState.$itemSelector), label: Text("")) {
-                            ForEach(items.indices, id: \.self) { i in
-                                Text("\(items[i])")
-                                    .tag(i)
+                        Spacer()
+                        if #available(iOS 15, *) {
+                            Picker(selection: viewStore.binding(\.inputReasonState.$itemSelector), label: Text("")) {
+                                ForEach(items.indices, id: \.self) { i in
+                                    Text("\(items[i])")
+                                        .tag(i)
+                                }
                             }
+                        } else {
+                            Picker(selection: viewStore.binding(\.inputReasonState.$itemSelector), label: Text("\(items[viewStore.inputReasonState.itemSelector])")) {
+                                ForEach(items.indices, id: \.self) { i in
+                                    Text("\(items[i])")
+                                        .tag(i)
+                                }
+                            }
+                            .pickerStyle(MenuPickerStyle())
                         }
                     }
+                    .padding(.horizontal)
                     Text("備考を入力")
                         .font(.custom("", size: 15))
                     TextField("", text: viewStore.binding(\.inputReasonState.$note))

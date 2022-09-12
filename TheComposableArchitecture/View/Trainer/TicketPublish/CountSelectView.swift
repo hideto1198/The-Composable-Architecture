@@ -14,13 +14,25 @@ struct CountSelectView: View {
         HStack {
             Text("回数選択")
             Spacer()
-            Picker(selection: viewStore.binding(\.$countSelector), label: Text("")) {
-                ForEach(viewStore.counts.indices, id: \.self) { i in
-                    Text("\(viewStore.counts[i])")
-                        .tag(i)
+            Group {
+                if #available(iOS 15, *) {
+                    Picker(selection: viewStore.binding(\.$countSelector), label: Text("")) {
+                        ForEach(viewStore.counts.indices, id: \.self) { i in
+                            Text("\(viewStore.counts[i])")
+                                .tag(i)
+                        }
+                    }
+                    .labelsHidden()
+                } else {
+                    Picker(selection: viewStore.binding(\.$countSelector), label: Text("\(viewStore.counts[viewStore.countSelector])")) {
+                        ForEach(viewStore.counts.indices, id: \.self) { i in
+                            Text("\(viewStore.counts[i])")
+                                .tag(i)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
                 }
             }
-            .labelsHidden()
         }
         .padding([.horizontal, .top])
     }

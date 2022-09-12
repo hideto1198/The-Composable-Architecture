@@ -41,18 +41,36 @@ struct TrainerTimescheduleView: View {
                     Spacer()
                 }
                 HStack {
-                    Picker(selection: viewStore.binding(\.trainerTimescheduleState.$timeFromSelector), label: Text("")) {
-                        ForEach(times.flatMap({$0}).indices, id: \.self) { i in
-                            Text(times.flatMap({$0})[i])
-                                .tag(i)
+                    if #available(iOS 15, *) {
+                        Picker(selection: viewStore.binding(\.trainerTimescheduleState.$timeFromSelector), label: Text("")) {
+                            ForEach(times.flatMap({$0}).indices, id: \.self) { i in
+                                Text(times.flatMap({$0})[i])
+                                    .tag(i)
+                            }
                         }
-                    }
-                    Text("〜")
-                    Picker(selection: viewStore.binding(\.trainerTimescheduleState.$timeToSelector), label: Text("")) {
-                        ForEach(times.flatMap({$0}).indices, id: \.self) { i in
-                            Text(times.flatMap({$0})[i])
-                                .tag(i)
+                        Text("〜")
+                        Picker(selection: viewStore.binding(\.trainerTimescheduleState.$timeToSelector), label: Text("")) {
+                            ForEach(times.flatMap({$0}).indices, id: \.self) { i in
+                                Text(times.flatMap({$0})[i])
+                                    .tag(i)
+                            }
                         }
+                    } else {
+                        Picker(selection: viewStore.binding(\.trainerTimescheduleState.$timeFromSelector), label: Text("\(times.flatMap({$0})[viewStore.trainerTimescheduleState.timeFromSelector])")) {
+                            ForEach(times.flatMap({$0}).indices, id: \.self) { i in
+                                Text(times.flatMap({$0})[i])
+                                    .tag(i)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                        Text("〜")
+                        Picker(selection: viewStore.binding(\.trainerTimescheduleState.$timeToSelector), label: Text("\(times.flatMap({$0})[viewStore.trainerTimescheduleState.timeToSelector])")) {
+                            ForEach(times.flatMap({$0}).indices, id: \.self) { i in
+                                Text(times.flatMap({$0})[i])
+                                    .tag(i)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
                     }
                     Button(
                         action: {}

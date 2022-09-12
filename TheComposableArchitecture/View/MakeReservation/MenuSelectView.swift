@@ -10,23 +10,28 @@ import ComposableArchitecture
 
 struct MenuSelectView: View {
     let viewStore: ViewStore<MakeReservationState, MakeReservationAction>
+    let menus: [String] = ["パーソナルトレーニング"]
+    
     var body: some View {
         HStack {
             Text("メニュー")
             Spacer()
             if #available(iOS 15, *) {
-                Picker("Tab", selection: viewStore.binding(get: {_ in viewStore.menuSelector} , send: {.onSelectMenu($0)}).animation(.linear)
-                ){
-                    Text("パーソナルトレーニング")
-                        .tag(0)
+                Picker(selection: viewStore.binding(\.$menuSelector), label: Text("")){
+                    ForEach(menus.indices, id: \.self) { i in
+                        Text("\(menus[i])")
+                            .tag(i)
+                    }
                 }
             } else {
-                Picker("Tab", selection: viewStore.binding(get: {_ in viewStore.menuSelector} , send: {.onSelectMenu($0)}).animation(.linear)
-                ){
-                    Text("パーソナルトレーニング")
-                        .tag(0)
+                Picker(selection: viewStore.binding(\.$menuSelector), label: Text("\(menus[viewStore.menuSelector])")){
+                    ForEach(menus.indices, id: \.self) { i in
+                        Text("\(menus[i])")
+                            .tag(i)
+                    }
                 }
-                .pickerStyle(.segmented)
+                .pickerStyle(MenuPickerStyle())
+                .padding(.trailing)
             }
         }
     }
