@@ -10,7 +10,6 @@ import ComposableArchitecture
 
 struct LaunchDesignView: View {
     var viewStore: ViewStore<LaunchState, LaunchAction>
-    //let store: Store<Any, LifecycleAction<TimerAction>>
     
     var body: some View {
         ZStack {
@@ -46,6 +45,10 @@ struct LaunchDesignView: View {
                 .frame(width: bounds.width * 0.5, height: bounds.width * 0.5)
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear{
             viewStore.send(.timer(.onAppear))
         }
