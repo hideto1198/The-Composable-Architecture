@@ -186,6 +186,9 @@
 		86EA523B2893D0A800939659 /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523A2893D0A800939659 /* HomeStore.swift */; };
 		86EA523D2893FAFA00939659 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523C2893FAFA00939659 /* HomeHeaderView.swift */; };
 		86EA523F2894013900939659 /* HomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EA523E2894013900939659 /* HomeMenuView.swift */; };
+		86F749D828CF1E9300EACB5B /* CustomerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F749D728CF1E9300EACB5B /* CustomerProfileView.swift */; };
+		86F749DA28CF21BB00EACB5B /* CustomerProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F749D928CF21BB00EACB5B /* CustomerProfileStore.swift */; };
+		86F749DC28CF232B00EACB5B /* SetCustomerProfileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F749DB28CF232B00EACB5B /* SetCustomerProfileClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -371,6 +374,9 @@
 		86EA523A2893D0A800939659 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
 		86EA523C2893FAFA00939659 /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
 		86EA523E2894013900939659 /* HomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuView.swift; sourceTree = "<group>"; };
+		86F749D728CF1E9300EACB5B /* CustomerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfileView.swift; sourceTree = "<group>"; };
+		86F749D928CF21BB00EACB5B /* CustomerProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfileStore.swift; sourceTree = "<group>"; };
+		86F749DB28CF232B00EACB5B /* SetCustomerProfileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCustomerProfileClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -748,6 +754,7 @@
 				867C958A28C8A9B4005C6A95 /* TrainerMakeReservationStore.swift */,
 				867C95A428C8B3F6005C6A95 /* TrainerTimescheduleStore.swift */,
 				867C95A828C8B61D005C6A95 /* InputReasonStore.swift */,
+				86F749D928CF21BB00EACB5B /* CustomerProfileStore.swift */,
 			);
 			path = Trainer;
 			sourceTree = "<group>";
@@ -766,6 +773,7 @@
 				867C958628C8939B005C6A95 /* SetStorePersonalClient.swift */,
 				867C958828C8A19D005C6A95 /* SetStoreClient.swift */,
 				8614D10C28CB2E2900A84B6E /* SetTrainerReservationClient.swift */,
+				86F749DB28CF232B00EACB5B /* SetCustomerProfileClient.swift */,
 			);
 			path = Trainer;
 			sourceTree = "<group>";
@@ -805,6 +813,7 @@
 			children = (
 				86BB02BF28B781E200435C32 /* CustomerSearchView.swift */,
 				863D022228C0C4B500B264E9 /* SearchBarView.swift */,
+				86F749D728CF1E9300EACB5B /* CustomerProfileView.swift */,
 			);
 			path = CustomerSearch;
 			sourceTree = "<group>";
@@ -1033,6 +1042,7 @@
 				86BB027028B47F2900435C32 /* WithdrawView.swift in Sources */,
 				867C959128C8ACEB005C6A95 /* TrainerPlaceSelectView.swift in Sources */,
 				863D01F928BE0F9700B264E9 /* GetGymDetailsClient.swift in Sources */,
+				86F749D828CF1E9300EACB5B /* CustomerProfileView.swift in Sources */,
 				863D01F428BD767800B264E9 /* GymDetailStore.swift in Sources */,
 				8655503A28A687E300924528 /* RegisterClient.swift in Sources */,
 				869518B228C261A2002C1354 /* StoreDateSelectView.swift in Sources */,
@@ -1051,6 +1061,7 @@
 				86BB029D28B646A000435C32 /* StoreSelectorView.swift in Sources */,
 				867C959F28C8B018005C6A95 /* TrainerTimescheduleView.swift in Sources */,
 				86C23F6628A3A12600303924 /* TimeshceduleClient.swift in Sources */,
+				86F749DA28CF21BB00EACB5B /* CustomerProfileStore.swift in Sources */,
 				86EA523F2894013900939659 /* HomeMenuView.swift in Sources */,
 				8609BAF628992EB80055130A /* LaunchDesignView.swift in Sources */,
 				86BB020B28AE618500435C32 /* DeleteClient.swift in Sources */,
@@ -1072,6 +1083,7 @@
 				86BB029B28B6449800435C32 /* MakeTrainerStore.swift in Sources */,
 				86BA3788289D3A2000D83C18 /* CalendarView.swift in Sources */,
 				86BB021428B28BEE00435C32 /* ProfileContentView.swift in Sources */,
+				86F749DC28CF232B00EACB5B /* SetCustomerProfileClient.swift in Sources */,
 				86BB026D28B3B4D000435C32 /* SignOutClient.swift in Sources */,
 				867C959B28C8AF92005C6A95 /* TrainerTrainerView.swift in Sources */,
 				86C23F7028A3F43100303924 /* AuthenticationClient.swift in Sources */,
