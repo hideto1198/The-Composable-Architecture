@@ -12,7 +12,7 @@ struct TrainerReservationView: View {
     @Environment(\.scenePhase) var scenePhase
     let store: Store<TrainerReservationState, TrainerReservationAction>
     init(store: Store<TrainerReservationState, TrainerReservationAction>) {
-        UITableView.appearance().backgroundColor = UIColor.red
+        UITableView.appearance().backgroundColor = UIColor.clear
         self.store = store
     }
     
