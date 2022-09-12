@@ -16,15 +16,12 @@ struct LaunchScreenView: View {
                 Group {
                     if viewStore.isRegist {
                         NavigationLink(destination: SignInUpView()
-                            .navigationBarHidden(true)
                             .navigationBarBackButtonHidden(true)
                             .navigationBarTitle("")
+                            .navigationBarHidden(true)
                             .navigationBarTitleDisplayMode(.inline),
                                        isActive: viewStore.binding(get: \.isLaunch, send: LaunchAction.onNavigate(isActive: false))){
                             LaunchDesignView(viewStore: viewStore)
-                                .navigationBarBackButtonHidden(true)
-                                .navigationBarTitle("")
-                                .navigationBarHidden(true)
                         }
                     } else if viewStore.isTrainer {
                         NavigationLink(destination: TrainerHomeView(store: Store(initialState: TrainerHomeState(),
@@ -32,34 +29,29 @@ struct LaunchScreenView: View {
                                                                                  environment: .live))
                             .navigationBarBackButtonHidden(true)
                             .navigationBarTitle("")
-                            .navigationBarHidden(true),
+                            .navigationBarHidden(true)
+                            .navigationBarTitleDisplayMode(.inline),
                                        isActive: viewStore.binding(get: \.isLaunch, send: LaunchAction.onNavigate(isActive: false))){
                             LaunchDesignView(viewStore: viewStore)
-                                .navigationBarBackButtonHidden(true)
-                                .navigationBarTitle("")
-                                .navigationBarHidden(true)
                         }
                     } else {
-                        NavigationLink(destination: HomeView(store: Store(
-                            initialState: HomeState(),
-                            reducer: homeReducer,
-                            environment: .live)
-                        )
+                        NavigationLink(destination: HomeView(store: Store(initialState: HomeState(),
+                                                                          reducer: homeReducer,
+                                                                          environment: .live))
                             .navigationBarBackButtonHidden(true)
                             .navigationBarTitle("")
-                            .navigationBarHidden(true),
+                            .navigationBarHidden(true)
+                            .navigationBarTitleDisplayMode(.inline),
                                        isActive: viewStore.binding(get: \.isLaunch, send: LaunchAction.onNavigate(isActive: false))){
                             LaunchDesignView(viewStore: viewStore)
-                                .navigationBarBackButtonHidden(true)
-                                .navigationBarTitle("")
-                                .navigationBarHidden(true)
                         }
                     }
                 }
-                .navigationBarBackButtonHidden(true)
-                .navigationBarTitle("")
-                .navigationBarHidden(true)
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 viewStore.send(.getCurrentUser)
             }
