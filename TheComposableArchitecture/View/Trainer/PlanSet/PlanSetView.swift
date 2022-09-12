@@ -21,7 +21,7 @@ struct PlanSetView: View {
                 VStack {
                     AppHeaderView(title: "予約セット")
                     ZStack {
-                        ScrollView{
+                        ScrollView {
                             VStack(alignment: .leading) {
                                 Group {
                                     TrainerMenuSelectView(viewStore: viewStore)
@@ -38,6 +38,7 @@ struct PlanSetView: View {
                                 }
                                 if viewStore.showCalendar {
                                     TrainerCalendarView(viewStore: viewStore)
+                                        .frame(width: bounds.width)
                                 }
                                 if viewStore.showTrainerSelector {
                                     TrainerTrainerSelectView(viewStore: viewStore)
@@ -54,7 +55,7 @@ struct PlanSetView: View {
                                 }
                                 if viewStore.trainerTimescheduleState.showTimeSchedule {
                                     TrainerTimescheduleView(viewStore: viewStore)
-                                        .padding(.horizontal)
+                                        .frame(width: bounds.width)
                                 }
                                 if !viewStore.inputReasonState.reasons.isEmpty {
                                     Button(

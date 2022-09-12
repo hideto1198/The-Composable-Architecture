@@ -38,6 +38,7 @@ struct MakeReservationView: View {
                                 }
                                 if viewStore.showCalendar {
                                     CalendarView(viewStore: viewStore)
+                                        .frame(width: bounds.width)
                                 }
                                 if viewStore.showTrainerSelector {
                                     TrainerSelectView(viewStore: viewStore)
@@ -54,7 +55,7 @@ struct MakeReservationView: View {
                                 }
                                 if viewStore.timescheduleState.showTimeSchedule {
                                     TimescheduleView(viewStore: viewStore)
-                                        .padding(.horizontal)
+                                        .frame(width: bounds.width)
                                 }
                                 if viewStore.timescheduleState.showAddButton {
                                     Button(
