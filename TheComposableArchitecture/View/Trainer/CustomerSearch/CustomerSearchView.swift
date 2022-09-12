@@ -23,7 +23,11 @@ struct CustomerSearchView: View {
                         }
                         return "\($0.firstName1)　\($0.lastName1)".contains(viewStore.searchText)
                     }) { user in
-                        NavigationLink(destination: Text("hello")) {
+                        NavigationLink(destination: CustomerProfileView(store: Store(initialState: CustomerProfileState(),
+                                                                                     reducer: customerProfileReducer,
+                                                                                     environment: .live),
+                                                                        user: user)
+                            .navigationBarHidden(true)) {
                             Text("\(user.firstName1)　\(user.lastName1)")
                         }
                     }
