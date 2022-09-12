@@ -58,6 +58,7 @@ struct HomeView: View {
                    dismiss: .alertDismissed)
             .onAppear {
                 viewStore.send(.onAppear)
+                UIApplication.shared.applicationIconBadgeNumber = 0
             }
             .gesture(
                 DragGesture(minimumDistance: 5)

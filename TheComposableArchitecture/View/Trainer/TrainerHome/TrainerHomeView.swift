@@ -25,6 +25,7 @@ struct TrainerHomeView: View {
                         TrainerReservationView(store: Store(initialState: TrainerReservationState(),
                                                             reducer: trainerReservationReducer,
                                                             environment: .live))
+                        .navigationBarHidden(true)
                         .tabItem {
                             Image(systemName: "tray")
                             Text("予定")
@@ -78,6 +79,9 @@ struct TrainerHomeView: View {
                         }
                     }
             )
+            .onAppear {
+                UIApplication.shared.applicationIconBadgeNumber = 0
+            }
         }
     }
 }
