@@ -41,6 +41,7 @@ struct MakeReservationState: Equatable {
     var showReservationTime: Bool = false
     var isLoading: Bool = false
     var alert: AlertState<MakeReservationAction>?
+    var reservation_response: [String] = []
     
     fileprivate mutating func resetState() {
         self.trainer = "選択してください"
@@ -68,7 +69,8 @@ enum MakeReservationAction: BindableAction, Equatable {
     case alertDismissed
     case onConfirmAlertDismissed
     case onTapConfirm
-    case setReservationResponse(Result<Bool, SetReservationClient.Failure>)
+    case setReservationResponse(Result<[String: String], SetReservationClient.Failure>)
+    case onDisappearSheet
 }
 
 struct MakeReservationEnvironment {
@@ -106,6 +108,9 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         // MARK: - カレンダーの日付を押したときの処理
         case let .calendarAction(.onTapTile(date)):
             state.showTrainer = false
+            state.timescheduleState.showTimeSchedule = false
+            state.timescheduleState.showAddButton = false
+            state.timescheduleState.timeFrom = nil
             if date.state == "○" {
                 state.showTrainerSelector = true
                 state.showCalendar = false
@@ -130,6 +135,7 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         // MARK: - トレーナーを選択したときの処理
         case let .trainerAction(.onTapTrainer(trainer)):
             state.timescheduleState.showTimeSchedule = false
+            state.timescheduleState.showAddButton = false
             state.trainer = trainer.trainerName
             state.showTrainer = false
             state.showReservationTime = true
@@ -165,7 +171,8 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         case .onTapTrainer:
             state.showTrainer.toggle()
             return .none
-            
+        
+        // MARK: - 日付選択をタップした時
         case .onTapDate:
             state.resetState()
             state.showCalendar = true
@@ -189,6 +196,7 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
                                                                 displayTime: state.timescheduleState.displayTime!))
                 state.resetState()
                 state.timescheduleState.showAddButton = false
+                state.calendarState.date = nil
                 state.placeSelector = 0
                 return .none
             }
@@ -210,6 +218,7 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         case .alertDismissed:
             state.alert = nil
             return .none
+        // MARK: - 確定ボタンを押した時の処理
         case .onTapConfirm:
             guard state.reservations.count != 0 else {
                 return .none
@@ -221,16 +230,29 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         case let .setReservationResponse(.success(result)):
             state.isLoading = false
             state.reservations.removeAll()
-            state.alert = AlertState(title: TextState("確認"),
-                                     message: TextState("予約が完了しました"),
-                                     dismissButton: .default(TextState("OK"), action: .send(.onConfirmAlertDismissed)))
+            if result.filter({ $0.value == "×" }).isEmpty {
+                state.alert = AlertState(title: TextState("確認"),
+                                         message: TextState("予約が完了しました"),
+                                         dismissButton: .default(TextState("OK"), action: .send(.onConfirmAlertDismissed)))
+            } else {
+                state.reservation_response = Array(result.filter({ $0.value == "×" }).keys)
+                state.alert = AlertState(title: TextState("確認"),
+                                         message: TextState("予約できなかった日があります。"),
+                                         dismissButton: .default(TextState("確認"), action: .send(.onConfirmAlertDismissed)))
+            }
             return .none
             
         case .setReservationResponse(.failure):
             state.isLoading = false
             return .none
         case .onConfirmAlertDismissed:
-            state.isSheet = false
+            if state.reservation_response.isEmpty {
+                state.isSheet = false
+            }
+            return .none
+        // MARK: - シートを閉じた時
+        case .onDisappearSheet:
+            state.reservation_response.removeAll()
             return .none
         }
     }
