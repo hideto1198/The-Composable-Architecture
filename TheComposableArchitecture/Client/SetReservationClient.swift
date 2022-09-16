@@ -12,7 +12,7 @@ import FirebaseFunctions
 import FirebaseAuth
 
 struct SetReservationClient {
-    var fetch: (_ reservations: [MakeReservationEntity]) -> Effect<Bool, Failure>
+    var fetch: (_ reservations: [MakeReservationEntity]) -> Effect<[String: String], Failure>
     struct Failure: Error, Equatable {}
 }
 
@@ -38,8 +38,9 @@ extension SetReservationClient {
                     "token": ""
                 ])
             }
-            let data = try await functions.httpsCallable("set_reservation_multi").call(request)
-            return true
+            let response = try await functions.httpsCallable("set_reservation_multi").call(request)
+            let datas: [String: String] = ((response.data as! NSDictionary)["data"]) as! Dictionary
+            return datas
         }
         .mapError{ _ in Failure() }
         .eraseToEffect()
