@@ -15,41 +15,56 @@ struct MakeReservationListView: View {
         WithViewStore(self.store) { viewStore in
             ZStack {
                 VStack {
-                    Text("予約一覧")
-                        .font(.custom("", size: 16))
-                        .padding(.top)
-                    List {
-                        ForEach(viewStore.reservations) { reservation in
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text("メニュー　： \(reservation.menuName)")
-                                    Text("日時　　　： \(reservation.year)年\(reservation.month)月\(reservation.day)日 \(reservation.timeFrom)〜\(reservation.displayTime)")
-                                    Text("トレーナー： \(reservation.trainerName)")
-                                    Text("場所　　　： \(reservation.placeName)")
+                    if viewStore.reservation_response.isEmpty {
+                        Text("予約一覧")
+                            .font(.custom("", size: 16))
+                            .padding(.top)
+                        List {
+                            ForEach(viewStore.reservations) { reservation in
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text("メニュー　： \(reservation.menuName)")
+                                        Text("日時　　　： \(reservation.year)年\(reservation.month)月\(reservation.day)日 \(reservation.timeFrom)〜\(reservation.displayTime)")
+                                        Text("トレーナー： \(reservation.trainerName)")
+                                        Text("場所　　　： \(reservation.placeName)")
+                                    }
+                                    .font(.custom("", size: 15))
+                                    Spacer()
                                 }
-                                .font(.custom("", size: 15))
-                                Spacer()
+                            }
+                            .onDelete(perform: { offsets in
+                                viewStore.send(.onDelete(offsets))
+                            })
+                        }
+                        Spacer()
+                        Button(
+                            action:{
+                                viewStore.send(.onTapConfirm)
+                            }
+                        ){
+                            ButtonView(text: "確定")
+                        }
+                        .padding(.vertical)
+                    } else {
+                        Text("予約できなかった日付")
+                            .font(.custom("", size: 16))
+                            .padding(.top)
+                        List {
+                            ForEach(viewStore.reservation_response, id: \.self) { response in
+                                Text(response)
+                                    .font(.custom("", size: 15))
                             }
                         }
-                        .onDelete(perform: { offsets in
-                            viewStore.send(.onDelete(offsets))
-                        })
                     }
-                    Spacer()
-                    Button(
-                        action:{
-                            viewStore.send(.onTapConfirm)
-                        }
-                    ){
-                        ButtonView(text: "確定")
-                    }
-                    .padding(.vertical)
                 }
                 if viewStore.isLoading {
                     LoadingView()
                 }
             }
             .alert(self.store.scope(state: \.alert), dismiss: .alertDismissed)
+            .onDisappear {
+                viewStore.send(.onDisappearSheet)
+            }
         }
     }
 }
