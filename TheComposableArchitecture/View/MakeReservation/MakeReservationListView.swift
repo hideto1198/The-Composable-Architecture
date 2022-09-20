@@ -46,13 +46,18 @@ struct MakeReservationListView: View {
                         }
                         .padding(.vertical)
                     } else {
-                        Text("予約できなかった日付")
+                        Text("予約できなかった一覧")
                             .font(.custom("", size: 16))
                             .padding(.top)
                         List {
-                            ForEach(viewStore.reservation_response, id: \.self) { response in
-                                Text(response)
-                                    .font(.custom("", size: 15))
+                            ForEach(viewStore.reservation_response) { response in
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text("日付　　：　\(response.year)年\(response.month)月\(response.day)日")
+                                        Text("時間　　：　\(response.timeFrom)〜\(response.timeTo)")
+                                    }
+                                    Spacer()
+                                }
                             }
                         }
                     }
