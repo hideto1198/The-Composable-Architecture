@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct CustomerSearchView: View {
+    @Environment(\.presentationMode) var presentationMode
     let store: Store<CustomerSearchState, CustomerSearchAction>
     
     var body: some View {
@@ -34,6 +35,16 @@ struct CustomerSearchView: View {
                     .listStyle(.plain)
                     Spacer()
                 }
+                .gesture(
+                    DragGesture(minimumDistance: 5)
+                        .onEnded{ value in
+                            if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x{
+                                withAnimation(){
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+                        }
+                )
                 if viewStore.isLoading {
                     ActivityIndicator()
                 }
