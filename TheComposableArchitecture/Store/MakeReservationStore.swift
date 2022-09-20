@@ -22,6 +22,16 @@ struct MakeReservationEntity: Equatable, Identifiable {
     var displayTime: String
 }
 
+struct ReservationResponseEntity: Equatable, Identifiable {
+    var id: String = UUID().uuidString
+    var year: String
+    var month: String
+    var day: String
+    var timeFrom: String
+    var timeTo: String
+    var state: String
+}
+
 struct MakeReservationState: Equatable {
     @BindableState var isSheet: Bool = false
     @BindableState var trainerTabSelector: Int = 0
@@ -41,7 +51,7 @@ struct MakeReservationState: Equatable {
     var showReservationTime: Bool = false
     var isLoading: Bool = false
     var alert: AlertState<MakeReservationAction>?
-    var reservation_response: [String] = []
+    var reservation_response: [ReservationResponseEntity] = []
     
     fileprivate mutating func resetState() {
         self.trainer = "選択してください"
@@ -69,7 +79,7 @@ enum MakeReservationAction: BindableAction, Equatable {
     case alertDismissed
     case onConfirmAlertDismissed
     case onTapConfirm
-    case setReservationResponse(Result<[String: String], SetReservationClient.Failure>)
+    case setReservationResponse(Result<[ReservationResponseEntity], SetReservationClient.Failure>)
     case onDisappearSheet
 }
 
@@ -230,12 +240,12 @@ let makeReservationReducer: Reducer = Reducer<MakeReservationState, MakeReservat
         case let .setReservationResponse(.success(result)):
             state.isLoading = false
             state.reservations.removeAll()
-            if result.filter({ $0.value == "×" }).isEmpty {
+            if result.filter({ $0.state == "×" }).isEmpty {
                 state.alert = AlertState(title: TextState("確認"),
                                          message: TextState("予約が完了しました"),
                                          dismissButton: .default(TextState("OK"), action: .send(.onConfirmAlertDismissed)))
             } else {
-                state.reservation_response = Array(result.filter({ $0.value == "×" }).keys)
+                state.reservation_response = result.filter({ $0.state == "×" })
                 state.alert = AlertState(title: TextState("確認"),
                                          message: TextState("予約できなかった日があります。"),
                                          dismissButton: .default(TextState("確認"), action: .send(.onConfirmAlertDismissed)))
