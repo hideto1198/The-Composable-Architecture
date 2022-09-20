@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct MakeReservationView: View {
-    @Environment(\.presentationMode) var presentaionMode
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.scenePhase) var scenePhase
     let store: Store<MakeReservationState,MakeReservationAction>
     
@@ -81,7 +81,7 @@ struct MakeReservationView: View {
                         .onEnded{ value in
                             if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x{
                                 withAnimation(){
-                                    self.presentaionMode.wrappedValue.dismiss()
+                                    self.presentationMode.wrappedValue.dismiss()
                                 }
                             }
                         }

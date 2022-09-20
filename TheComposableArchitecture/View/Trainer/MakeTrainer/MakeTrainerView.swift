@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct MakeTrainerView: View {
-    @Environment(\.presentationMode) var presentaionMode
+    @Environment(\.presentationMode) var presentationMode
     let store: Store<MakeTrainerState, MakeTrainerAction>
     
     var body: some View {
@@ -51,7 +51,7 @@ struct MakeTrainerView: View {
                     .onEnded{ value in
                         if value.startLocation.x <= bounds.width * 0.09 && value.startLocation.x * 1.1 < value.location.x{
                             withAnimation(){
-                                self.presentaionMode.wrappedValue.dismiss()
+                                self.presentationMode.wrappedValue.dismiss()
                             }
                         }
                     }
