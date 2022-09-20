@@ -23,6 +23,7 @@ struct MakeTrainerPasswordInputView: View {
                         TextField("", text: self.$password)
                     }
                 }
+                .padding(.leading, 5)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)

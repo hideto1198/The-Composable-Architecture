@@ -15,6 +15,7 @@ struct MakeTrainerPathInputView: View {
             Text("画像パス")
             ZStack(alignment: .trailing) {
                 TextField("", text: self.$text)
+                    .padding(.leading, 5)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)

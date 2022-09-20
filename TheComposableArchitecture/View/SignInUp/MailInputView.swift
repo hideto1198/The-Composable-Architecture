@@ -16,6 +16,7 @@ struct MailInputView: View {
             Text("\(title)")
             ZStack(alignment: .trailing) {
                 TextField("", text: self.$email)
+                    .padding(.leading, 5)
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)

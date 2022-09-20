@@ -23,6 +23,7 @@ struct PasswordInputView: View {
                         TextField("", text: self.$password)
                     }
                 }
+                .padding(.leading, 5)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
