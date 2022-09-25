@@ -64,11 +64,11 @@ struct TrainerHomeCalendarView: View {
                     VStack(spacing: 3) {
                         ForEach(viewStore.trainerCalendarState.dates.indices, id: \.self) { i in
                             HStack(spacing: 3) {
-                                ForEach(viewStore.trainerCalendarState.dates[i], id: \.self) { date in
+                                ForEach(viewStore.trainerCalendarState.dates[i].indices, id: \.self) { n in
                                     Button(action: {
-                                        viewStore.send(.onTapCalendarTile(date.date), animation: .easeIn)
+                                        viewStore.send(.onTapCalendarTile(viewStore.trainerCalendarState.dates[i][n].date), animation: .easeIn)
                                     }) {
-                                        TrainerHomeCalendarTileView(date: date)
+                                        TrainerHomeCalendarTileView(date: viewStore.trainerCalendarState.dates[i][n] ,n: n)
                                     }
                                 }
                             }

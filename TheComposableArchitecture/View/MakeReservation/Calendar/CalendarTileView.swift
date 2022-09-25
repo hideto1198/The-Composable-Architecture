@@ -10,6 +10,7 @@ import SwiftUI
 struct CalendarTileView: View {
     var date: String
     var state: String
+    var n: Int
     
     var body: some View {
         ZStack {
@@ -17,6 +18,7 @@ struct CalendarTileView: View {
                 .stroke(Color("app_color"), lineWidth: 1)
             VStack(spacing: 7) {
                 Text("\(date)")
+                    .foregroundColor(n == 0 || n == 6 ? .red : .primary)
                 Text("\(state)")
                     .frame(width: bounds.width * 0.04, height: bounds.height * 0.04)
             }
@@ -27,6 +29,6 @@ struct CalendarTileView: View {
 
 struct CalendarTileView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarTileView(date: "1", state: "○")
+        CalendarTileView(date: "1", state: "○", n: 0)
     }
 }

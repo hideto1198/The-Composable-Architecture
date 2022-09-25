@@ -50,14 +50,15 @@ struct TrainerCalendarView: View {
                     VStack(spacing: 3) {
                         ForEach(viewStore.calendarState.dates.indices, id:\.self) { i in
                             HStack(spacing: 3) {
-                                ForEach(viewStore.calendarState.dates[i], id: \.self) { date in
+                                ForEach(viewStore.calendarState.dates[i].indices, id: \.self) { n in
                                     Button(
                                         action: {
-                                            viewStore.send(.calendarAction(.onTapTile(date)), animation: .easeInOut)
+                                            viewStore.send(.calendarAction(.onTapTile(viewStore.calendarState.dates[i][n])), animation: .easeInOut)
                                         }
                                     ){
-                                        CalendarTileView(date: date.date,
-                                                         state: date.state)
+                                        CalendarTileView(date: viewStore.calendarState.dates[i][n].date,
+                                                         state: viewStore.calendarState.dates[i][n].state,
+                                                         n: n)
                                     }
                                 }
                             }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TrainerHomeCalendarTileView: View {
     var date: DateEntity
+    var n: Int
     
     var body: some View {
         ZStack {
@@ -16,6 +17,7 @@ struct TrainerHomeCalendarTileView: View {
                 .stroke(date.isToday ? Color.blue : Color("app_color"), lineWidth: 1)
             VStack(spacing: 7) {
                 Text("\(date.date)")
+                    .foregroundColor(n == 0 || n == 6 ? .red : .primary)
                     .background(Circle()
                         .foregroundColor(date.isToday ? Color.blue.opacity(0.6) : Color("primary_white"))
                         .frame(width: bounds.width * 0.058, height: bounds.height * 0.058))
@@ -37,6 +39,6 @@ struct TrainerHomeCalendarTileView: View {
 
 struct TrainerHomeCalendarTileView_Previews: PreviewProvider {
     static var previews: some View {
-        TrainerHomeCalendarTileView(date: DateEntity(date: "1", state: "予", isToday: true))
+        TrainerHomeCalendarTileView(date: DateEntity(date: "1", state: "予", isToday: true), n: 0)
     }
 }
