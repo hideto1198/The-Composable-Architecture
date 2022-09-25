@@ -48,6 +48,14 @@ struct TrainerReservationView: View {
                     return
                 }
             }
+            .gesture(
+                DragGesture(minimumDistance: 5)
+                    .onEnded{ value in
+                        if (value.startLocation.x - value.location.x ) > 100 {
+                        } else if (value.startLocation.x - value.location.x) < -100 {
+                        }
+                    }
+            )
         }
     }
 }
