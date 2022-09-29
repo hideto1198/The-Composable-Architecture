@@ -43,6 +43,8 @@ struct HomeMenuView: View {
                                                                    environment: .live))
                         .navigationBarHidden(true),
                         label: { MenuView(title: "チケット追加") })
+                    NavigationLink(destination: EmptyView(), label: { MenuView(title: "チケット購入履歴") })
+                    NavigationLink(destination: EmptyView(), label: { MenuView(title: "予約履歴") })
                     NavigationLink(destination: EmptyView(), label: { MenuView(title: "お問い合わせ") })
                     NavigationLink(destination: LaunchScreenView(store: Store(initialState: LaunchState(),
                                                                               reducer: launchReducer,
